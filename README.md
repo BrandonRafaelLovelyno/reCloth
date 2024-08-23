@@ -6,8 +6,8 @@ Kelompok HBD
 
 Ketua Kelompok:
 
-Anggota 1:
+Anggota 1: Muhammad Hifzhon Harundoyo - 22/498269/TK/54647
 
-Anggota 2:
+Anggota 2: 
 
 Anggota 3: Deren Tanaphan - 22/503261/TK/54976
