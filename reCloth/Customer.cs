@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace reCloth
 {
-    internal class Customer
+    internal class Customer : User
     {
     }
 }

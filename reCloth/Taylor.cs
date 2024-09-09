@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace reCloth
 {
-    internal class Taylor
+    internal class Taylor : User
     {
+        private Portfolio[] portfolios; 
     }
 }
