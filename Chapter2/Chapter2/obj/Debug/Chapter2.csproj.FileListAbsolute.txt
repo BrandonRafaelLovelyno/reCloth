@@ -1,9 +1,0 @@
-C:\Users\Brandon\code\Desktop\reCloth\Chapter2\Chapter2\bin\Debug\Chapter2.exe.config
-C:\Users\Brandon\code\Desktop\reCloth\Chapter2\Chapter2\bin\Debug\Chapter2.exe
-C:\Users\Brandon\code\Desktop\reCloth\Chapter2\Chapter2\bin\Debug\Chapter2.pdb
-C:\Users\Brandon\code\Desktop\reCloth\Chapter2\Chapter2\obj\Debug\Chapter2.csproj.AssemblyReference.cache
-C:\Users\Brandon\code\Desktop\reCloth\Chapter2\Chapter2\obj\Debug\Chapter2.Properties.Resources.resources
-C:\Users\Brandon\code\Desktop\reCloth\Chapter2\Chapter2\obj\Debug\Chapter2.csproj.GenerateResource.cache
-C:\Users\Brandon\code\Desktop\reCloth\Chapter2\Chapter2\obj\Debug\Chapter2.csproj.CoreCompileInputs.cache
-C:\Users\Brandon\code\Desktop\reCloth\Chapter2\Chapter2\obj\Debug\Chapter2.exe
-C:\Users\Brandon\code\Desktop\reCloth\Chapter2\Chapter2\obj\Debug\Chapter2.pdb
