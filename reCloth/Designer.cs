@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace reCloth
 {
-    class Designer
+    class Designer : User
     {
         private Portfolio[] portfolios;
 
