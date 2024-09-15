@@ -15,3 +15,7 @@ Anggota 3: Deren Tanaphan - 22/503261/TK/54976
 ## Class Diagram
 
 ![image](https://github.com/user-attachments/assets/26172b75-7d83-409a-a783-05f7fd17deb0)
+
+## ERD
+
+![image](https://github.com/user-attachments/assets/5f173cc6-7feb-4abc-a7f6-8b0d068e2fe7)
