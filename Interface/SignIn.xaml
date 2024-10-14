@@ -8,8 +8,16 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SignIn">
 
-    <Border Padding="20">
-        <StackPanel Orientation="Vertical">
+    
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+        <Border Padding="50">
+        <StackPanel Grid.Column="0"  Orientation="Vertical">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
                 <TextBlock Text="Login" Foreground="#35dfe8" FontSize="24" FontWeight="Bold"  />
             </StackPanel>
@@ -22,5 +30,9 @@
                 <PasswordBox Width="250" FontSize="12" />
             </StackPanel>
         </StackPanel>
-    </Border>
-</Page>
+        </Border>
+
+        <Image Grid.Column="1" Source="https://wallpaperaccess.com/full/366398.jpg" Stretch="UniformToFill" />
+
+        </Grid>
+ </Page>
