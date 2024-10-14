@@ -19,6 +19,18 @@ namespace Interface
         public MainWindow()
         {
             InitializeComponent();
+
+            MainFrame.Navigate(new SignIn());
+        }
+
+        private void SignIn_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new SignIn());
+        }
+
+        private void SignUp_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new SignUp());
         }
     }
 }
