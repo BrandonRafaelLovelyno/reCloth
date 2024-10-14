@@ -5,6 +5,8 @@ VisualStudioVersion = 17.9.34902.65
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "reCloth", "reCloth.csproj", "{E7F047BD-0FAB-405B-BBE0-01521607E5A0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interface", "..\Interface\Interface.csproj", "{E94A2932-767A-49B2-8CAD-A04E60A0AA89}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E7F047BD-0FAB-405B-BBE0-01521607E5A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E7F047BD-0FAB-405B-BBE0-01521607E5A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E7F047BD-0FAB-405B-BBE0-01521607E5A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E94A2932-767A-49B2-8CAD-A04E60A0AA89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E94A2932-767A-49B2-8CAD-A04E60A0AA89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E94A2932-767A-49B2-8CAD-A04E60A0AA89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E94A2932-767A-49B2-8CAD-A04E60A0AA89}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

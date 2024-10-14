@@ -14,7 +14,7 @@ namespace reCloth
 
         public void pay(int nominal)
         {
-
+            
         }
     }
 }
