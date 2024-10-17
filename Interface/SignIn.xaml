@@ -26,13 +26,13 @@
                 </StackPanel>
                 <StackPanel Orientation="Vertical"  Margin="0 20 0 0" HorizontalAlignment="Stretch">
                     <TextBlock Text="Email" Foreground="#A5B68D" FontSize="15" FontWeight="SemiBold"  />
-                    <Border BorderThickness="0.5" BorderBrush="Black" CornerRadius="8" Padding="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0" HorizontalAlignment="Stretch" >
+                    <Border BorderThickness="0.5" BorderBrush="Black" CornerRadius="8" Padding="3" VerticalAlignment="Center" Margin="0 5 0 0" HorizontalAlignment="Stretch" >
                         <TextBox Width="250" FontSize="12" Text="Enter your email" Padding="10 3" Foreground="#A5B68D" BorderThickness="0" />
                     </Border>
                 </StackPanel>
-                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="0 10 0 0">
+                <StackPanel Orientation="Vertical" Margin="0 10 0 0" HorizontalAlignment="Stretch"> 
                     <TextBlock Text="Password" Foreground="#A5B68D" FontSize="15" FontWeight="SemiBold"  />
-                    <Border BorderThickness="0.5" BorderBrush="Black" CornerRadius="8" Padding="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0" >
+                    <Border BorderThickness="0.5" BorderBrush="Black" CornerRadius="8" Padding="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0 5 0 0" >
                         <PasswordBox Width="250" FontSize="12" Padding="10 3" Foreground="#A5B68D" BorderThickness="0" />
                     </Border>
                 </StackPanel>
@@ -40,6 +40,10 @@
                     <Border  BorderBrush="Black" Background="#BD6D68" CornerRadius="8" Padding="0 4" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0 5 0 0">
                         <TextBlock Text="Login" Foreground="White" FontSize="15" HorizontalAlignment="Stretch"  TextAlignment="Center" FontWeight="Bold"/>
                     </Border>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 0" >
+                        <TextBlock Text="Don't have an account?" FontWeight="SemiBold" />
+                        <TextBlock Text="Sign up" FontWeight="Bold" Margin="5 0 0 0" Foreground="#BD6D68" />
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
         </Border>
