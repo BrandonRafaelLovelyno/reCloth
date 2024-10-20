@@ -7,6 +7,14 @@
         mc:Ignorable="d"
         Title="AppWindow" Height="450" Width="800">
     <Grid>
-        <TextBlock Text="This is app window" />
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Background="Gray">
+                <Button Content="SignIn" Width="100" Margin="5"/>
+                <Button Content="SignUp" Width="100" Margin="5"/>
+                <Button Content="Go to App" Width="100" Margin="5"/>
+            </StackPanel>
+
+            <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
+        </DockPanel>
     </Grid>
 </Window>

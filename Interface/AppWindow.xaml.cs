@@ -23,6 +23,8 @@ namespace Interface
         {
             InitializeComponent();
 
+            MainFrame.NavigationService.Navigate(new DashboardCustomer());
+
             // Set the window to fullscreen
             this.WindowState = WindowState.Maximized;
         }

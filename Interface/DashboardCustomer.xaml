@@ -1,0 +1,122 @@
+﻿<Page x:Class="Interface.DashboardCustomer"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Interface"
+      mc:Ignorable="d" 
+      d:DesignHeight="1022" d:DesignWidth="1258"
+      Title="DashboardCustomer">
+
+    <Grid Background="#FDF4EB">
+        <!-- Define Rows and Columns -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="50" HorizontalAlignment="Left">
+            <TextBlock FontWeight="Bold" FontSize="43.2">
+                Hello, Customer!
+            </TextBlock>
+        </StackPanel>
+
+        <!-- Body Section -->
+        <Grid Grid.Row="1" Margin="50">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <!-- Total Order Box -->
+            <Border Grid.Column="0" Background="#BD6D68" CornerRadius="25" Padding="20" Margin="0,0,289,0">
+                <StackPanel HorizontalAlignment="Center">
+                    <TextBlock Text="Total Order" FontSize="36" FontWeight="Medium" Foreground="White" HorizontalAlignment="Center"/>
+                    <TextBlock FontSize="51.84" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Center">
+                        999
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+
+            <!-- Total Order Box -->
+            <Border Grid.Column="1" Background="#BD6D68" CornerRadius="25" Padding="20" Margin="0,0,289,0">
+                <StackPanel HorizontalAlignment="Center">
+                    <TextBlock Text="Role" FontSize="36" FontWeight="Medium" Foreground="White" HorizontalAlignment="Center"/>
+                    <TextBlock FontSize="51.84" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Center">
+                        Worker
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+        </Grid>
+        
+        <!-- Order List -->
+        <Grid Grid.Row="2" Margin="50" Background="#BD6D68">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Margin="22 25 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <!-- Header -->
+                <TextBlock Text="Order" FontSize="36px" FontWeight="SemiBold" Foreground="White"/>
+
+                <!-- Filter Dropdown -->
+                <StackPanel Margin="0 0 22 0" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBlock Text="Filtered by:" FontSize="17.36" FontWeight="Normal" VerticalAlignment="Center" Foreground="White" Margin="0 0 5 0 " />
+
+                    <ComboBox Width="200" Height="25">
+                        <ComboBoxItem Content="Posted" />
+                        <ComboBoxItem Content="Proposed" />
+                        <ComboBoxItem Content="Ongoing" />
+                        <ComboBoxItem Content="Finished" />
+                    </ComboBox>
+                </StackPanel>
+            </Grid>
+            
+            <!-- List of Orders -->
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="10">
+                <ItemsControl x:Name="OrderList">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Background="White" CornerRadius="25" Padding="10" Margin="2 2 2 2">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- Picture -->
+                                    <Ellipse Width="85" Height="85" Fill="Aqua" Grid.Column="0" />
+
+                                    <!-- Order Info -->
+                                    <StackPanel Grid.Column="1" Margin="14 0 14 0" VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding Title}" FontSize="25" FontWeight="Medium" Foreground="#A5B68D" />
+                                        <TextBlock Text="{Binding Budget}" FontSize="17.36" FontWeight="Regular" Foreground="#87ABB4" />
+                                    </StackPanel>
+
+                                    <!-- Order Status and Show Button -->
+                                    <StackPanel Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical">
+                                        <Border Width="122" Background="#6554C0" Padding="10 0 10 0" Margin="0 0 0 5" CornerRadius="12" HorizontalAlignment="Center">
+                                            <TextBlock Text="{Binding Status}" FontSize="20" FontWeight="Regular" Foreground="White" HorizontalAlignment="Center"/>
+                                        </Border>
+                                        <Button Width="122" Content="Show" />
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Page>
