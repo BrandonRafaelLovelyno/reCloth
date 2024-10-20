@@ -20,6 +20,9 @@ namespace Interface
         {
             InitializeComponent();
 
+            // Set the window to fullscreen
+            this.WindowState = WindowState.Maximized;
+
             MainFrame.Navigate(new SignIn());
         }
 
