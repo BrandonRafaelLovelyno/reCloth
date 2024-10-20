@@ -7,6 +7,15 @@
         mc:Ignorable="d"
         Title="AppWindow" Height="450" Width="800">
     <Grid>
-        <TextBlock Text="This is app window" />
+        <DockPanel>
+            <Grid Background="#BD6D68">
+                <StackPanel DockPanel.Dock="Left" Orientation="Vertical" VerticalAlignment="Center">
+                    <Label Cursor="Hand" MouseLeftButtonDown="Marketplace_Click" Foreground="#FDF4EB" Content="&#xf290;" FontFamily="./#Font Awesome 6 Free Solid 6 Free Solid" FontSize="40" Margin="15"/>
+                    <Label Cursor="Hand" Foreground="#FDF4EB" Content="&#xf093;" FontFamily="./#Font Awesome 6 Free Solid 6 Free Solid" FontSize="40" Margin="15"/>
+                    <Label Cursor="Hand" MouseLeftButtonDown="Dashboard_Click" Foreground="#FDF4EB" Content="&#xf007;" FontFamily="./#Font Awesome 6 Free Solid 6 Free Solid" FontSize="40" Margin="15"/>
+                </StackPanel>
+            </Grid>
+            <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
+        </DockPanel>
     </Grid>
 </Window>

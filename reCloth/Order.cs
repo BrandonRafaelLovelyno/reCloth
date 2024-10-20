@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace reCloth
 {
-    class Order
+    public class Order
     {
-        private Customer customer;
-        private int price;
-        private string image;
-        private string specification;
-        private Boolean isDone;
-        private string title;
+        public string Title { get; set; }
+        public string Budget { get; set; }
+        public string Status { get; set; }
     }
 }

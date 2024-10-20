@@ -8,12 +8,12 @@ namespace reCloth
 {
     class Taylor : User
     {
-        private Portfolio[] portfolios;
+        //private Portfolio[] portfolios;
 
         public void postPortfolio(string title, string image, string information)
         {
-            Portfolio newPortfolio = new Portfolio(title,image,information);
-            portfolios.add(newPortfolio);
+            /*Portfolio newPortfolio = new Portfolio(title,image,information);
+            portfolios.add(newPortfolio);*/
         }
 
     }

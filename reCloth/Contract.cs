@@ -12,6 +12,10 @@ namespace reCloth
         private Proposal proposal;
         private Payment payment;
 
+        public string Title { get; set; }
+        public string Budget { get; set; }
+        public string Status { get; set; }
+
         public void pay(int nominal)
         {
             
