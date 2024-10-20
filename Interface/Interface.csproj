@@ -21,6 +21,30 @@
     <Resource Include="Font Awesome 6 Free-Solid-900.otf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <None Remove="assets\Fonts\Lexend-Black.ttf" />
+    <None Remove="assets\Fonts\Lexend-Bold.ttf" />
+    <None Remove="assets\Fonts\Lexend-ExtraBold.ttf" />
+    <None Remove="assets\Fonts\Lexend-ExtraLight.ttf" />
+    <None Remove="assets\Fonts\Lexend-Light.ttf" />
+    <None Remove="assets\Fonts\Lexend-Medium.ttf" />
+    <None Remove="assets\Fonts\Lexend-Regular.ttf" />
+    <None Remove="assets\Fonts\Lexend-SemiBold.ttf" />
+    <None Remove="assets\Fonts\Lexend-Thin.ttf" />
+    <None Remove="assets\Fonts\Lexend-VariableFont_wght.ttf" />
+    <None Remove="assets\signup-background.png" />
+    <None Remove="assets\signup.jpg" />
+    <Resource Include="assets\Fonts\Lexend-Black.ttf" />
+    <Resource Include="assets\Fonts\Lexend-Bold.ttf" />
+    <Resource Include="assets\Fonts\Lexend-ExtraBold.ttf" />
+    <Resource Include="assets\Fonts\Lexend-ExtraLight.ttf" />
+    <Resource Include="assets\Fonts\Lexend-Light.ttf" />
+    <Resource Include="assets\Fonts\Lexend-Medium.ttf" />
+    <Resource Include="assets\Fonts\Lexend-Regular.ttf" />
+    <Resource Include="assets\Fonts\Lexend-SemiBold.ttf" />
+    <Resource Include="assets\Fonts\Lexend-Thin.ttf" />
+    <Resource Include="assets\Fonts\Lexend-VariableFont_wght.ttf" />
+    <Resource Include="assets\Pictures\signup-background.png" />
+    <Resource Include="assets\Pictures\signup.jpg" />
   </ItemGroup>
 
 </Project>
