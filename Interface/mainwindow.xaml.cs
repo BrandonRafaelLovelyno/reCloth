@@ -23,7 +23,7 @@ namespace Interface
             // Set the window to fullscreen
             this.WindowState = WindowState.Maximized;
 
-            MainFrame.Navigate(new SignIn());
+            MainFrame.Navigate(new OrderPage(24));
         }
 
         private void SignIn_Click(object sender, RoutedEventArgs e)
