@@ -8,12 +8,13 @@
         Title="AppWindow" Height="450" Width="800">
     <Grid>
         <DockPanel>
-            <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Background="Gray">
-                <Button Content="SignIn" Width="100" Margin="5"/>
-                <Button Content="SignUp" Width="100" Margin="5"/>
-                <Button Content="Go to App" Width="100" Margin="5"/>
-            </StackPanel>
-
+            <Grid Background="#BD6D68">
+                <StackPanel DockPanel.Dock="Left" Orientation="Vertical" VerticalAlignment="Center">
+                    <Button Content="SignIn" Width="100" Margin="5"/>
+                    <Button Content="SignUp" Width="100" Margin="5"/>
+                    <Button Content="Go to App" Width="100" Margin="5"/>
+                </StackPanel>
+            </Grid>
             <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
         </DockPanel>
     </Grid>
