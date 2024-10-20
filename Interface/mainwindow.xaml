@@ -11,6 +11,7 @@
             <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="Gray" Height="40">
                 <Button Content="SignIn" Click="SignIn_Click" Width="100" Margin="5"/>
                 <Button Content="SignUp" Click="SignUp_Click" Width="100" Margin="5"/>
+                <Button Content="Go to App" Click="App_Click" Width="100" Margin="5"/>
             </StackPanel>
 
             <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
