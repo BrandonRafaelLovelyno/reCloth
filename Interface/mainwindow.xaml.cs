@@ -26,16 +26,6 @@ namespace Interface
             MainFrame.Navigate(new SignIn());
         }
 
-        private void SignIn_Click(object sender, RoutedEventArgs e)
-        {
-            MainFrame.Navigate(new SignIn());
-        }
-
-        private void SignUp_Click(object sender, RoutedEventArgs e)
-        {
-            MainFrame.Navigate(new SignUp());
-        }
-
         private void App_Click(object sender, RoutedEventArgs e)
         {
             AppWindow appWindow = new AppWindow();

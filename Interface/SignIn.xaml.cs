@@ -25,9 +25,9 @@ namespace Interface
             InitializeComponent();
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void Navigate_to_SignUp(object sender, MouseEventArgs e)
         {
-
+            NavigationService.Navigate(new SignUp());
         }
     }
 }

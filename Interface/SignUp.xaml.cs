@@ -24,5 +24,10 @@ namespace Interface
         {
             InitializeComponent();
         }
+
+        private void Navigate_to_SignIn(object sender, MouseEventArgs e)
+        {
+            NavigationService.Navigate(new SignIn());
+        }
     }
 }
