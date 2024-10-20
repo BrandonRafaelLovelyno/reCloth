@@ -23,7 +23,16 @@ namespace Interface
         {
             InitializeComponent();
 
-            MainFrame.NavigationService.Navigate(new DashboardCustomer());
+            string userType = "customer"; // This should be set to the user's type
+
+            if (userType == "customer")
+            {
+                MainFrame.NavigationService.Navigate(new DashboardCustomer());
+            }
+            else if (userType == "worker")
+            {
+                MainFrame.NavigationService.Navigate(new DashboardWorker());
+            }
 
             // Set the window to fullscreen
             this.WindowState = WindowState.Maximized;
