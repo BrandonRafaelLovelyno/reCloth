@@ -9,7 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\reCloth\reCloth.csproj" />
+    <None Remove="Font Awesome 6 Free-Solid-900.otf" />
+    <None Remove="FontAwesome.otf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Font Awesome 6 Free-Solid-900.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>
