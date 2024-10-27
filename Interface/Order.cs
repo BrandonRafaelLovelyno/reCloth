@@ -9,16 +9,9 @@ namespace Interface
     public class Order
     {
         private DatabaseHelper dbHelper = new DatabaseHelper();
-        public string _title;
-        public double _budget;
-        public bool _is_done;
-
-        public Order(string title, double budget, bool is_done)
-        {
-            _title = title;
-            _budget = budget;
-            _is_done = is_done;
-        }
+        public string Title { get; set; }
+        public string Budget { get; set; }
+        public String Status { get; set; }
 
         public void postImage(string image)
         {

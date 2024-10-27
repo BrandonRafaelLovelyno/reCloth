@@ -23,13 +23,13 @@ namespace Interface
     {
         private DatabaseHelper dbHelper = new DatabaseHelper();
         private Customer _customer;
-        private List<Order> _orders;
+        private List<Order> orders = new List<Order>();
 
         public DashboardCustomer(string customer_id)
         {
             _customer = new Customer(customer_id);
-            fetchOrder();
             InitializeComponent();
+            fetchOrder();
         }
 
         public void fetchOrder()
@@ -44,11 +44,14 @@ namespace Interface
                     // Read the results
                     while (res.Read())
                     {
-                        // Accessing the columns by name
                         string title = res["title"].ToString();
-                        
-                        // Output the result
-                        Console.WriteLine($"Title: {title}");
+                        double budgetValue = Convert.ToDouble(res["budget"]);
+                        string budget = $"Rp {budgetValue}";
+                        string status = res["is_done"].ToString() == "True" ? "Finished" : "Ongoing";
+
+                        Console.WriteLine($"Title: {title}, Budget: {budget}, Status: {status}");
+
+                        orders.Add(new Order { Title = title, Budget = budget, Status = status });
                     }
                 }
                 else
@@ -56,7 +59,7 @@ namespace Interface
                     Console.WriteLine("No results returned.");
                 }
             } // The reader is automatically closed here
+            OrderList.ItemsSource = orders;
         }
-
     }
 }
