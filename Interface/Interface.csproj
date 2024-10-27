@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\reCloth\reCloth.csproj" />
+    <ProjectReference Include="..\reCloth\ClassLibrary.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,6 +35,9 @@
     <None Remove="assets\Fonts\Lexend-VariableFont_wght.ttf" />
     <None Remove="assets\signup-background.png" />
     <None Remove="assets\signup.jpg" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.1" />
+    <PackageReference Include="Npgsql" Version="8.0.5" />
     <Resource Include="assets\Fonts\Lexend-Black.ttf" />
     <Resource Include="assets\Fonts\Lexend-Bold.ttf" />
     <Resource Include="assets\Fonts\Lexend-ExtraBold.ttf" />
@@ -47,6 +50,12 @@
     <Resource Include="assets\Fonts\Lexend-VariableFont_wght.ttf" />
     <Resource Include="assets\Pictures\signup-background.png" />
     <Resource Include="assets\Pictures\signup.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
