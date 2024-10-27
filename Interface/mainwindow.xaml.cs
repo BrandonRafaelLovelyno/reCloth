@@ -20,6 +20,10 @@ namespace Interface
         {
             InitializeComponent();
 
+            DatabaseHelper db = new DatabaseHelper();
+
+            db.TestConnection();
+
             // Set the window to fullscreen
             this.WindowState = WindowState.Maximized;
 
