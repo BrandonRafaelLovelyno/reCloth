@@ -15,10 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\reCloth\ClassLibrary.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="assets\Pictures\Sign_Up.png" />
     <Resource Include="Font Awesome 6 Free-Solid-900.otf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
