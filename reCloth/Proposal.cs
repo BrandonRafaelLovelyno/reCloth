@@ -8,9 +8,6 @@ namespace reCloth
 {
     internal class Proposal
     {
-        private enum role;
-        private bool isAccepted;
-        private int price;
-
+   
     }
 }

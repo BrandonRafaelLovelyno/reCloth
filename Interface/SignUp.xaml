@@ -7,43 +7,49 @@
       xmlns:local="clr-namespace:Interface"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="SignUp">
+      Title="SignUp"
+      >
     <Page.Resources>
         <FontFamily x:Key="LexendFont">pack://application:,,,/assets/Fonts/#Lexend</FontFamily>
     </Page.Resources>
     <Grid Background="#fdf4eb">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="450"/>
-            <ColumnDefinition Width="800"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Image Source="assets/Pictures/signup-background.png" Grid.Column="0" Stretch="UniformToFill" HorizontalAlignment="Left" Height="492" Width="710" Margin="90,0,0,0" Grid.ColumnSpan="2"/>
+        <Image Source="assets/Pictures/signup-background.png" Grid.Column="0" HorizontalAlignment="Right" Height="auto" Width="auto" Margin="90,0,0,0" Grid.ColumnSpan="2"/>
 
-        <TextBlock FontFamily="{StaticResource LexendFont}" Text="Create new account" Foreground="Black" FontWeight="Bold" FontSize="40" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="90,67,0,0" Width="474" Grid.ColumnSpan="2"/>
-        <TextBlock FontFamily="{StaticResource LexendFont}" Text="." Foreground="#bd6d68" FontSize="40" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="1" Margin="0,67,297,0"/>
+        <TextBlock FontFamily="{StaticResource LexendFont}" Text="Create new account" Foreground="Black" FontWeight="Bold" FontSize="50" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="310,67,0,0" Width="auto" Grid.ColumnSpan="2"  />
+        <TextBlock FontFamily="{StaticResource LexendFont}" Text="." Foreground="#bd6d68" FontSize="50" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="-40,67,297,0"/>
 
-        <Border Padding="50" Grid.Column="0">
-            <StackPanel Orientation="Vertical" VerticalAlignment="Top" >
-                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,78,30,0">
-                    <TextBlock FontFamily="{StaticResource ResourceKey=LexendFont}" Text="Already have an account?" FontSize="15"/>
-                </StackPanel>
-                <TextBlock Cursor="Hand" MouseLeftButtonDown="Navigate_to_SignIn" FontFamily="{StaticResource LexendFont}" Text="Log In" FontSize="15" Foreground="#bd6d68" Width="236" HorizontalAlignment="Right" Margin="0 -18.5 -170 0"/>
-
-                <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="0 20 0 0">
-                    <TextBlock FontFamily="{StaticResource ResourceKey=LexendFont}" Text="Name" Width="222" FontWeight="Bold" FontSize="12"/>
-                    <Border BorderThickness="0.5" BorderBrush="Black" CornerRadius="10" Padding="15" Margin="38 5 10 0" HorizontalAlignment="Stretch" Height="38" Width="250">
-                        <TextBox FontFamily="{StaticResource LexendFont}" FontSize="14" Foreground="Black" Background="#fdf4eb" BorderThickness="0" Text="Enter your name" Margin="0,-6,0,-6"/>
+        <Border  Padding="50" Grid.Column="0" Width="auto" Height="auto">
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,78,30,0">
+            <TextBlock FontFamily="{StaticResource ResourceKey=LexendFont}" Text="Already have an account?" FontSize="15"/>
+                <TextBlock Cursor="Hand" MouseLeftButtonDown="Navigate_to_SignIn" FontFamily="{StaticResource LexendFont}" Text="Log In" FontSize="15" Foreground="#bd6d68" Width="236" HorizontalAlignment="Right" Margin="0 -18.5 -240 0"/>
+            </StackPanel>
+        
+        </Border>
+        
+        <Border Padding="50" Grid.Column="0" Width="auto" Height="auto" VerticalAlignment="Top">
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="0,60,-10,0">
+               
+              
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="0 40 0 0">
+                    <TextBlock FontFamily="{StaticResource ResourceKey=LexendFont}" Text="Name" Width="222" FontWeight="Bold" FontSize="20"/>
+                    <Border BorderThickness="0.5" BorderBrush="Black" CornerRadius="10" Padding="15" Margin="38 5 10 0" HorizontalAlignment="Stretch" Height="60" Width="250">
+                        <TextBox FontFamily="{StaticResource LexendFont}" FontSize="14" Foreground="Black" Background="#fdf4eb" BorderThickness="0" Text="Enter your name" Margin="0,5 0, -6"/>
                     </Border>
                 </StackPanel>
-                <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="0 10 0 0">
-                    <TextBlock FontFamily="{StaticResource ResourceKey=LexendFont}" Text="Email" Width="222" FontWeight="Bold" FontSize="12"/>
-                    <Border BorderThickness="0.5" BorderBrush="Black" CornerRadius="10" Padding="15" Margin="38 5 10 0" HorizontalAlignment="Stretch" Height="38" Width="250">
-                        <TextBox FontFamily="{StaticResource LexendFont}" FontSize="14" Foreground="Black" Background="#fdf4eb" BorderThickness="0" Text="Enter your email" Margin="0,-6,0,-6"/>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="0 40 0 0">
+                    <TextBlock FontFamily="{StaticResource ResourceKey=LexendFont}" Text="Email" Width="222" FontWeight="Bold" FontSize="20"/>
+                    <Border BorderThickness="0.5" BorderBrush="Black" CornerRadius="10" Padding="15" Margin="38 5 10 0" HorizontalAlignment="Stretch" Height="60" Width="250">
+                        <TextBox FontFamily="{StaticResource LexendFont}" FontSize="14" Foreground="Black" Background="#fdf4eb" BorderThickness="0" Text="Enter your email" Margin="0,5,0,-6"/>
                     </Border>
                 </StackPanel>
-                <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="0 10 0 0">
-                    <TextBlock FontFamily="{StaticResource ResourceKey=LexendFont}" Text="Password" Width="222" FontWeight="Bold" FontSize="12"/>
-                    <Border BorderThickness="0.5" BorderBrush="Black" CornerRadius="10" Padding="15" Margin="38 5 10 0" HorizontalAlignment="Stretch" Height="38" Width="250">
-                        <TextBox FontFamily="{StaticResource LexendFont}" FontSize="14" Foreground="Black" Background="#fdf4eb" BorderThickness="0" Text="Enter your password" Margin="0,-6,0,-6"/>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="0 40 0 0">
+                    <TextBlock FontFamily="{StaticResource ResourceKey=LexendFont}" Text="Password" Width="222" FontWeight="Bold" FontSize="20"/>
+                    <Border BorderThickness="0.5" BorderBrush="Black" CornerRadius="10" Padding="15" Margin="38 5 10 0" HorizontalAlignment="Stretch" Height="60" Width="250">
+                        <TextBox FontFamily="{StaticResource LexendFont}" FontSize="14" Foreground="Black" Background="#fdf4eb" BorderThickness="0" Text="Enter your password" Margin="0,5,0,-6"/>
                     </Border>
                 </StackPanel>
 
@@ -52,33 +58,33 @@
 
         </Border >
 
-        <Border Padding="50" Grid.Column="1" Margin="0,-10,-10,10">
+        <Border Padding="30" Grid.Column="0" Width="auto" Height="auto" VerticalAlignment="Top" Margin="0,18,0,0">
             <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Left">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="0 100 0 0">
-                    <TextBlock FontFamily="{StaticResource ResourceKey=LexendFont}" Text="Phone Number" Width="222" FontWeight="Bold" FontSize="12"/>
-                    <Border BorderThickness="0.5" BorderBrush="Black" CornerRadius="10" Padding="10" Margin="38 5 10 0" HorizontalAlignment="Stretch" Height="38" Width="250">
-                        <TextBox FontFamily="{StaticResource LexendFont}" FontSize="14" Foreground="Black" Background="#fdf4eb" BorderThickness="0" Text="081123123123" Margin="0,-6,0,-6"/>
+                    <TextBlock FontFamily="{StaticResource ResourceKey=LexendFont}" Text="Phone Number" Width="222" FontWeight="Bold" FontSize="20"/>
+                    <Border BorderThickness="0.5" BorderBrush="Black" CornerRadius="10" Padding="10" Margin="38 5 10 0" HorizontalAlignment="Stretch" Height="60" Width="250">
+                        <TextBox FontFamily="{StaticResource LexendFont}" FontSize="14" Foreground="Black" Background="#fdf4eb" BorderThickness="0" Text="081123123123" Margin="0,5,0,-6"/>
                     </Border>
                 </StackPanel>
-                <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="0 10 0 0">
-                    <TextBlock FontFamily="{StaticResource ResourceKey=LexendFont}" Text="Address" Width="222" FontWeight="Bold" FontSize="12"/>
-                    <Border BorderThickness="0.5" BorderBrush="Black" CornerRadius="10" Padding="10" Margin="38 5 10 0" HorizontalAlignment="Stretch" Height="38" Width="250">
-                        <TextBox FontFamily="{StaticResource LexendFont}" FontSize="14" Foreground="Black" Background="#fdf4eb" BorderThickness="0" Text="Enter your addres" Margin="0,-6,0,-6"/>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="0 40 0 0">
+                    <TextBlock FontFamily="{StaticResource ResourceKey=LexendFont}" Text="Address" Width="222" FontWeight="Bold" FontSize="20"/>
+                    <Border BorderThickness="0.5" BorderBrush="Black" CornerRadius="10" Padding="10" Margin="38 5 10 0" HorizontalAlignment="Stretch" Height="60" Width="250">
+                        <TextBox FontFamily="{StaticResource LexendFont}" FontSize="14" Foreground="Black" Background="#fdf4eb" BorderThickness="0" Text="Enter your addres" Margin="0,5,0,-6"/>
                     </Border>
                 </StackPanel>
-                <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="0 10 0 0">
-                    <TextBlock FontFamily="{StaticResource ResourceKey=LexendFont}" Text="Role" Width="222" FontWeight="Bold" FontSize="12"/>
-                    <Border BorderThickness="0.5" BorderBrush="Black" CornerRadius="10" Padding="10" Margin="38 5 10 0" HorizontalAlignment="Stretch" Height="38" Width="250">
-                        <TextBox FontFamily="{StaticResource LexendFont}" FontSize="14" Foreground="Black" Background="#fdf4eb" BorderThickness="0" Text="Choose your role" Margin="0,-6,0,-6"/>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="0 40 0 0">
+                    <TextBlock FontFamily="{StaticResource ResourceKey=LexendFont}" Text="Role" Width="222" FontWeight="Bold" FontSize="20"/>
+                    <Border BorderThickness="0.5" BorderBrush="Black" CornerRadius="10" Padding="10" Margin="38 5 10 0" HorizontalAlignment="Stretch" Height="60" Width="250">
+                        <TextBox FontFamily="{StaticResource LexendFont}" FontSize="14" Foreground="Black" Background="#fdf4eb" BorderThickness="0" Text="Choose your role" Margin="0,5,0,-6"/>
                     </Border>
                 </StackPanel>
             </StackPanel >
         </Border>
 
         <Border>
-            <StackPanel Orientation="Vertical" Margin="88,387,72,0" Width="240" Height="50">
+            <StackPanel Orientation="Vertical" Margin="88,387,62,0" Width="250" Height="50">
                 <Border  BorderBrush="Black" Background="#BD6D68" CornerRadius="10" Padding="0 4">
-                    <TextBlock FontFamily="{StaticResource LexendFont}" Text="Create account" Foreground="White" FontSize="15" HorizontalAlignment="Stretch"  TextAlignment="Center" FontWeight="Bold"/>
+                    <TextBlock FontFamily="{StaticResource LexendFont}" Text="Create account" Foreground="White" FontSize="15" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" TextAlignment="Center" FontWeight="Bold"/>
                 </Border>
 
             </StackPanel>

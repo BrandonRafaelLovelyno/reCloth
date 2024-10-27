@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="assets\Pictures\Sign_Up.png" />
     <None Remove="Font Awesome 6 Free-Solid-900.otf" />
     <None Remove="FontAwesome.otf" />
   </ItemGroup>
@@ -18,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="assets\Pictures\Sign_Up.png" />
     <Resource Include="Font Awesome 6 Free-Solid-900.otf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
