@@ -11,7 +11,6 @@ namespace Interface
         private string name;
         private string phoneNumber;
         private string email;
-
         public void changePhone(string phoneNumber)
         {
             this.phoneNumber = phoneNumber;
@@ -24,7 +23,6 @@ namespace Interface
 
         public void login(string username, string password)
         {
-            
         }
 
         public void signOut()

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Interface
 {
-    class Taylor : User
+    class Tailor : User
     {
         //private Portfolio[] portfolios;
 

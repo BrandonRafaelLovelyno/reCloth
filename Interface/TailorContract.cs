@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Interface
 {
-    internal class TaylorContract : Contract
+    internal class TailorContract : Contract
     {
-        private Taylor taylor;
+        private Tailor tailor;
         private string result;
         public void postResult(string result)
         {

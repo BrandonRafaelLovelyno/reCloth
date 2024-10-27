@@ -45,5 +45,25 @@ namespace Interface
             }
          
         }
+
+        public NpgsqlDataReader executeQuery(string query)
+        {
+            try
+            {
+                conn.Open();
+                NpgsqlCommand command = new NpgsqlCommand(query, conn);
+                NpgsqlDataReader reader = command.ExecuteReader();
+                return reader; // Return the data reader for processing
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }
