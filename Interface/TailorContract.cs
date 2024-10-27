@@ -8,7 +8,7 @@ namespace Interface
 {
     internal class TailorContract : Contract
     {
-        private Tailor tailor;
+        private Worker tailor;
         private string result;
         public void postResult(string result)
         {

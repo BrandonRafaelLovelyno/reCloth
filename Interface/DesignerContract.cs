@@ -8,7 +8,7 @@ namespace Interface
 {
     class DesignerContract : Contract 
     {
-        private Designer designer;
+        private Worker designer;
         private string result;
 
         public void postResult(string result)

@@ -20,6 +20,7 @@ namespace Interface
     /// </summary>
     public partial class DashboardWorker : Page
     {
+        private DatabaseHelper dbHelper = new DatabaseHelper();
         public DashboardWorker()
         {
             InitializeComponent();
@@ -36,5 +37,7 @@ namespace Interface
 
             ContractList.ItemsSource = orders;
         }
+
+        public fetchOrder
     }
 }
