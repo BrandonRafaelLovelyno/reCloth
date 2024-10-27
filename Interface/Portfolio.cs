@@ -12,22 +12,24 @@ namespace Interface
         private string title;
         private string image;
         private string information;
+        private string _id;
 
         private DatabaseHelper dbHelper = new DatabaseHelper();
 
-        public void postImage(string image)
-        {
-            this.image = image;
-            string query = $"UPDATE Portfolio SET image = '{image}'";
-            dbHelper.executeQuery(query);
-        }
-        public void changeTitle(string title)
+        public Portfolio(string title, string image, string information,string id)
         {
             this.title = title;
-        }
-        public void changeInformation(string information)
-        {
+            this.image = image;
             this.information = information;
+            this._id = id;
+        }
+
+        public void postImage(string image) 
+        {
+            this.image = image;
+            string query = $"UPDATE Portfolio SET image = '{image}' WHERE id = {_id}";
+
+            dbHelper.executeQuery(query); 
         }
     }
 }

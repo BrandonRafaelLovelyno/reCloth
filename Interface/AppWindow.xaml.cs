@@ -40,11 +40,11 @@ namespace Interface
 
             if (userType == "customer")
             {
-                MainFrame.NavigationService.Navigate(new DashboardCustomer());
+                MainFrame.NavigationService.Navigate(new DashboardCustomer("ef49a2d2-943f-11ef-9570-1e901716c947"));
             }
             else if (userType == "worker")
             {
-                MainFrame.NavigationService.Navigate(new DashboardWorker());
+                MainFrame.NavigationService.Navigate(new DashboardWorker("c005666e-943f-11ef-9570-1e901716c947", "Tailor"));
             }
         }
     }

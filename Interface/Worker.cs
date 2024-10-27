@@ -8,8 +8,8 @@ namespace Interface
 {
     internal class Worker : User
     {
-        private string _id_user;
-        private string _role;
+        public string _id_user;
+        public string _role;
 
         public Worker(string id_user, string role)
         {

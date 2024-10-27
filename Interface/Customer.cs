@@ -8,5 +8,10 @@ namespace Interface
 {
     internal class Customer : User
     {
+        public string _id;
+        public Customer(string id) 
+        {
+            _id = id;
+        }
     }
 }

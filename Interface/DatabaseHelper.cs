@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.Json;
+using System.Data;
 
 namespace Interface
 {
@@ -52,17 +53,12 @@ namespace Interface
             {
                 conn.Open();
                 NpgsqlCommand command = new NpgsqlCommand(query, conn);
-                NpgsqlDataReader reader = command.ExecuteReader();
-                return reader; // Return the data reader for processing
+                return command.ExecuteReader(CommandBehavior.CloseConnection); // Close connection when reader is closed
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
                 return null;
-            }
-            finally
-            {
-                conn.Close();
             }
         }
     }

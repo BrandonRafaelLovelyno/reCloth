@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,21 +21,42 @@ namespace Interface
     /// </summary>
     public partial class DashboardCustomer : Page
     {
-        public DashboardCustomer()
+        private DatabaseHelper dbHelper = new DatabaseHelper();
+        private Customer _customer;
+        private List<Order> _orders;
+
+        public DashboardCustomer(string customer_id)
         {
+            _customer = new Customer(customer_id);
+            fetchOrder();
             InitializeComponent();
-
-            // Create sample data
-            List<Order> orders = new List<Order>
-            {
-                new Order { Title = "Project A", Budget = "$1000", Status = "Posted" },
-                new Order { Title = "Project B", Budget = "$2000", Status = "Proposed" },
-                new Order { Title = "Project C", Budget = "$1500", Status = "On Going" },
-                new Order { Title = "Project D", Budget = "$3000", Status = "Finished" },
-                new Order { Title = "Project D", Budget = "$3000", Status = "Finished" }
-            };
-
-            OrderList.ItemsSource = orders;
         }
+
+        public void fetchOrder()
+        {
+            string query = "SELECT * FROM orders";
+
+            // Execute the query and get the reader
+            using (NpgsqlDataReader res = dbHelper.executeQuery(query))
+            {
+                if (res != null)
+                {
+                    // Read the results
+                    while (res.Read())
+                    {
+                        // Accessing the columns by name
+                        string title = res["title"].ToString();
+                        
+                        // Output the result
+                        Console.WriteLine($"Title: {title}");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No results returned.");
+                }
+            } // The reader is automatically closed here
+        }
+
     }
 }
