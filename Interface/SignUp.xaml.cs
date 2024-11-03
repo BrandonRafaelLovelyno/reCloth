@@ -97,6 +97,8 @@ namespace Interface
                 {
                      createWorker(user.userId, tbValues.Role);
                 }
+
+                MessageBox.Show("User created!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {

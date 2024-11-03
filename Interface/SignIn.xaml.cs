@@ -59,6 +59,10 @@ namespace Interface
 
                 string userId = fetchUserId(email, password);
                 UserSession.Current.UserId = userId;
+
+                MessageBox.Show("You are logged in!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                // TODO : Redirect user to app
             }
             catch (Exception ex)
             {
