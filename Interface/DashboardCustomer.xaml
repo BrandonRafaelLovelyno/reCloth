@@ -63,14 +63,15 @@
             <Grid Margin="22 25 0 0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 
                 <!-- Header -->
-                <TextBlock Text="Order" FontSize="36px" FontWeight="SemiBold" Foreground="White"/>
+                <TextBlock Text="Order" FontSize="36px" FontWeight="SemiBold" Foreground="White" Grid.Column="0"/>
 
                 <!-- Filter Dropdown -->
-                <StackPanel Margin="0 0 22 0" Orientation="Horizontal" HorizontalAlignment="Right">
+                <StackPanel Margin="0 0 22 0" Orientation="Horizontal" HorizontalAlignment="Right"  Grid.Column="1">
                     <TextBlock Text="Filtered by:" FontSize="17.36" FontWeight="Normal" VerticalAlignment="Center" Foreground="White" Margin="0 0 5 0 " />
 
                     <ComboBox Width="200" Height="25">
@@ -79,6 +80,21 @@
                         <ComboBoxItem Content="Ongoing" />
                         <ComboBoxItem Content="Finished" />
                     </ComboBox>
+
+                    <Button Width="100" Height="40" VerticalAlignment="Center" Background="Black" Foreground="White" Content="Add" Padding="10,5" FontWeight="Bold" FontSize="20" Margin="10 0 0 0" Cursor="Hand">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="20">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <!-- Icon -->
+                                        <TextBlock VerticalAlignment="Center" Text="+" FontWeight="Bold" FontSize="24" Margin="0,0,5,0"/>
+                                        <!-- Text -->
+                                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
                 </StackPanel>
             </Grid>
             
