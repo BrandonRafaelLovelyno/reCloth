@@ -3,12 +3,95 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Interface"
+      xmlns:viewModels="clr-namespace:Interface.ViewModels"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="1022" d:DesignWidth="1258"
       Title="Marketplace">
 
-    <Grid>
-        <TextBlock Text="MARKETPLACE PAGE" Foreground="Black" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+    <Page.DataContext>
+        <viewModels:MarketplaceViewModel />
+    </Page.DataContext>
+
+    <Grid Background="#FDF4EB">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="50" HorizontalAlignment="Left">
+            <TextBlock FontWeight="Bold" FontSize="43.2">
+                Marketplace
+            </TextBlock>
+        </StackPanel>
+
+        <!-- Order List -->
+        <Grid Grid.Row="1" Margin="50" Background="#BD6D68">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Margin="22 25 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Header -->
+                <TextBlock Text="Search Order" FontSize="36px" FontWeight="SemiBold" Foreground="White" Grid.Column="0"/>
+
+                <!-- Search Filter -->
+                <StackPanel Margin="0 0 22 0" Orientation="Horizontal" HorizontalAlignment="Right"  Grid.Column="1">
+                    <TextBlock Text="Search Title:" FontSize="17.36" FontWeight="Normal" VerticalAlignment="Center" Foreground="White" Margin="0 0 5 0 " /> 
+                    
+                    <TextBox x:Name="SearchText" Width="400" Height="40" 
+                        Margin="0, 0, 10, 0" 
+                        Padding="10 3"
+                        Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                        FontWeight="Regular"
+                        FontSize="17.36"
+                        VerticalContentAlignment="Center"/>
+                </StackPanel>
+            </Grid>
+
+            <!-- List of Orders -->
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="10">
+                <ItemsControl x:Name="OrderList" ItemsSource="{Binding FilteredOrders}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Background="White" CornerRadius="25" Padding="10" Margin="2 2 2 2">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- Picture -->
+                                    <Ellipse Width="85" Height="85" Fill="Aqua" Grid.Column="0" />
+
+                                    <!-- Order Info -->
+                                    <StackPanel Grid.Column="1" Margin="14 0 14 0" VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding Title}" FontSize="25" FontWeight="Medium" Foreground="#A5B68D" />
+                                        <TextBlock Text="{Binding Budget}" FontSize="17.36" FontWeight="Regular" Foreground="#87ABB4" />
+                                    </StackPanel>
+
+                                    <!-- Order Status and Show Button -->
+                                    <StackPanel Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical">
+                                        <Border Width="122" Background="#6554C0" Padding="10 0 10 0" Margin="0 0 0 5" CornerRadius="12" HorizontalAlignment="Center">
+                                            <TextBlock Text="{Binding Status}" FontSize="20" FontWeight="Regular" Foreground="White" HorizontalAlignment="Center"/>
+                                        </Border>
+                                        <Border Width="122" Background="#87ABB4" Padding="10 5 10 5" Margin="0 0 0 5" CornerRadius="12" HorizontalAlignment="Center">
+                                            <TextBlock Text="Show" FontSize="20" FontWeight="Regular" Foreground="White" HorizontalAlignment="Center"/>
+                                        </Border>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Grid>
     </Grid>
 </Page>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,7 @@ namespace Interface
     /// </summary>
     public partial class Marketplace : Page
     {
+        private DatabaseHelper dbHelper = new DatabaseHelper();
         public Marketplace()
         {
             InitializeComponent();
