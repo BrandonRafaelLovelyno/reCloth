@@ -62,7 +62,10 @@ namespace Interface
 
                 MessageBox.Show("You are logged in!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                // TODO : Redirect user to app
+                AppWindow appWindow = new AppWindow();
+                appWindow.Show();
+
+                Window.GetWindow(this)?.Close();
             }
             catch (Exception ex)
             {

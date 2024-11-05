@@ -29,14 +29,5 @@ namespace Interface
 
             MainFrame.Navigate(new SignIn());
         }
-
-        private void App_Click(object sender, RoutedEventArgs e)
-        {
-            AppWindow appWindow = new AppWindow();
-
-            appWindow.Show();
-
-            this.Close();
-        }
     }
 }

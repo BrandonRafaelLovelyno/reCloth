@@ -8,10 +8,6 @@
         Title="MainWindow">
     <Grid>
         <DockPanel>
-            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="Gray" Height="40">
-                <Button Content="Go to App" Click="App_Click" Width="100" Margin="5"/>
-            </StackPanel>
-
             <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
         </DockPanel>
     </Grid>
