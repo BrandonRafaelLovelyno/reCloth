@@ -6,67 +6,56 @@ namespace Interface
 {
     public partial class OrderPage : Page
     {
-        public int OrderId { get; set; }   
-        public string? OrderName { get; set; }
-        public string? OrderSpecification { get; set; }
-        public string? OrderImage { get; set; }
-        public string? OrderBudget{ get; set; }
+        private Order _order;
 
-        
-        public string? CustomerName {  get; set; }
+        private Contract? _tailorContract;
+        private Contract? _designerContract;
 
-        
-        public string? DesignerName { get; set; }
-        public string? DesignerOrderProcess { get; set; }
-        public string? DesignerResult{ get; set; }
-        public string? DesignerPayment { get; set; }
+        private User? _tailorUser;
+        private User? _designerUser;
 
-
-        public string? TaylorName { get; set; }
-        public string? TaylorOrderProcess { get; set; }
-        public string? TaylorResult { get; set; }
-        public string? TaylorPayment { get; set; }
-
-
-
-        public OrderPage(int orderId)
+        public OrderPage(string orderId)
         {
-            OrderId = orderId;
+            _order = new Order(orderId);
+            fetchWorkerUser("tailor");
+            fetchWorkerUser("designer");
+
             InitializeComponent();
-            fetchOrder();
-            fetchDesigner();
-            fetchCustomer();
-            fetchTaylor();
-            this.DataContext = this; 
         }
 
-        private void fetchOrder() 
-        { 
-            Title = "Overfit dress into slimfit dress";
-            OrderSpecification = "I need this dress, especially its arm, to be narrowed down. I need this dress, especially its arm, to be narrowed down.";
-            OrderImage = "https://drive.google.com/abc";
-            OrderBudget = "Rp. 300.000,00";
-        }
-
-        private void fetchCustomer()
+        private void fetchWorkerUser(string role)
         {
-            CustomerName = "Harundoyo";
+            fetchAcceptedContract(role);
+            
+            if(role == "tailor" && _tailorContract != null)
+            {
+                string userId = _tailorContract.fetchUserId();
+                _tailorUser = new User(userId);
+            }
+            else if(role == "designer" && _designerContract != null)
+            {
+                string userId = _designerContract.fetchUserId();
+                _designerUser = new User(userId);
+            }
         }
 
-        private void fetchDesigner()
+        private void fetchAcceptedContract(string role)
         {
-            DesignerName = "Brandon Rafael Lovelyno";
-            DesignerOrderProcess = "Done";
-            DesignerResult = "https://drive.google.com/abc";
-            DesignerPayment = "https://drive.google.com/abc";
+            string? contractId = _order.findAcceptedContract(role);
+
+            if (contractId != null)
+            {
+                if (role == "tailor")
+                {
+                    _tailorContract = new Contract(contractId);
+                }
+
+                if (role == "designer")
+                {
+                    _designerContract = new Contract(contractId);
+                }
+            }
         }
 
-        private void fetchTaylor()
-        {
-            TaylorName = "-";
-            TaylorOrderProcess = "Not started";
-            TaylorResult = "-";
-            TaylorPayment = "-";
-        }
     }
 }
