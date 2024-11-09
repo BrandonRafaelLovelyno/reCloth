@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Serialization;
 
 namespace Interface
 {
@@ -48,6 +49,11 @@ namespace Interface
             {
                 MainFrame.NavigationService.Navigate(new DashboardWorker("c005666e-943f-11ef-9570-1e901716c947", "Tailor"));
             }
+        }
+
+        private void Form_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.NavigationService.Navigate(new FormCustomer());
         }
     }
 }
