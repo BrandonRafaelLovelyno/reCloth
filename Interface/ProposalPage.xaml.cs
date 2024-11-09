@@ -26,5 +26,25 @@ namespace Interface
             InitializeComponent();
             this.DataContext = new ProposalPageViewModel();
         }
+
+        private void ShowProposalDetail(object sender, RoutedEventArgs e)
+        {
+            var border = sender as Border;
+            if (border?.DataContext is Proposal selectedProposal)
+            {
+                string proposalId = selectedProposal.Id;
+                Console.WriteLine($"Proposal Id: {proposalId}");
+
+                // Navigate to ProposalDetailed and pass the proposalId
+                ProposalDetailed proposalDetailedPage = new ProposalDetailed(proposalId);
+                var appWindow = Application.Current.MainWindow as AppWindow;
+
+                if (appWindow != null)
+                {
+                    appWindow.MainFrame.NavigationService.Navigate(proposalDetailedPage);
+
+                }
+            }
+        }
     }
 }

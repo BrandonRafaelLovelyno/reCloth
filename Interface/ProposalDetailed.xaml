@@ -1,0 +1,67 @@
+﻿<Page x:Class="Interface.ProposalDetailed"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Interface"
+      mc:Ignorable="d" 
+      d:DesignHeight="1198" d:DesignWidth="1438"
+      Title="ProposalDetailed"
+      Background="#FDF4EB">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Vertical" Grid.Column="1">
+            <TextBlock Text="Proposal" FontWeight="Bold" FontSize="25" Margin="0 50 0 0" />
+            <Border Background="White" 
+            BorderBrush="#9E9E9E" 
+            BorderThickness="1" 
+            CornerRadius="5" 
+            Margin="0 40 0 0">
+                <StackPanel Margin="10" Orientation="Vertical">
+                    <StackPanel Orientation="Vertical" Margin="0 0 0 10">
+                        <TextBlock Text="Name" FontWeight="Bold" FontSize="15" Margin="0 0 0 3"/>
+                        <TextBlock Text="{Binding ProposalDetail.Name}" FontSize="12" FontWeight="SemiBold" />
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="0 0 0 10">
+                        <TextBlock Text="Information" FontWeight="Bold" FontSize="15" Margin="0 0 0 3"/>
+                        <TextBlock Text="{Binding ProposalDetail.OrderInformation}" FontSize="12" FontWeight="SemiBold" />
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="0 0 0 10">
+                        <TextBlock Text="Role" FontWeight="Bold" FontSize="15" Margin="0 0 0 3"/>
+                        <TextBlock Text="{Binding ProposalDetail.Role}" FontSize="12" FontWeight="SemiBold" />
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="0 0 0 10">
+                        <TextBlock Text="Budget" FontWeight="Bold" FontSize="15" Margin="0 0 0 3"/>
+                        <TextBlock Text="{Binding ProposalDetail.OrderBudget}" FontSize="12" FontWeight="SemiBold"  />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            <Grid HorizontalAlignment="Stretch" Margin="0 50 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <!-- Width for left button -->
+                    <ColumnDefinition Width="*"/>
+                    <!-- Takes up all available space between the buttons -->
+                    <ColumnDefinition Width="Auto"/>
+                    <!-- Width for right button -->
+                </Grid.ColumnDefinitions>
+
+                <!-- Left Button -->
+                <Border Grid.Column="0" Width="122" Background="#36B37E" Padding="10 5 10 5" CornerRadius="12">
+                    <TextBlock Text="Accept" FontSize="20" FontWeight="Regular" Foreground="White" HorizontalAlignment="Center"/>
+                </Border>
+
+                <!-- Right Button -->
+                <Border Grid.Column="2" Width="122" Background="#FF5630" Padding="10 5 10 5" CornerRadius="12">
+                    <TextBlock Text="Delete" FontSize="20" FontWeight="Regular" Foreground="White" HorizontalAlignment="Center"/>
+                </Border>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Page>
