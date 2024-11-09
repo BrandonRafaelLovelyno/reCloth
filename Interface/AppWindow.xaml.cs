@@ -23,6 +23,8 @@ namespace Interface
         {
             InitializeComponent();
 
+            Application.Current.MainWindow = this;
+
             MainFrame.NavigationService.Navigate(new Marketplace());
 
             // Set the window to fullscreen
