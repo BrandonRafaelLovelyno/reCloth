@@ -1,6 +1,18 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿using Npgsql;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace Interface
 {
@@ -67,6 +79,17 @@ namespace Interface
             TaylorOrderProcess = "Not started";
             TaylorResult = "-";
             TaylorPayment = "-";
+        }
+
+        private void Route_to_Form(object sender, MouseButtonEventArgs e)
+        {
+            var appWindow = Application.Current.MainWindow as AppWindow;
+            
+            if (appWindow != null)
+            {
+                appWindow.MainFrame.NavigationService.Navigate(new FormWorker());
+                
+            }
         }
     }
 }

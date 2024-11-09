@@ -134,7 +134,7 @@
 
                 <!-- Left Button -->
                 <Border Grid.Column="0" Width="200" Background="#87ABB4" Padding="10 5 10 5" CornerRadius="12">
-                    <TextBlock Text="Show Proposal" FontSize="20" FontWeight="Regular" Foreground="White" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Show Proposal" MouseLeftButtonDown="Route_to_Form" FontSize="20" FontWeight="Regular" Foreground="White" HorizontalAlignment="Center"/>
                 </Border>
 
                 <!-- Right Button -->
