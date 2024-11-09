@@ -16,15 +16,13 @@ using System.Windows.Shapes;
 namespace Interface
 {
     /// <summary>
-    /// Interaction logic for FormCustomer.xaml
+    /// Interaction logic for FormWorker.xaml
     /// </summary>
-    public partial class FormCustomer : Page
+    public partial class FormWorker : Page
     {
-        public FormCustomer()
+        public FormWorker()
         {
             InitializeComponent();
         }
-
-     
     }
 }

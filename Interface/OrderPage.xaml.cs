@@ -1,6 +1,18 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿using Npgsql;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace Interface
 {
@@ -26,13 +38,13 @@ namespace Interface
         private void fetchWorkerUser(string role)
         {
             fetchAcceptedContract(role);
-            
-            if(role == "tailor" && _tailorContract != null)
+
+            if (role == "tailor" && _tailorContract != null)
             {
                 string userId = _tailorContract.fetchUserId();
                 _tailorUser = new User(userId);
             }
-            else if(role == "designer" && _designerContract != null)
+            else if (role == "designer" && _designerContract != null)
             {
                 string userId = _designerContract.fetchUserId();
                 _designerUser = new User(userId);
