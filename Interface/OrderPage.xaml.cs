@@ -87,7 +87,7 @@ namespace Interface
             
             if (appWindow != null)
             {
-                appWindow.MainFrame.NavigationService.Navigate(new FormWorker());
+                appWindow.MainFrame.NavigationService.Navigate(new ProposalPage());
                 
             }
         }
