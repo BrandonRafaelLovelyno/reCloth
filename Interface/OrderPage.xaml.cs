@@ -69,5 +69,16 @@ namespace Interface
             }
         }
 
+        private void Route_to_Form(object sender, MouseButtonEventArgs e)
+        {
+            var appWindow = Application.Current.MainWindow as AppWindow;
+
+            if (appWindow != null)
+            {
+                appWindow.MainFrame.NavigationService.Navigate(new ProposalPage());
+
+            }
+        }
+
     }
 }
