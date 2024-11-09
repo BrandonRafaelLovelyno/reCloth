@@ -81,20 +81,14 @@
                         <ComboBoxItem Content="Finished" />
                     </ComboBox>
 
-                    <Button Width="100" Height="40" VerticalAlignment="Center" Background="Black" Foreground="White" Content="Add" Padding="10,5" FontWeight="Bold" FontSize="20" Margin="10 0 0 0" Cursor="Hand">
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}" CornerRadius="20">
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <!-- Icon -->
-                                        <TextBlock VerticalAlignment="Center" Text="+" FontWeight="Bold" FontSize="24" Margin="0,0,5,0"/>
-                                        <!-- Text -->
-                                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                    </StackPanel>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
+                    <Border Width="100" Height="40" VerticalAlignment="Center" Background="Black" CornerRadius="20" Margin="10 0 0 0" Cursor="Hand" MouseLeftButtonDown="Route_to_Form">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <!-- Icon -->
+                            <TextBlock VerticalAlignment="Center" Text="+" FontWeight="Bold" FontSize="24" Margin="0,0,5,0" Foreground="White"/>
+                            <!-- Text -->
+                            <TextBlock VerticalAlignment="Center" Text="Add" FontWeight="Bold" FontSize="20" Foreground="White"/>
+                        </StackPanel>
+                    </Border>
                 </StackPanel>
             </Grid>
             
