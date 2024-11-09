@@ -15,7 +15,8 @@ namespace Interface
     internal class DatabaseHelper
     {
         private string connectionString;
-        private NpgsqlConnection conn;
+        private NpgsqlConnection Conn;
+        private NpgsqlDataReader Reader;
 
         public DatabaseHelper()
         {
@@ -26,7 +27,7 @@ namespace Interface
 
             // Access the connection string in the "AppSettings" section with key "aivenDB"
             this.connectionString = config.GetSection("AppSettings")["aivenDB"];
-            conn = new NpgsqlConnection(connectionString);
+            Conn = new NpgsqlConnection(connectionString);
         }
 
         public void TestConnection()
@@ -34,10 +35,10 @@ namespace Interface
 
             try
             {
-                conn.Open();
+                Conn.Open();
                 Console.WriteLine("Connection successful");
 
-                conn.Close();
+                Conn.Close();
                 Console.WriteLine("Connection closed");
             }
             catch (Exception ex)
@@ -47,18 +48,48 @@ namespace Interface
          
         }
 
+        public T? extractValue<T>(string key)
+        {
+            try
+            {
+                if (Reader == null || !Reader.Read())
+                {
+                    throw new Exception($"Cannot read {key} property");
+                }
+
+                object value = Reader[key];
+
+                // Attempt to cast the value to the specified type
+                if (value is T typedValue)
+                {
+                    return typedValue;
+                }
+                else
+                {
+                    throw new InvalidCastException($"The value for key '{key}' cannot be cast to type {typeof(T)}.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return default; // Returns null if T is a reference type or default(T) for value types
+            }
+        }
+
         public NpgsqlDataReader executeQuery(string query)
         {
             try
             {
-                conn.Open();
-                NpgsqlCommand command = new NpgsqlCommand(query, conn);
+                Conn.Open();
+                NpgsqlCommand command = new NpgsqlCommand(query, Conn);
+                NpgsqlDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+                Reader = reader;
                 return command.ExecuteReader(CommandBehavior.CloseConnection); // Close connection when reader is closed
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
-                return null;
+                return ex;
             }
         }
     }
