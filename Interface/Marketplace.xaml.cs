@@ -26,5 +26,16 @@ namespace Interface
         {
             InitializeComponent();
         }
+
+        private void Route_to_OrderPage(object sender, MouseButtonEventArgs e)
+        {
+            var appWindow = Application.Current.MainWindow as AppWindow;
+            Console.WriteLine("Try to navigate to OrderPage");
+            if (appWindow != null)
+            {
+                appWindow.MainFrame.NavigationService.Navigate(new OrderPage(11));
+                Console.WriteLine("Navigating to OrderPage");
+            }
+        }
     }
 }
