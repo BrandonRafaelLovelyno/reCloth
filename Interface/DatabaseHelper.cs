@@ -16,7 +16,7 @@ namespace Interface
     {
         private string connectionString;
         private NpgsqlConnection Conn;
-        private NpgsqlDataReader Reader;
+        private NpgsqlDataReader? Reader;
 
         public DatabaseHelper()
         {
@@ -26,7 +26,13 @@ namespace Interface
                 .Build();
 
             // Access the connection string in the "AppSettings" section with key "aivenDB"
-            this.connectionString = config.GetSection("AppSettings")["aivenDB"];
+            string? temp = config.GetSection("AppSettings")["aivenDB"];
+            if(temp == null)
+            {
+                throw new Exception("Database URI not found");
+            }
+
+            this.connectionString = temp;
             Conn = new NpgsqlConnection(connectionString);
         }
 
@@ -45,52 +51,51 @@ namespace Interface
             {
                 Console.WriteLine($"Error: {ex.Message}");
             }
-         
+
         }
 
-        public T? extractValue<T>(string key)
+        public T convertObject<T>(object obj)
         {
             try
             {
-                if (Reader == null || !Reader.Read())
-                {
-                    throw new Exception($"Cannot read {key} property");
-                }
-
-                object value = Reader[key];
-
-                // Attempt to cast the value to the specified type
-                if (value is T typedValue)
-                {
-                    return typedValue;
-                }
-                else
-                {
-                    throw new InvalidCastException($"The value for key '{key}' cannot be cast to type {typeof(T)}.");
-                }
+                return (T)Convert.ChangeType(obj, typeof(T));
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
-                return default; // Returns null if T is a reference type or default(T) for value types
+                throw new Exception($"Cannot cast {obj.GetType().Name} to {typeof(T).Name}");
             }
         }
 
-        public NpgsqlDataReader executeQuery(string query)
+        public void executePostQuery(string query)
         {
-            try
+            Conn.Open();
+            using (var command = new NpgsqlCommand(query, Conn))
             {
-                Conn.Open();
-                NpgsqlCommand command = new NpgsqlCommand(query, Conn);
-                NpgsqlDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-                Reader = reader;
-                return command.ExecuteReader(CommandBehavior.CloseConnection); // Close connection when reader is closed
+                command.ExecuteNonQuery(); 
             }
-            catch (Exception ex)
+            Conn.Close();
+        }
+
+        public List<Dictionary<string, object>> executeGetQuery(string query, params string[] keys)
+        {
+            var results = new List<Dictionary<string, object>>();
+
+            Conn.Open();
+            using (var command = new NpgsqlCommand(query, Conn))
+            using (var reader = command.ExecuteReader())
             {
-                Console.WriteLine($"Error: {ex.Message}");
-                return ex;
+                while (reader.Read())
+                {
+                    var row = new Dictionary<string, object>();
+                    foreach (var key in keys)
+                    {
+                        row[key] = reader[key];
+                    }
+                    results.Add(row); 
+                }
             }
+            Conn.Close();
+            return results;
         }
     }
 }
