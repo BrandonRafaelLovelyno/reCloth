@@ -11,6 +11,7 @@ namespace Interface
         public static UserSession Current { get; private set; } = new UserSession();
 
         public string UserId { get; set; }
+        public string Role { get; set; }
 
         public static void ClearSession()
         {

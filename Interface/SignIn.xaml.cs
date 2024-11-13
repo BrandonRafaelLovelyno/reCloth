@@ -33,16 +33,18 @@ namespace Interface
             NavigationService.Navigate(new SignUp());
         }
 
-        private string fetchUserId(string email, string password)
+        private void setUserSession(string email, string password)
         {
             string hashedPassword = HashHelper.Hash(password);
             string query = $"SELECT * from users WHERE password = '{hashedPassword}' AND email = '{email}'";
 
-            var rows = dbHelper.executeGetQuery(query,"id_user");
+            var rows = dbHelper.executeGetQuery(query,"id_user","role");
 
             string userId = dbHelper.convertObject<Guid>(rows[0]["id_user"]).ToString(); 
+            string role = dbHelper.convertObject<string>(rows[0]["role"]).ToString() ;
 
-            return userId;
+            UserSession.Current.UserId = userId;
+            UserSession.Current.Role = role;
         }
 
         private void signIn(object sender, RoutedEventArgs e)
@@ -52,8 +54,7 @@ namespace Interface
                 string email = tbEmail.Text;
                 string password = tbPassword.Password;
 
-                string userId = fetchUserId(email, password);
-                UserSession.Current.UserId = userId;
+                setUserSession(email, password);
 
                 MessageBox.Show("You are logged in!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 
