@@ -38,7 +38,7 @@ namespace Interface
             string hashedPassword = HashHelper.Hash(password);
             string query = $"SELECT * from users WHERE password = '{hashedPassword}' AND email = '{email}'";
 
-            var rows = dbHelper.executeGetQuery(query, "id_user", "role");
+            var rows = dbHelper.executeGetQuery(query, "id_user");
 
             string userId = dbHelper.convertObject<Guid>(rows[0]["id_user"]).ToString();
 
@@ -49,7 +49,7 @@ namespace Interface
         {
             bool isCustomer = false;
 
-            string query = $"SELECT * from customers where id_user = {userId};";
+            string query = $"SELECT * from customers where id_user = '{userId}';";
 
             var rows = dbHelper.executeGetQuery(query);
 
