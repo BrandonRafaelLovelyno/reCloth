@@ -10,8 +10,11 @@ namespace Interface
     {
         private DatabaseHelper dbHelper = new DatabaseHelper();
         private string Id { get; }
-        public string? IdProposal { get; private set; }
         public string? IdWorker { get; private set; }
+        public string? IdOrder { get; private set; }
+        public bool? IsAccepted { get; private set; }
+        public double? Budget { get; private set; }
+        public string? Specification { get; private set; }
         public string? Result { get; private set; }
 
         public Contract(string id)
@@ -27,7 +30,7 @@ namespace Interface
                 FROM contracts c
                 JOIN workers w ON c.id_worker = w.id_worker
                 JOIN users u ON w.id_user = u.id_user
-                WHERE c.id_worker = {Id};
+                WHERE c.id_contract = '{Id}';
             ";
 
             var rows = dbHelper.executeGetQuery(query, "id_user");
@@ -39,13 +42,16 @@ namespace Interface
 
         private void fetchContract()
         {
-            string query = $"SELECT * from contracts WHERE id_contract = '{Id}'";
+            string query = $"SELECT * from contracts WHERE id_contract = '{Id}';";
 
-            var rows = dbHelper.executeGetQuery(query,"id_proposal","id_worker","result");
+            var rows = dbHelper.executeGetQuery(query,"id_order","id_worker","result","is_accepted","budget","specification");
 
-            IdProposal = dbHelper.convertObject<Guid>("id_proposal").ToString();
             IdWorker = dbHelper.convertObject<Guid>(rows[0]["id_worker"]).ToString();
+            IdOrder = dbHelper.convertObject<Guid>(rows[0]["id_order"]).ToString();
             Result = dbHelper.convertObject<string>(rows[0]["result"]);
+            IsAccepted = dbHelper.convertObject<bool>(rows[0]["is_accepted"]);
+            Budget = dbHelper.convertObject<double>(rows[0]["budget"]);
+            Specification = dbHelper.convertObject<string>(rows[0]["specification"]);
         }
 
     }

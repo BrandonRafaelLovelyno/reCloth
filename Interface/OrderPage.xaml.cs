@@ -29,8 +29,8 @@ namespace Interface
         public OrderPage(string orderId)
         {
             _order = new Order(orderId);
-            fetchWorkerUser("tailor");
-            fetchWorkerUser("designer");
+            fetchWorkerUser("Tailor");
+            fetchWorkerUser("Designer");
 
             InitializeComponent();
         }
@@ -39,12 +39,12 @@ namespace Interface
         {
             fetchAcceptedContract(role);
 
-            if (role == "tailor" && _tailorContract != null)
+            if (role == "Tailor" && _tailorContract != null)
             {
                 string userId = _tailorContract.fetchUserId();
                 _tailorUser = new User(userId);
             }
-            else if (role == "designer" && _designerContract != null)
+            else if (role == "Designer" && _designerContract != null)
             {
                 string userId = _designerContract.fetchUserId();
                 _designerUser = new User(userId);
@@ -57,12 +57,12 @@ namespace Interface
 
             if (contractId != null)
             {
-                if (role == "tailor")
+                if (role == "Tailor")
                 {
                     _tailorContract = new Contract(contractId);
                 }
 
-                if (role == "designer")
+                if (role == "Designer")
                 {
                     _designerContract = new Contract(contractId);
                 }
