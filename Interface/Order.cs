@@ -40,11 +40,11 @@ namespace Interface
         {
             string query = $@"
             SELECT * 
-            FROM contracts c
-            JOIN proposals p ON c.id_contract = p.id_contract
-            WHERE c.id_order = {Id} AND p.is_accepted = true
-            LIMIT 1;
-             ";
+            FROM contracts
+            JOIN orders ON orders.id_order = '{Id}'
+            JOIN workers ON workers.id_worker = contracts.id_worker
+            WHERE contracts.is_accepted = true AND workers.role = '{role}';
+            ";
 
             var rows = dbHelper.executeGetQuery(query, "id_contract");
 
