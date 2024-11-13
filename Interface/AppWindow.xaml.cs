@@ -43,11 +43,11 @@ namespace Interface
 
             if (userType == "customer")
             {
-                MainFrame.NavigationService.Navigate(new DashboardCustomer("ef49a2d2-943f-11ef-9570-1e901716c947"));
+                MainFrame.NavigationService.Navigate(new DashboardCustomer());
             }
             else if (userType == "worker")
             {
-                MainFrame.NavigationService.Navigate(new DashboardWorker("c005666e-943f-11ef-9570-1e901716c947", "Tailor"));
+                MainFrame.NavigationService.Navigate(new DashboardWorker());
             }
         }
 

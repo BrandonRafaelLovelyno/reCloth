@@ -10,7 +10,7 @@ namespace Interface
     {
         private DatabaseHelper dbHelper = new DatabaseHelper();
 
-        private string Id { get; }
+        public string IdUser { get; }
         public string? Name { get; private set; }
         public string? Address { get; private set; }
         public string? PhoneNumber { get; private set; }
@@ -19,20 +19,20 @@ namespace Interface
 
         public User(string id)
         {
-            Id = id;
+            IdUser = id;
             fetchUser();
         }
 
         private void fetchUser()
         {
-            string query = $"SELECT * from orders WHERE id_order = {Id}";
-            dbHelper.executeQuery(query);
+            string query = $"SELECT * from users WHERE id_user = '{IdUser}';";
+            var rows = dbHelper.executeGetQuery(query, "name","address","phone_number","email","password");
 
-            Name = dbHelper.extractValue<string>("name");
-            Address = dbHelper.extractValue<string>("address");
-            PhoneNumber = dbHelper.extractValue<string>("phone_number");
-            Email = dbHelper.extractValue<string>("email");
-            Password = dbHelper.extractValue<string>("password");
+            Name = dbHelper.convertObject<string>(rows[0]["name"]);
+            Address = dbHelper.convertObject<string>(rows[0]["address"]);
+            PhoneNumber = dbHelper.convertObject<string>(rows[0]["phone_number"]);
+            Email = dbHelper.convertObject<string>(rows[0]["email"]);
+            Password = dbHelper.convertObject<string>(rows[0]["password"]);
         }
 
     }

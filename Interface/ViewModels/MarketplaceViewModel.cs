@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Interface.ViewModels
@@ -47,33 +48,13 @@ namespace Interface.ViewModels
         {
             string query = "SELECT * FROM orders";
 
-            // Execute the query and get the reader
-            using (NpgsqlDataReader res = dbHelper.executeQuery(query))
+            var rows = dbHelper.executeGetQuery(query, "id_order");
+
+            foreach (var row in rows)
             {
-                if (res != null)
-                {
-                    // Read the results
-                    while (res.Read())
-                    {
-                        string title = res["title"].ToString();
-                        double budgetValue = Convert.ToDouble(res["budget"]);
-                        string budget = $"Rp {budgetValue}"; // Assuming you want a formatted currency string
-                        string status = res["is_done"].ToString() == "True" ? "Finished" : "Ongoing";
+                string orderId = dbHelper.convertObject<Guid>(row["id_order"]).ToString();
 
-                        // Add to the Orders collection
-                        Orders.Add(new Order { Title = title, Budget = budget, Status = status });
-                    }
-
-                    // Initialize FilteredOrders with all fetched Orders
-                    foreach (var order in Orders)
-                    {
-                        FilteredOrders.Add(order);
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("No results returned.");
-                }
+                FilteredOrders.Add(new Order(orderId));
             }
         }
 

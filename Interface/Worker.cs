@@ -9,23 +9,28 @@ namespace Interface
     internal class Worker : User
     {
         private DatabaseHelper dbHelper = new DatabaseHelper();
-
-        private string Id { get; }
-        public string? UserId { get; private set; }
-
-        public Worker(string id)
+        public string? Id { get; private set; }
+        public string? Role {  get; private set; }
+        
+        public Worker(string userId) : base(userId)
         {
-            Id = id;
             fetchWorker();
         }
 
         public void fetchWorker()
         {
-            string query = $"SELECT * from workers WHERE id_worker = {Id}";
+            string query = $"SELECT * from workers WHERE id_user = '{this.IdUser}'";
 
-            dbHelper.executeQuery(query);
+            var rows = dbHelper.executeGetQuery(query,"id_worker","role");
 
-            UserId = dbHelper.extractValue<string>("id_user");
+            Id = dbHelper.convertObject<Guid>(rows[0]["id_worker"]).ToString();
+            Role = dbHelper.convertObject<string>(rows[0]["role"]);
+        }
+
+        public void fetchOrder()
+        {
+            string query = $"SELECT * from orders WHERE id_user = '{this.IdUser}'";
+
         }
     }
 }

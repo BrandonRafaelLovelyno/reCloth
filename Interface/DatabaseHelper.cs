@@ -85,6 +85,8 @@ namespace Interface
         {
             var results = new List<Dictionary<string, object>>();
 
+            Console.WriteLine(query);
+
             Conn.Open();
             using (var command = new NpgsqlCommand(query, Conn))
             using (var reader = command.ExecuteReader())

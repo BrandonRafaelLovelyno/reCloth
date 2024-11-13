@@ -33,7 +33,7 @@ namespace Interface
             Console.WriteLine("Try to navigate to OrderPage");
             if (appWindow != null)
             {
-                appWindow.MainFrame.NavigationService.Navigate(new OrderPage(11));
+                appWindow.MainFrame.NavigationService.Navigate(new OrderPage("80e47bb4-9ea3-11ef-8ca2-1e901716c947"));
                 Console.WriteLine("Navigating to OrderPage");
             }
         }

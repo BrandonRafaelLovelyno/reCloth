@@ -8,10 +8,28 @@ namespace Interface
 {
     internal class Customer : User
     {
-        public string _id;
-        public Customer(string id) 
+        private DatabaseHelper dbHelper = new DatabaseHelper();
+
+        public string IdUser { get; private set; }
+        public string? Id { get; private set; }
+ 
+        public Customer(string userId) : base(userId) 
         {
-            _id = id;
+            IdUser = userId;
+            fetchCustomer();
+        }
+
+        private void fetchCustomer()
+        {
+            string query = $"SELECT * FROM customers WHERE id_user = '{IdUser}'";
+
+            var rows = dbHelper.executeGetQuery(query,"id_customer");
+
+            string customerId = dbHelper.convertObject<Guid>(rows[0]["id_customer"]).ToString();
+
+            if (customerId == null) throw new Exception($"Cannot find customer with user id of {IdUser}");
+
+            Id = customerId;
         }
     }
 }

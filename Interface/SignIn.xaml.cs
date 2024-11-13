@@ -38,16 +38,11 @@ namespace Interface
             string hashedPassword = HashHelper.Hash(password);
             string query = $"SELECT * from users WHERE password = '{hashedPassword}' AND email = '{email}'";
 
-            Console.WriteLine(query);
+            var rows = dbHelper.executeGetQuery(query,"id_user");
 
-            using (NpgsqlDataReader res = dbHelper.executeQuery(query))
-            {
-                if (res == null || !res.Read()) throw new Exception("Invalid credentials"); 
-                
-                string userId = res["id_user"].ToString(); 
-                if (string.IsNullOrEmpty(userId)) throw new Exception("User Id not found"); 
-                return userId;
-            }
+            string userId = dbHelper.convertObject<Guid>(rows[0]["id_user"]).ToString(); 
+
+            return userId;
         }
 
         private void signIn(object sender, RoutedEventArgs e)
