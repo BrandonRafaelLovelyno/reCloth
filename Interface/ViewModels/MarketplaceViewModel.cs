@@ -54,16 +54,19 @@ namespace Interface.ViewModels
             {
                 string orderId = dbHelper.convertObject<Guid>(row["id_order"]).ToString();
 
-                FilteredOrders.Add(new Order(orderId));
+                Orders.Add(new Order(orderId));
             }
+            FilterOrders();
         }
 
         private void FilterOrders()
         {
+            Console.WriteLine(SearchText);
             FilteredOrders.Clear();
 
             if (string.IsNullOrWhiteSpace(SearchText))
             {
+                Console.WriteLine(Orders[0]);
                 foreach (var order in Orders)
                 {
                     FilteredOrders.Add(order);
