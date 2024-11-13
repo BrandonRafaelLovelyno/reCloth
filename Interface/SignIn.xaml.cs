@@ -33,15 +33,45 @@ namespace Interface
             NavigationService.Navigate(new SignUp());
         }
 
-        private void setUserSession(string email, string password)
+        private string fetchUserId(string email, string password)
         {
             string hashedPassword = HashHelper.Hash(password);
             string query = $"SELECT * from users WHERE password = '{hashedPassword}' AND email = '{email}'";
 
-            var rows = dbHelper.executeGetQuery(query,"id_user","role");
+            var rows = dbHelper.executeGetQuery(query, "id_user", "role");
 
-            string userId = dbHelper.convertObject<Guid>(rows[0]["id_user"]).ToString(); 
-            string role = dbHelper.convertObject<string>(rows[0]["role"]).ToString() ;
+            string userId = dbHelper.convertObject<Guid>(rows[0]["id_user"]).ToString();
+
+            return userId;
+        }
+
+        private bool checkUserCustomer(string userId)
+        {
+            bool isCustomer = false;
+
+            string query = $"SELECT * from customers where id_user = {userId};";
+
+            var rows = dbHelper.executeGetQuery(query);
+
+            if (rows.Count > 0)
+            {
+                isCustomer = true;
+            }
+
+            return isCustomer;
+        }
+
+
+        private void setUserSession(string email, string password)
+        {
+            string userId = fetchUserId(email, password);
+            string role = "Worker";
+            
+            bool isCustomer = checkUserCustomer(userId);
+            if(isCustomer)
+            {
+                role = "Customer";
+            }
 
             UserSession.Current.UserId = userId;
             UserSession.Current.Role = role;
