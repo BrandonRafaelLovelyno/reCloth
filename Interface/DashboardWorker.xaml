@@ -47,9 +47,7 @@
             <Border Grid.Column="1" Background="#BD6D68" CornerRadius="25" Padding="20" Margin="0,0,289,0">
                 <StackPanel HorizontalAlignment="Center">
                     <TextBlock Text="Role" FontSize="36" FontWeight="Medium" Foreground="White" HorizontalAlignment="Center"/>
-                    <TextBlock FontSize="51.84" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Center">
-                        Designer
-                    </TextBlock>
+                    <TextBlock Text="{Binding Worker.Role}" FontSize="51.84" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Center"/>
                 </StackPanel>
             </Border>
         </Grid>

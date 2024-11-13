@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Interface.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,15 +22,13 @@ namespace Interface
     /// </summary>
     public partial class DashboardWorker : Page
     {
-        private DatabaseHelper dbHelper = new DatabaseHelper();
-        private Worker _worker;
-        private List<Order> _orders;
+        private DashboardWorkerViewModel _viewModel;
+
         public DashboardWorker()
         {
-            _worker = new Worker(UserSession.Current.UserId);
             InitializeComponent();
+            _viewModel = new DashboardWorkerViewModel(UserSession.Current.UserId);
+            DataContext = _viewModel;
         }
-
-        
     }
 }

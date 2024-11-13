@@ -66,6 +66,22 @@ namespace Interface
             return isCustomer;
         }
 
+        private string getWorkersRole(string userId)
+        {
+            string role = "Tailor";
+
+            string query = $"SELECT * from workers where id_user = '{userId}';";
+
+            var rows = dbHelper.executeGetQuery(query, "role");
+
+            if (dbHelper.convertObject<string>(rows[0]["role"]) == "Designer")
+            {
+                role = "Designer";
+            }
+
+            return role;
+        }
+
 
         private void setUserSession(string email, string password)
         {
@@ -76,6 +92,9 @@ namespace Interface
             if(isCustomer)
             {
                 role = "Customer";
+            } else
+            {
+                role = getWorkersRole(userId);
             }
 
             UserSession.Current.UserId = userId;

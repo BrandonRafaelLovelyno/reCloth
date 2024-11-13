@@ -39,13 +39,15 @@ namespace Interface
 
         private void Dashboard_Click(object sender, RoutedEventArgs e)
         {
-            string userType = "customer"; // This should be set to the user's type
+            string userType = UserSession.Current.Role;   
 
-            if (userType == "customer")
+
+
+            if (userType == "Customer")
             {
                 MainFrame.NavigationService.Navigate(new DashboardCustomer());
             }
-            else if (userType == "worker")
+            else if (userType == "Tailor" || userType == "Designer")
             {
                 MainFrame.NavigationService.Navigate(new DashboardWorker());
             }
