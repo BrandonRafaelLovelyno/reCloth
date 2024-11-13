@@ -27,19 +27,19 @@
                 <StackPanel Margin="10" Orientation="Vertical">
                     <StackPanel Orientation="Vertical" Margin="0 0 0 10">
                         <TextBlock Text="Title" FontWeight="Bold" FontSize="15" Margin="0 0 0 3"/>
-                        <TextBlock Text="{Binding Title}" FontSize="12" FontWeight="SemiBold" />
+                        <TextBlock Text="{Binding _order.Title}" FontSize="12" FontWeight="SemiBold" />
                     </StackPanel>
                     <StackPanel Orientation="Vertical" Margin="0 0 0 10">
                         <TextBlock Text="Spesification" FontWeight="Bold" FontSize="15" Margin="0 0 0 3"/>
-                        <TextBlock Text="{Binding OrderSpecification}" FontSize="12" FontWeight="SemiBold" />
+                        <TextBlock Text="{Binding _order.Specification}" FontSize="12" FontWeight="SemiBold" />
                     </StackPanel>
                     <StackPanel Orientation="Vertical" Margin="0 0 0 10">
                         <TextBlock Text="Image" FontWeight="Bold" FontSize="15" Margin="0 0 0 3"/>
-                        <TextBlock Text="{Binding OrderImage}" FontSize="12" FontWeight="SemiBold" />
+                        <TextBlock Text="{Binding _order.Image}" FontSize="12" FontWeight="SemiBold" />
                     </StackPanel>
                     <StackPanel Orientation="Vertical" Margin="0 0 0 10">
                         <TextBlock Text="Budget" FontWeight="Bold" FontSize="15" Margin="0 0 0 3"/>
-                        <TextBlock Text="{Binding OrderBudget}" FontSize="12" FontWeight="SemiBold"  />
+                        <TextBlock Text="{Binding _order.Budget}" FontSize="12" FontWeight="SemiBold"  />
                     </StackPanel>
                 </StackPanel>
             </Border>
@@ -76,19 +76,11 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0 0 0 3">
                         <TextBlock Text="Name :" FontSize="12" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding DesignerName}" FontSize="12" Margin="3 0 0 0" FontWeight="SemiBold" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0 0 0 3">
-                        <TextBlock Text="Order Process :" FontWeight="SemiBold" FontSize="12"/>
-                        <TextBlock Text="{Binding DesignerOrderProcess}" Foreground="#A5B68D" FontWeight="Bold" FontSize="12" Margin="3 0 0 0" />
+                        <TextBlock Text="{Binding _designerUser.Name}" FontSize="12" Margin="3 0 0 0" FontWeight="SemiBold" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0 0 0 3">
                         <TextBlock Text="Result :" FontSize="12" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding DesignerResult}" FontSize="12" Margin="3 0 0 0" FontWeight="SemiBold" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0 0 0 3">
-                        <TextBlock Text="Payment :" FontSize="12" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding DesignerPayment}"  FontSize="12" Margin="3 0 0 0" FontWeight="SemiBold" />
+                        <TextBlock Text="{Binding _designerContract.Result}" FontSize="12" Margin="3 0 0 0" FontWeight="SemiBold" />
                     </StackPanel>
                 </StackPanel>
             </Border>
@@ -106,19 +98,11 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0 0 0 3">
                         <TextBlock Text="Name :" FontSize="12" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding TaylorName}" FontSize="12" Margin="3 0 0 0" FontWeight="SemiBold" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0 0 0 3">
-                        <TextBlock Text="Order Process :" FontWeight="SemiBold" FontSize="12"/>
-                        <TextBlock Text="{Binding TaylorOrderProcess}" Foreground="#BD6D68" FontWeight="Bold" FontSize="12" Margin="3 0 0 0" />
+                        <TextBlock Text="{Binding _taylorUser.Name}" FontSize="12" Margin="3 0 0 0" FontWeight="SemiBold" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0 0 0 3">
                         <TextBlock Text="Result :" FontSize="12" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding TaylorResult}" FontSize="12" Margin="3 0 0 0" FontWeight="SemiBold" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0 0 0 3">
-                        <TextBlock Text="Payment :" FontSize="12" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding TaylorPayment}"  FontSize="12" Margin="3 0 0 0" FontWeight="SemiBold" />
+                        <TextBlock Text="{Binding _taylorContract.Result}" FontSize="12" Margin="3 0 0 0" FontWeight="SemiBold" />
                     </StackPanel>
                 </StackPanel>
             </Border>

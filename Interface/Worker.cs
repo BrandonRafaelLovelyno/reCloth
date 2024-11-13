@@ -8,13 +8,24 @@ namespace Interface
 {
     internal class Worker : User
     {
-        public string _id_user;
-        public string _role;
+        private DatabaseHelper dbHelper = new DatabaseHelper();
 
-        public Worker(string id_user, string role)
+        private string Id { get; }
+        public string? UserId { get; private set; }
+
+        public Worker(string id)
         {
-            _id_user = id_user;
-            _role = role;
+            Id = id;
+            fetchWorker();
+        }
+
+        public void fetchWorker()
+        {
+            string query = $"SELECT * from workers WHERE id_worker = {Id}";
+
+            dbHelper.executeQuery(query);
+
+            UserId = dbHelper.extractValue<string>("id_user");
         }
     }
 }

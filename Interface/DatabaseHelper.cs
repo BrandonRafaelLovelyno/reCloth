@@ -15,7 +15,8 @@ namespace Interface
     internal class DatabaseHelper
     {
         private string connectionString;
-        private NpgsqlConnection conn;
+        private NpgsqlConnection Conn;
+        private NpgsqlDataReader? Reader;
 
         public DatabaseHelper()
         {
@@ -25,8 +26,14 @@ namespace Interface
                 .Build();
 
             // Access the connection string in the "AppSettings" section with key "aivenDB"
-            this.connectionString = config.GetSection("AppSettings")["aivenDB"];
-            conn = new NpgsqlConnection(connectionString);
+            string? temp = config.GetSection("AppSettings")["aivenDB"];
+            if(temp == null)
+            {
+                throw new Exception("Database URI not found");
+            }
+
+            this.connectionString = temp;
+            Conn = new NpgsqlConnection(connectionString);
         }
 
         public void TestConnection()
@@ -34,32 +41,61 @@ namespace Interface
 
             try
             {
-                conn.Open();
+                Conn.Open();
                 Console.WriteLine("Connection successful");
 
-                conn.Close();
+                Conn.Close();
                 Console.WriteLine("Connection closed");
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
             }
-         
+
         }
 
-        public NpgsqlDataReader executeQuery(string query)
+        public T convertObject<T>(object obj)
         {
             try
             {
-                conn.Open();
-                NpgsqlCommand command = new NpgsqlCommand(query, conn);
-                return command.ExecuteReader(CommandBehavior.CloseConnection); // Close connection when reader is closed
+                return (T)Convert.ChangeType(obj, typeof(T));
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
-                return null;
+                throw new Exception($"Cannot cast {obj.GetType().Name} to {typeof(T).Name}");
             }
+        }
+
+        public void executePostQuery(string query)
+        {
+            Conn.Open();
+            using (var command = new NpgsqlCommand(query, Conn))
+            {
+                command.ExecuteNonQuery(); 
+            }
+            Conn.Close();
+        }
+
+        public List<Dictionary<string, object>> executeGetQuery(string query, params string[] keys)
+        {
+            var results = new List<Dictionary<string, object>>();
+
+            Conn.Open();
+            using (var command = new NpgsqlCommand(query, Conn))
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    var row = new Dictionary<string, object>();
+                    foreach (var key in keys)
+                    {
+                        row[key] = reader[key];
+                    }
+                    results.Add(row); 
+                }
+            }
+            Conn.Close();
+            return results;
         }
     }
 }
