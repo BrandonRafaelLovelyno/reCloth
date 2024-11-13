@@ -40,6 +40,11 @@ namespace Interface
 
             var rows = dbHelper.executeGetQuery(query, "id_user");
 
+            if(rows.Count == 0)
+            {
+                throw new Exception("Invalid credentials");
+            }
+
             string userId = dbHelper.convertObject<Guid>(rows[0]["id_user"]).ToString();
 
             return userId;
