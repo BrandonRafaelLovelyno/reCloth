@@ -66,11 +66,16 @@ namespace Interface
             }
         }
 
-        public void executePostQuery(string query)
+        public void executePostQuery(string query, params NpgsqlParameter[] parameters)
         {
             Conn.Open();
             using (var command = new NpgsqlCommand(query, Conn))
             {
+                // add parameters to the command to prevent SQL injection 
+                if (parameters != null)
+                {
+                    command.Parameters.AddRange(parameters);
+                }
                 command.ExecuteNonQuery(); 
             }
             Conn.Close();

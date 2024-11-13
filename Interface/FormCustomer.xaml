@@ -34,19 +34,19 @@
             <!-- Component -->
             <TextBlock Text="Title" FontSize="36px" FontWeight="SemiBold" FontFamily="{StaticResource LexendFont}" Foreground="White" Margin="10 0 0 0"/>
             <Border BorderThickness="2" BorderBrush="White" CornerRadius="10" Padding="15" Height="35" Width="1100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 50 0 0" Background="White"/>
-            <TextBox Width="1060" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20 53 0 0"  BorderThickness="0"/>
+            <TextBox Name="tbTitleCustomer" Width="1060" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20 53 0 0"  BorderThickness="0"/>
 
             <TextBlock Text="Specification" FontSize="36px" FontWeight="SemiBold" FontFamily="{StaticResource LexendFont}" Foreground="White" Margin="10 0 0 0" VerticalAlignment="Center"/>
             <Border BorderThickness="2" BorderBrush="White" CornerRadius="10" Padding="15" Height="100" Width="1100" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 150 0 0" Background="White"/>
-            <TextBox Width="1060" Height="80" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20 150 0 0" BorderThickness="0"/>
+            <TextBox Name="tbSpecificationCustomer" Width="1060" Height="80" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20 150 0 0" BorderThickness="0"/>
 
             <TextBlock Text="Image" FontSize="36px" FontWeight="SemiBold" FontFamily="{StaticResource LexendFont}" Foreground="White" Margin="10 0 0 0" Grid.Row="2"/>
             <Border BorderThickness="2" BorderBrush="White" CornerRadius="10" Padding="15" Height="35" Width="1100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 50 0 0" Background="White" Grid.Row="2"/>
-            <TextBox Width="1060" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20 53 0 0" Grid.Row="2" BorderThickness="0"/>
+            <TextBox Name="tbImageCustomer" Width="1060" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20 53 0 0" Grid.Row="2" BorderThickness="0"/>
             
             <TextBlock Text="Budget" FontSize="36px" FontWeight="SemiBold" FontFamily="{StaticResource LexendFont}" Foreground="White" Margin="10 0 0 0" Grid.Row="2" VerticalAlignment="Center"/>
             <Border BorderThickness="2" BorderBrush="White" CornerRadius="10" Padding="15" Height="35" Width="1100" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 80 0 0" Background="White" Grid.Row="2"/>
-            <TextBox Width="1060" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20 85 0 0" Grid.Row="2" BorderThickness="0"/>
+            <TextBox Name="tbBudgetCustomer" Width="1060" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20 85 0 0" Grid.Row="2" BorderThickness="0"/>
 
 
             <Border BorderThickness="2" BorderBrush="Black" CornerRadius="10" Padding="15" Height="50" Width="150" Background="Black" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5 15 " Cursor="Hand" />

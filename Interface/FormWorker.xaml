@@ -36,15 +36,15 @@
             
             <TextBlock Text="Specification" FontSize="36px" FontWeight="SemiBold" FontFamily="{StaticResource LexendFont}" Foreground="White" Margin="10 0 0 0" VerticalAlignment="Top"/>
             <Border BorderThickness="2" BorderBrush="White" CornerRadius="10" Padding="15" Height="250" Width="1100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 50 0 0" Background="White"/>
-            <TextBox Width="1060" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20 70 0 0" BorderThickness="0"/>
+            <TextBox Name="tbSpecificationWorker" Width="1060" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20 70 0 0" BorderThickness="0"/>
 
             
             <TextBlock Text="Budget" FontSize="36px" FontWeight="SemiBold" FontFamily="{StaticResource LexendFont}" Foreground="White" Margin="10 0 0 0"  VerticalAlignment="Top" Grid.Row="2"/>
             <Border BorderThickness="2" BorderBrush="White" CornerRadius="10" Padding="15" Height="40" Width="1100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 50 0 0" Background="White" Grid.Row="2"/>
-            <TextBox Width="1060" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20 60 0 0" Grid.Row="2" BorderThickness="0"/>
+            <TextBox Name="tbBugdetWorker" Width="1060" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20 60 0 0" Grid.Row="2" BorderThickness="0"/>
 
 
-            <Border BorderThickness="2" BorderBrush="Black" CornerRadius="10" Padding="15" Height="50" Width="150" Background="Black" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5 15 " Cursor="Hand" />
+            <Border BorderThickness="2" BorderBrush="Black" CornerRadius="10" Padding="15" Height="50" Width="150" Background="Black" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5 15 " Cursor="Hand" MouseLeftButtonDown="Propose_Order"/>
             <TextBlock Text="Propose" Foreground="White" FontSize="30" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="2" Margin="20 25" Cursor="Hand" FontFamily="{StaticResource LexendFont}"/>
 
 
