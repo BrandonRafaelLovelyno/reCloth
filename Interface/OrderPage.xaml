@@ -27,19 +27,19 @@
                 <StackPanel Margin="10" Orientation="Vertical">
                     <StackPanel Orientation="Vertical" Margin="0 0 0 10">
                         <TextBlock Text="Title" FontWeight="Bold" FontSize="15" Margin="0 0 0 3"/>
-                        <TextBlock Text="{Binding _order.Title}" FontSize="12" FontWeight="SemiBold" />
+                        <TextBlock Text="{Binding Order.Title}" FontSize="12" FontWeight="SemiBold" />
                     </StackPanel>
                     <StackPanel Orientation="Vertical" Margin="0 0 0 10">
                         <TextBlock Text="Spesification" FontWeight="Bold" FontSize="15" Margin="0 0 0 3"/>
-                        <TextBlock Text="{Binding _order.Specification}" FontSize="12" FontWeight="SemiBold" />
+                        <TextBlock Text="{Binding Order.Specification}" FontSize="12" FontWeight="SemiBold" />
                     </StackPanel>
                     <StackPanel Orientation="Vertical" Margin="0 0 0 10">
                         <TextBlock Text="Image" FontWeight="Bold" FontSize="15" Margin="0 0 0 3"/>
-                        <TextBlock Text="{Binding _order.Image}" FontSize="12" FontWeight="SemiBold" />
+                        <TextBlock Text="{Binding Order.Image}" FontSize="12" FontWeight="SemiBold" />
                     </StackPanel>
                     <StackPanel Orientation="Vertical" Margin="0 0 0 10">
                         <TextBlock Text="Budget" FontWeight="Bold" FontSize="15" Margin="0 0 0 3"/>
-                        <TextBlock Text="{Binding _order.Budget}" FontSize="12" FontWeight="SemiBold"  />
+                        <TextBlock Text="{Binding Order.Budget}" FontSize="12" FontWeight="SemiBold"  />
                     </StackPanel>
                 </StackPanel>
             </Border>
@@ -58,7 +58,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0 0 0 3">
                         <TextBlock Text="Name :" FontWeight="SemiBold" FontSize="12"/>
-                        <TextBlock Text="{Binding CustomerName}" FontSize="12" Margin="3 0 0 0"  FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding CustomerUser.Name}" FontSize="12" Margin="3 0 0 0"  FontWeight="SemiBold"/>
                     </StackPanel>
                 </StackPanel>
             </Border>
@@ -76,11 +76,11 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0 0 0 3">
                         <TextBlock Text="Name :" FontSize="12" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding _designerUser.Name}" FontSize="12" Margin="3 0 0 0" FontWeight="SemiBold" />
+                        <TextBlock Text="{Binding DesignerUser.Name}" FontSize="12" Margin="3 0 0 0" FontWeight="SemiBold" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0 0 0 3">
                         <TextBlock Text="Result :" FontSize="12" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding _designerContract.Result}" FontSize="12" Margin="3 0 0 0" FontWeight="SemiBold" />
+                        <TextBlock Text="{Binding DesignerContract.Result}" FontSize="12" Margin="3 0 0 0" FontWeight="SemiBold" />
                     </StackPanel>
                 </StackPanel>
             </Border>
@@ -98,11 +98,11 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0 0 0 3">
                         <TextBlock Text="Name :" FontSize="12" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding _taylorUser.Name}" FontSize="12" Margin="3 0 0 0" FontWeight="SemiBold" />
+                        <TextBlock Text="{Binding TailorUser.Name}" FontSize="12" Margin="3 0 0 0" FontWeight="SemiBold" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0 0 0 3">
                         <TextBlock Text="Result :" FontSize="12" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding _taylorContract.Result}" FontSize="12" Margin="3 0 0 0" FontWeight="SemiBold" />
+                        <TextBlock Text="{Binding TailorContract.Result}" FontSize="12" Margin="3 0 0 0" FontWeight="SemiBold" />
                     </StackPanel>
                 </StackPanel>
             </Border>

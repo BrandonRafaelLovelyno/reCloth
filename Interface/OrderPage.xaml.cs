@@ -1,4 +1,5 @@
-﻿using Npgsql;
+﻿using Interface.ViewModels;
+using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,55 +19,13 @@ namespace Interface
 {
     public partial class OrderPage : Page
     {
-        private Order _order;
-
-        private Contract? _tailorContract;
-        private Contract? _designerContract;
-
-        private User? _tailorUser;
-        private User? _designerUser;
+        private OrderPageViewModel _viewModel;
 
         public OrderPage(string orderId)
         {
-            _order = new Order(orderId);
-            fetchWorkerUser("Tailor");
-            fetchWorkerUser("Designer");
-
             InitializeComponent();
-        }
-
-        private void fetchWorkerUser(string role)
-        {
-            fetchAcceptedContract(role);
-
-            if (role == "Tailor" && _tailorContract != null)
-            {
-                string userId = _tailorContract.fetchUserId();
-                _tailorUser = new User(userId);
-            }
-            else if (role == "Designer" && _designerContract != null)
-            {
-                string userId = _designerContract.fetchUserId();
-                _designerUser = new User(userId);
-            }
-        }
-
-        private void fetchAcceptedContract(string role)
-        {
-            string? contractId = _order.findAcceptedContract(role);
-
-            if (contractId != null)
-            {
-                if (role == "Tailor")
-                {
-                    _tailorContract = new Contract(contractId);
-                }
-
-                if (role == "Designer")
-                {
-                    _designerContract = new Contract(contractId);
-                }
-            }
+            _viewModel = new OrderPageViewModel(orderId);
+            DataContext = _viewModel; // Set the DataContext to the ViewModel
         }
 
         private void Route_to_Form(object sender, MouseButtonEventArgs e)
@@ -76,7 +35,6 @@ namespace Interface
             if (appWindow != null)
             {
                 appWindow.MainFrame.NavigationService.Navigate(new ProposalPage());
-
             }
         }
 
