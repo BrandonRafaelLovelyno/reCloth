@@ -29,7 +29,7 @@ namespace Interface
             this.image = image;
             string query = $"UPDATE Portfolio SET image = '{image}' WHERE id = {_id}";
 
-            dbHelper.executeQuery(query); 
+            //dbHelper.executeQuery(query); 
         }
     }
 }

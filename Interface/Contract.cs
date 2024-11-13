@@ -30,27 +30,22 @@ namespace Interface
                 WHERE c.id_worker = {Id};
             ";
 
-            dbHelper.executeQuery(query);
+            var rows = dbHelper.executeGetQuery(query, "id_user");
 
-            string? idUser = dbHelper.extractValue<string>("id_user");
-
-            if(idUser == null )
-            {
-                throw new Exception("Cannot find user by contract");
-            }
+            string idUser = dbHelper.convertObject<Guid>(rows[0]["id_user"]).ToString();
 
             return idUser;
         }
 
         private void fetchContract()
         {
-            string query = $"SELECT * from contracts WHERE id_contract = {Id}";
+            string query = $"SELECT * from contracts WHERE id_contract = '{Id}'";
 
-            dbHelper.executeQuery(query);
+            var rows = dbHelper.executeGetQuery(query,"id_proposal","id_worker","result");
 
-            IdProposal = dbHelper.extractValue<string>("id_proposal");
-            IdWorker = dbHelper.extractValue<string>("id_worker");
-            Result = dbHelper.extractValue<string>("result");
+            IdProposal = dbHelper.convertObject<Guid>("id_proposal").ToString();
+            IdWorker = dbHelper.convertObject<Guid>(rows[0]["id_worker"]).ToString();
+            Result = dbHelper.convertObject<string>(rows[0]["result"]);
         }
 
     }

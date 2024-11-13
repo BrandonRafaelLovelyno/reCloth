@@ -47,63 +47,63 @@ namespace Interface
             return (name, email, password, phoneNumber, address, role);
         }
 
-        private (string Name, string userId) createUser((string Name, string Email, string Password, string PhoneNumber, string Address, string Role) userInfo)
-        {
-            string hashedPassword = HashHelper.Hash(userInfo.Password);
+        //private (string Name, string userId) createUser((string Name, string Email, string Password, string PhoneNumber, string Address, string Role) userInfo)
+        //{
+        //    string hashedPassword = HashHelper.Hash(userInfo.Password);
 
-            string query = $"INSERT INTO users (name, email, password, phone_number, address) VALUES ('{userInfo.Name}', '{userInfo.Email}', '{hashedPassword}', '{userInfo.PhoneNumber}', '{userInfo.Address}') RETURNING id_user, name;";
+        //    string query = $"INSERT INTO users (name, email, password, phone_number, address) VALUES ('{userInfo.Name}', '{userInfo.Email}', '{hashedPassword}', '{userInfo.PhoneNumber}', '{userInfo.Address}') RETURNING id_user, name;";
 
-            using (NpgsqlDataReader res = dbHelper.executeQuery(query)) 
-            { 
-                if (res == null || !res.Read()) throw new Exception("Failed to insert user");
+        //    using (NpgsqlDataReader res = dbHelper.executeQuery(query)) 
+        //    { 
+        //        if (res == null || !res.Read()) throw new Exception("Failed to insert user");
 
-                string userId = res["id_user"].ToString();
-                if (string.IsNullOrEmpty(userId)) throw new Exception("User Id not found"); 
+        //        string userId = res["id_user"].ToString();
+        //        if (string.IsNullOrEmpty(userId)) throw new Exception("User Id not found"); 
 
-                string name = res["name"].ToString();
-                if (string.IsNullOrEmpty(name)) throw new Exception("Name not found");
+        //        string name = res["name"].ToString();
+        //        if (string.IsNullOrEmpty(name)) throw new Exception("Name not found");
 
-                return (name, userId);
-            }
-        }
+        //        return (name, userId);
+        //    }
+        //}
 
-        private void createWorker(string idUser, string role)
-        {
-            string query = $"INSERT INTO workers (id_user, role) VALUES ('{idUser}', '{role}')";
-            dbHelper.executeQuery(query);
-        }
+        //private void createWorker(string idUser, string role)
+        //{
+        //    string query = $"INSERT INTO workers (id_user, role) VALUES ('{idUser}', '{role}')";
+        //    dbHelper.executeQuery(query);
+        //}
 
-        private void createCustomer(string idUser)
-        {
-            string query = $"INSERT INTO customers (id_user) VALUES ('{idUser}')";
-            dbHelper.executeQuery(query);
+        //private void createCustomer(string idUser)
+        //{
+        //    string query = $"INSERT INTO customers (id_user) VALUES ('{idUser}')";
+        //    dbHelper.executeQuery(query);
 
-        }
+        //}
 
         private void signUp(object sender, MouseButtonEventArgs e)
         {
-            try
-            {
-                var tbValues = extractTextBoxValues();
+            //try
+            //{
+            //    var tbValues = extractTextBoxValues();
 
-                var user = createUser(tbValues);
-                UserSession.Current.UserId = user.userId;
+            //    var user = createUser(tbValues);
+            //    UserSession.Current.UserId = user.userId;
 
-                if(tbValues.Role == "Customer")
-                {
-                    createCustomer(user.userId);
-                }
-                else
-                {
-                     createWorker(user.userId, tbValues.Role);
-                }
+            //    if(tbValues.Role == "Customer")
+            //    {
+            //        createCustomer(user.userId);
+            //    }
+            //    else
+            //    {
+            //         createWorker(user.userId, tbValues.Role);
+            //    }
 
-                MessageBox.Show("User created!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error Occurred", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            //    MessageBox.Show("User created!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, "Error Occurred", MessageBoxButton.OK, MessageBoxImage.Error);
+            //}
         }
     }
 }

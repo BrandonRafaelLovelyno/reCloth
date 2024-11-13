@@ -24,19 +24,12 @@ namespace Interface
         private DatabaseHelper dbHelper = new DatabaseHelper();
         private Worker _worker;
         private List<Order> _orders;
-        public DashboardWorker(string id_worker, string role)
+        public DashboardWorker()
         {
-            this._worker = new Worker(id_worker, role);
+            _worker = new Worker(UserSession.Current.UserId);
             InitializeComponent();
-
-            // Create sample data
-
-
         }
 
-        public void fetchContract()
-        {
-            string query = $"SELECT * from  Contract WHERE id_worker = {this._worker._id_user}";
-        }
+        
     }
 }

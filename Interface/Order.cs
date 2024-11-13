@@ -14,7 +14,7 @@ namespace Interface
 
         private string Id { get; }
         public string? Title { get; private set; }
-        public string? Spefication { get; private set; }
+        public string? Specification { get; private set; }
         public string? Image { get; private set; }
         public double? Budget { get; private set; }
 
@@ -26,14 +26,14 @@ namespace Interface
 
         public void fetchOrder()
         {
-            string query = $"SELECT * from orders WHERE id_order = {Id}";
+            string query = $"SELECT * from orders WHERE id_order = '{Id}' LIMIT 1;";
 
-            dbHelper.executeQuery(query);
+            var rows = dbHelper.executeGetQuery(query, "title", "specification", "image", "budget");
 
-            Title = dbHelper.extractValue<string>("title");
-            Spefication = dbHelper.extractValue<string>("spesification");
-            Image = dbHelper.extractValue<string>("image");
-            Budget = dbHelper.extractValue<double>("budget");
+            Title = dbHelper.convertObject<string>(rows[0]["title"]);
+            Specification = dbHelper.convertObject<string>(rows[0]["specification"]);
+            Image = dbHelper.convertObject<string>(rows[0]["image"]);
+            Budget = dbHelper.convertObject<double>(rows[0]["budget"]);
         }
 
         public string? findAcceptedContract(string role)
@@ -46,9 +46,9 @@ namespace Interface
             LIMIT 1;
              ";
 
-            dbHelper.executeQuery(query);
+            var rows = dbHelper.executeGetQuery(query, "id_contract");
 
-            return dbHelper.extractValue<string>("id_contract");
+            return dbHelper.convertObject<Guid>(rows[0]["id_contract"]).ToString();
         }
 
     }

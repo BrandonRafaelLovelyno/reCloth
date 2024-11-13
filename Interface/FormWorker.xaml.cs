@@ -57,28 +57,13 @@ namespace Interface
                     new NpgsqlParameter("@budget", budget )
                 };
 
-                int rowsAffected = dbHelper.executePostQuery(insertQuery, parameters);
-
-                if (rowsAffected > 0)
-                {
-                    MessageBox.Show("Proposal successfully submitted!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Failed to submit proposal.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                dbHelper.executePostQuery(insertQuery, parameters);
             }
             catch (Exception ex) 
             { 
                 MessageBox.Show($"An error occured: {ex.Message}", "Error", MessageBoxButton.OK,MessageBoxImage.Error);
             
             }
-        
-
-            
-
-
-           
         }
 
     }

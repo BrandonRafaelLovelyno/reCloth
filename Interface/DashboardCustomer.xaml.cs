@@ -25,9 +25,9 @@ namespace Interface
         private Customer _customer;
         private List<Order> orders = new List<Order>();
 
-        public DashboardCustomer(string customer_id)
+        public DashboardCustomer()
         {
-            _customer = new Customer(customer_id);
+            _customer = new Customer(UserSession.Current.UserId);
             InitializeComponent();
             fetchOrder();
         }
@@ -36,29 +36,14 @@ namespace Interface
         {
             string query = "SELECT * FROM orders";
 
-            // Execute the query and get the reader
-            using (NpgsqlDataReader res = dbHelper.executeQuery(query))
+            var rows = dbHelper.executeGetQuery(query,"id_order");
+
+            foreach (var row in rows)
             {
-                if (res != null)
-                {
-                    // Read the results
-                    while (res.Read())
-                    {
-                        string title = res["title"].ToString();
-                        double budgetValue = Convert.ToDouble(res["budget"]);
-                        string budget = $"Rp {budgetValue}";
-                        string status = res["is_done"].ToString() == "True" ? "Finished" : "Ongoing";
-
-                        Console.WriteLine($"Title: {title}, Budget: {budget}, Status: {status}");
-
-                        orders.Add(new Order { Title = title, Budget = budget, Status = status });
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("No results returned.");
-                }
-            } // The reader is automatically closed here
+                string orderId = dbHelper.convertObject<Guid>(row["id_order"]).ToString();
+                orders.Add(new Order(orderId));
+            }
+            
             OrderList.ItemsSource = orders;
         }
 
@@ -68,7 +53,7 @@ namespace Interface
             Console.WriteLine("Try to navigate to OrderPage");
             if (appWindow != null)
             {
-                appWindow.MainFrame.NavigationService.Navigate(new OrderPage(11));
+                appWindow.MainFrame.NavigationService.Navigate(new OrderPage("80e47bb4-9ea3-11ef-8ca2-1e901716c947"));
                 Console.WriteLine("Navigating to OrderPage");
             }
         }
