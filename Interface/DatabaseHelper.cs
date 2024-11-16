@@ -81,6 +81,24 @@ namespace Interface
             Conn.Close();
         }
 
+        public void executePostQueryImage(string query, byte[] imageBytes, params NpgsqlParameter[] parameters)
+        {
+            Conn.Open() ;
+            using (var command = new NpgsqlCommand(query, Conn))
+            {
+                if (parameters != null)
+                {
+                    command.Parameters.AddRange(parameters);
+                }
+
+                command.Parameters.Add(new NpgsqlParameter("image", imageBytes));
+
+                command.ExecuteNonQuery();
+            }
+            Conn.Close();
+        }
+
+
         public List<Dictionary<string, object>> executeGetQuery(string query, params string[] keys)
         {
             var results = new List<Dictionary<string, object>>();

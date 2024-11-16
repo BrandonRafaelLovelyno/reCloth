@@ -28,12 +28,7 @@ namespace Interface
         public FormWorker()
         {
             InitializeComponent();
-        }
-
-
-        
-
-        
+        }      
         private void Propose_Order(object sender, EventArgs e)
         {
             string specification = tbSpecificationWorker.Text;
@@ -61,10 +56,8 @@ namespace Interface
             }
             catch (Exception ex) 
             { 
-                MessageBox.Show($"An error occured: {ex.Message}", "Error", MessageBoxButton.OK,MessageBoxImage.Error);
-            
+                MessageBox.Show($"An error occured: {ex.Message}", "Error", MessageBoxButton.OK,MessageBoxImage.Error);            
             }
         }
-
     }
 }
