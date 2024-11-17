@@ -18,7 +18,7 @@
 
         <!-- Header -->
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="50" HorizontalAlignment="Left">
-            <TextBlock FontWeight="Bold" FontSize="43.2" Text="{Binding greetings}" />
+            <TextBlock FontWeight="Bold" FontSize="43.2" Text="{Binding WorkerName}" />
         </StackPanel>
 
         <!-- Body Section -->

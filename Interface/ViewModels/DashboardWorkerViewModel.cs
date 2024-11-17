@@ -22,8 +22,20 @@ namespace Interface.ViewModels
             }
         }
 
+        private string workerName;
+        public string WorkerName
+        {
+            get => workerName;
+            set
+            {
+                workerName = value;
+                OnPropertyChanged(nameof(workerName));
+            }
+        }
+
         public DashboardWorkerViewModel(string userId)
         {
+            WorkerName = $"Hello, {UserSession.Current.Name}!";
             Worker = new Worker(userId);
         }
 

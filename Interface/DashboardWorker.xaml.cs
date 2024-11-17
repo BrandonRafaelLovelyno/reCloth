@@ -23,11 +23,9 @@ namespace Interface
     public partial class DashboardWorker : Page
     {
         private DashboardWorkerViewModel _viewModel;
-        public string greetings {  get; private set; }
 
         public DashboardWorker()
         {
-            greetings = $"Hello, {UserSession.Current.Name}";
             InitializeComponent();
             _viewModel = new DashboardWorkerViewModel(UserSession.Current.UserId);
             DataContext = _viewModel;
