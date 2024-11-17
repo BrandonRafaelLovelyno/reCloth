@@ -50,7 +50,7 @@ namespace Interface
             return (name, email, password, phoneNumber, address, role);
         }
 
-        private string createUser((string Name, string Email, string Password, string PhoneNumber, string Address, string Role) userInfo)
+        private (string idUser, string name) createUser((string Name, string Email, string Password, string PhoneNumber, string Address, string Role) userInfo)
         {
             string hashedPassword = HashHelper.Hash(userInfo.Password);
 
@@ -60,11 +60,12 @@ namespace Interface
 
             query = $"SELECT * FROM users WHERE email = '{userInfo.Email}';";
 
-            var rows = dbHelper.executeGetQuery(query, "id_user");
+            var rows = dbHelper.executeGetQuery(query, "id_user", "name");
             
             string idUser = dbHelper.convertObject<Guid>(rows[0]["id_user"]).ToString();
+            string name = dbHelper.convertObject<string>(rows[0]["name"]).ToString();
 
-            return idUser;
+            return (idUser, name);
         }
 
         private void createWorker(string idUser, string role)
@@ -92,6 +93,13 @@ namespace Interface
             }
         }
 
+        private void setSession(string idUser, string name, string role)
+        {
+            UserSession.Current.UserId = idUser;
+            UserSession.Current.Name = name;
+            UserSession.Current.Role = role;
+        }
+
         private void signUp(object sender, MouseButtonEventArgs e)
         {
             try
@@ -100,8 +108,8 @@ namespace Interface
 
                 checkUserExist(tbValues.Email, tbValues.Name);
 
-                string idUser = createUser(tbValues);
-                UserSession.Current.UserId = idUser;
+                (string idUser, string name) = createUser(tbValues);
+
 
                 string? role = cbRole.SelectionBoxItem.ToString();
 
@@ -109,8 +117,6 @@ namespace Interface
                 {
                     throw new Exception("Role is not selected");
                 }
-
-                UserSession.Current.Role = role;
 
                 if (tbValues.Role == "Customer")
                 {
@@ -120,6 +126,8 @@ namespace Interface
                 {
                     createWorker(idUser, tbValues.Role);
                 }
+
+                setSession(idUser, name, role);
 
                 MessageBox.Show("User created!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 

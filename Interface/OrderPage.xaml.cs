@@ -20,12 +20,14 @@ namespace Interface
     public partial class OrderPage : Page
     {
         private OrderPageViewModel _viewModel;
+        public string Id {  get; private set; }
 
         public OrderPage(string orderId)
         {
+            Id = orderId;
             InitializeComponent();
             _viewModel = new OrderPageViewModel(orderId);
-            DataContext = _viewModel; // Set the DataContext to the ViewModel
+            DataContext = _viewModel;
         }
 
         private void Route_to_Form(object sender, MouseButtonEventArgs e)
@@ -34,7 +36,7 @@ namespace Interface
 
             if (appWindow != null)
             {
-                appWindow.MainFrame.NavigationService.Navigate(new ProposalPage(""));
+                appWindow.MainFrame.NavigationService.Navigate(new ProposalPage(Id));
             }
         }
 

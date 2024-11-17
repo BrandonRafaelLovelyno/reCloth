@@ -33,12 +33,12 @@ namespace Interface
             NavigationService.Navigate(new SignUp());
         }
 
-        private string fetchUserId(string email, string password)
+        private (string userId, string name) fetchUserInfo(string email, string password)
         {
             string hashedPassword = HashHelper.Hash(password);
             string query = $"SELECT * from users WHERE password = '{hashedPassword}' AND email = '{email}'";
 
-            var rows = dbHelper.executeGetQuery(query, "id_user");
+            var rows = dbHelper.executeGetQuery(query, "id_user", "name");
 
             if(rows.Count == 0)
             {
@@ -46,8 +46,9 @@ namespace Interface
             }
 
             string userId = dbHelper.convertObject<Guid>(rows[0]["id_user"]).ToString();
+            string name = dbHelper.convertObject<string>(rows[0]["name"]).ToString();
 
-            return userId;
+            return (userId, name);
         }
 
         private bool checkUserCustomer(string userId)
@@ -85,7 +86,7 @@ namespace Interface
 
         private void setUserSession(string email, string password)
         {
-            string userId = fetchUserId(email, password);
+            (string userId, string name) = fetchUserInfo(email, password);
             string role = "Worker";
             
             bool isCustomer = checkUserCustomer(userId);
@@ -99,6 +100,7 @@ namespace Interface
 
             UserSession.Current.UserId = userId;
             UserSession.Current.Role = role;
+            UserSession.Current.Name = name;
         }
 
         private void signIn(object sender, RoutedEventArgs e)
