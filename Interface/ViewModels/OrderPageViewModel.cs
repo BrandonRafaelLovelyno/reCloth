@@ -135,7 +135,7 @@ namespace Interface.ViewModels
         }
         private void Delete_Order()
         {
-            string query = $"DELETE from orders WHERE id_order = {_order.Id}; ";
+            string query = $"DELETE from orders WHERE id_order = '{_order.Id}'; ";
 
             dbHelper.executePostQuery(query);
         }
