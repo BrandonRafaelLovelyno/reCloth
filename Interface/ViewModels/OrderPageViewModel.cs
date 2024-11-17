@@ -4,12 +4,14 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Interface.ViewModels
 {
     internal class OrderPageViewModel : INotifyPropertyChanged
     {
         private DatabaseHelper dbHelper = new DatabaseHelper();
+
         private Order _order;
         public Order Order
         {
@@ -75,6 +77,7 @@ namespace Interface.ViewModels
                 OnPropertyChanged(nameof(TailorUser));
             }
         }
+        public ICommand DeleteOrderCommand { get; }
 
         public OrderPageViewModel(string orderId)
         {
@@ -82,8 +85,8 @@ namespace Interface.ViewModels
             FetchWorkerUser("Designer");
             FetchWorkerUser("Tailor");
             FetchCustomerUser();
-   
-          
+
+            DeleteOrderCommand = new RelayCommand<object>(_ => Delete_Order(orderId));
         }
 
         private void FetchCustomerUser()
@@ -133,9 +136,10 @@ namespace Interface.ViewModels
                 }
             }
         }
-        private void Delete_Order()
+        private void Delete_Order(string orderId)
         {
-            string query = $"DELETE from orders WHERE id_order = '{_order.Id}'; ";
+            Console.WriteLine("Deleting order");
+            string query = $"DELETE from orders WHERE id_order = '{orderId}'; ";
 
             dbHelper.executePostQuery(query);
         }

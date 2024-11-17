@@ -122,8 +122,11 @@
                 </Border>
 
                 <!-- Right Button -->
-                <Border Grid.Column="2" Width="122" Background="#FF5630" Padding="10 5 10 5" CornerRadius="12" Cursor="Hand" MouseLeftButtonDown="Route_to_Form">
-                    <TextBlock Text="Delete" FontSize="20" FontWeight="Regular" Foreground="White" HorizontalAlignment="Center" Cursor="Hand" MouseLeftButtonDown="Route_to_Form"/>
+                <Border Grid.Column="2" Width="122" Background="#FF5630" Padding="10 5 10 5" CornerRadius="12" Cursor="Hand">
+                    <Border.InputBindings>
+                        <MouseBinding Gesture="LeftClick" Command="{Binding DeleteOrderCommand}" CommandParameter="{Binding Order.Id}" />
+                    </Border.InputBindings>
+                    <TextBlock Text="Delete" FontSize="20" FontWeight="Regular" Foreground="White" HorizontalAlignment="Center" />
                 </Border>
             </Grid>
         </StackPanel>
