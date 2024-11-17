@@ -82,13 +82,15 @@ namespace Interface.ViewModels
             FetchWorkerUser("Designer");
             FetchWorkerUser("Tailor");
             FetchCustomerUser();
+   
+          
         }
 
         private void FetchCustomerUser()
         {
             string query = $"SELECT * FROM orders " +
                 $"JOIN customers on customers.id_customer = orders.id_customer " +
-                $"JOIN users on users.id_user = customers.id_user;";
+                $"JOIN users on users.id_user = customers.id_user WHERE id_order = '{_order.Id}';";
 
             var rows = dbHelper.executeGetQuery(query, "id_user");    
 
@@ -130,6 +132,12 @@ namespace Interface.ViewModels
                     TailorContract = new Contract(contractId);
                 }
             }
+        }
+        private void Delete_Order()
+        {
+            string query = $"DELETE from orders WHERE id_order = {_order.Id}; ";
+
+            dbHelper.executePostQuery(query);
         }
 
         // INotifyPropertyChanged Implementation

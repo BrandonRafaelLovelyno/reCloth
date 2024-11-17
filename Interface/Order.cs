@@ -24,11 +24,6 @@ namespace Interface
             fetchOrder();
         }
 
-        public void fetchImageOrder()
-        {
-            string query = $"SELECT * from orders WHERE id_order ='{Id}' LIMIT 1;";
-
-        }
 
         public void fetchOrder()
         {

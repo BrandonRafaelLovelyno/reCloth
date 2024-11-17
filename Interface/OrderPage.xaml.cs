@@ -1,4 +1,5 @@
-﻿using Interface.ViewModels;
+﻿using CloudinaryDotNet.Actions;
+using Interface.ViewModels;
 using Npgsql;
 using System;
 using System.Collections.Generic;
@@ -17,12 +18,13 @@ using System.Windows.Shapes;
 
 namespace Interface
 {
-    public partial class OrderPage : Page
+    public partial class OrderPage : System.Windows.Controls.Page
     {
         private OrderPageViewModel _viewModel;
-
+        
         public OrderPage(string orderId)
         {
+         
             InitializeComponent();
             _viewModel = new OrderPageViewModel(orderId);
             DataContext = _viewModel; // Set the DataContext to the ViewModel
@@ -37,6 +39,6 @@ namespace Interface
                 appWindow.MainFrame.NavigationService.Navigate(new ProposalPage(""));
             }
         }
-
+      
     }
 }
