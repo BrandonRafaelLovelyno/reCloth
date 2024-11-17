@@ -29,8 +29,20 @@ namespace Interface.ViewModels
             }
         }
 
+        private string customerName;
+        public string CustomerName
+        {
+            get => customerName;
+            set
+            {
+                customerName = value;
+                OnPropertyChanged(nameof(CustomerName));
+            }
+        }
+
         public DashboardCustomerViewModel()
         {
+            CustomerName = $"Hello, {UserSession.Current.Name}!";
             dbHelper = new DatabaseHelper();
             Orders = new ObservableCollection<Order>();
 
