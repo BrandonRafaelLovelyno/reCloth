@@ -12,7 +12,7 @@ namespace Interface
     {
         private DatabaseHelper dbHelper = new DatabaseHelper();
 
-        private string Id { get; }
+        public string Id { get; private set; }
         public string? Title { get; private set; }
         public string? Specification { get; private set; }
         public string? Image { get; private set; }

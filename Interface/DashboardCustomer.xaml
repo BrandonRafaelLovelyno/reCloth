@@ -15,12 +15,10 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
+
         <!-- Header -->
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="50" HorizontalAlignment="Left">
-            <TextBlock FontWeight="Bold" FontSize="43.2">
-                Hello, Customer!
-            </TextBlock>
+            <TextBlock Text="Hello, {Binding UserSession.Current.Role}!" FontWeight="Bold" FontSize="43.2" />
         </StackPanel>
 
         <!-- Body Section -->
@@ -32,28 +30,26 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            
+
             <!-- Total Order Box -->
             <Border Grid.Column="0" Background="#BD6D68" CornerRadius="25" Padding="20" Margin="0,0,289,0">
                 <StackPanel HorizontalAlignment="Center">
                     <TextBlock Text="Total Order" FontSize="36" FontWeight="Medium" Foreground="White" HorizontalAlignment="Center"/>
-                    <TextBlock FontSize="51.84" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Center">
-                        999
-                    </TextBlock>
+                    <TextBlock Text="{Binding TotalOrders}" FontSize="51.84" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Center"/>
                 </StackPanel>
             </Border>
 
-            <!-- Total Order Box -->
+            <!-- Role Box -->
             <Border Grid.Column="1" Background="#BD6D68" CornerRadius="25" Padding="20" Margin="0,0,289,0">
                 <StackPanel HorizontalAlignment="Center">
                     <TextBlock Text="Role" FontSize="36" FontWeight="Medium" Foreground="White" HorizontalAlignment="Center"/>
                     <TextBlock FontSize="51.84" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Center">
-                        Worker
+                        Customer
                     </TextBlock>
                 </StackPanel>
             </Border>
         </Grid>
-        
+
         <!-- Order List -->
         <Grid Grid.Row="2" Margin="50" Background="#BD6D68">
             <Grid.RowDefinitions>
@@ -66,12 +62,12 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                
+
                 <!-- Header -->
                 <TextBlock Text="Order" FontSize="36px" FontWeight="SemiBold" Foreground="White" Grid.Column="0"/>
 
                 <!-- Filter Dropdown -->
-                <StackPanel Margin="0 0 22 0" Orientation="Horizontal" HorizontalAlignment="Right"  Grid.Column="1">
+                <StackPanel Margin="0 0 22 0" Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1">
                     <TextBlock Text="Filtered by:" FontSize="17.36" FontWeight="Normal" VerticalAlignment="Center" Foreground="White" Margin="0 0 5 0 " />
 
                     <ComboBox Width="200" Height="25">
@@ -81,20 +77,20 @@
                         <ComboBoxItem Content="Finished" />
                     </ComboBox>
 
-                    <Border Width="100" Height="40" VerticalAlignment="Center" Background="Black" CornerRadius="20" Margin="10 0 0 0" Cursor="Hand" MouseLeftButtonDown="Route_to_Form">
+                    <Button Width="100" Height="40" VerticalAlignment="Center" Background="Black" BorderThickness="0" Margin="10 0 0 0" Command="{Binding RouteToFormCommand}">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <!-- Icon -->
                             <TextBlock VerticalAlignment="Center" Text="+" FontWeight="Bold" FontSize="24" Margin="0,0,5,0" Foreground="White"/>
                             <!-- Text -->
                             <TextBlock VerticalAlignment="Center" Text="Add" FontWeight="Bold" FontSize="20" Foreground="White"/>
                         </StackPanel>
-                    </Border>
+                    </Button>
                 </StackPanel>
             </Grid>
-            
+
             <!-- List of Orders -->
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="10">
-                <ItemsControl x:Name="OrderList">
+                <ItemsControl x:Name="OrderList" ItemsSource="{Binding Orders}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border Background="White" CornerRadius="25" Padding="10" Margin="2 2 2 2">
@@ -119,9 +115,11 @@
                                         <Border Width="122" Background="#6554C0" Padding="10 0 10 0" Margin="0 0 0 5" CornerRadius="12" HorizontalAlignment="Center">
                                             <TextBlock Text="{Binding Status}" FontSize="20" FontWeight="Regular" Foreground="White" HorizontalAlignment="Center"/>
                                         </Border>
-                                        <Border Width="122" MouseLeftButtonDown="Route_to_OrderPage" Background="#87ABB4" Padding="10 5 10 5" Margin="0 0 0 5" CornerRadius="12" HorizontalAlignment="Center">
-                                            <TextBlock Text="Show" FontSize="20" FontWeight="Regular" Foreground="White" HorizontalAlignment="Center" />
-                                        </Border>
+                                        <Button Width="122" Background="#87ABB4" Padding="10 5 10 5" Margin="0 0 0 5" BorderThickness="0" HorizontalAlignment="Center" Command="{Binding DataContext.NavigateToOrderCommand, RelativeSource={RelativeSource AncestorType=Page}}" CommandParameter="{Binding Id}">
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <TextBlock Text="Show" FontSize="20" FontWeight="Regular" Foreground="White" HorizontalAlignment="Center"/>
+                                            </StackPanel>
+                                        </Button>
                                     </StackPanel>
                                 </Grid>
                             </Border>
