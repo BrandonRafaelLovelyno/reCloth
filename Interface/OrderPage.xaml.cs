@@ -34,7 +34,7 @@ namespace Interface
 
             if (appWindow != null)
             {
-                appWindow.MainFrame.NavigationService.Navigate(new ProposalPage());
+                appWindow.MainFrame.NavigationService.Navigate(new ProposalPage(""));
             }
         }
 
