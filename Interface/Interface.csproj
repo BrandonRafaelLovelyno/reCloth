@@ -31,6 +31,8 @@
     <None Remove="assets\Fonts\Lexend-VariableFont_wght.ttf" />
     <None Remove="assets\signup-background.png" />
     <None Remove="assets\signup.jpg" />
+    <PackageReference Include="CloudinaryDotNet" Version="1.26.2" />
+    <PackageReference Include="dotenv.net" Version="3.2.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.1" />
     <PackageReference Include="Npgsql" Version="8.0.5" />

@@ -15,38 +15,45 @@ using System.Windows.Navigation;
 using Microsoft.Win32;
 using Npgsql;
 using System.IO;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
+using Microsoft.Extensions.Configuration;
 
 namespace Interface
 {
     /// <summary>
     /// Interaction logic for FormCustomer.xaml
     /// </summary>
-    public partial class FormCustomer : Page
+    public partial class FormCustomer : System.Windows.Controls.Page
     {
         private DatabaseHelper dbHelper = new DatabaseHelper();
         private string selectedImagePath;
-        private byte[] selectedImageBytes;
+        private string imageUrl;
+        private Cloudinary cloudinary;
         private string customerId;
         public FormCustomer()
         {
             InitializeComponent();
+            var config = GetConfiguration();
+            Account account = new Account(
+                config["Cloudinary:CloudName"],
+                config["Cloudinary:ApiKey"],
+                config["Cloudinary:ApiSecret"]
+                );
+            cloudinary = new Cloudinary(account);
             Customer customer = new Customer(UserSession.Current.UserId);
             customerId = customer.Id;
         }
 
-        private void SaveImageToDirectory(string sourcePath, string targetDirectory)
+        private IConfigurationRoot GetConfiguration()
         {
-            string fileName = Path.GetFileName(sourcePath);
-            string targetPath = Path.Combine(targetDirectory, fileName);
-
-            if (!Directory.Exists(targetDirectory))
-            {
-                Directory.CreateDirectory(targetDirectory);
-            }
-
-            File.Copy(sourcePath, targetPath, true);
-            MessageBox.Show($"Image saved to: {targetPath}", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+            return builder.Build();
         }
+
+        
 
         private void Upload_Image(object sender, RoutedEventArgs e)
         {
@@ -58,12 +65,11 @@ namespace Interface
             if (openFileDialog.ShowDialog() == true)
             {
                 selectedImagePath = openFileDialog.FileName;
-                selectedImageBytes = File.ReadAllBytes(selectedImagePath);
                 ImagePreview.Source = new BitmapImage(new Uri(selectedImagePath));
             }
         }
 
-        private void Post_Order(object sender, RoutedEventArgs e)
+        private async void Post_Order(object sender, RoutedEventArgs e)
         {
             string title = tbTitleCustomer.Text;
             string specification = tbSpecificationCustomer.Text;
@@ -78,8 +84,22 @@ namespace Interface
 
             try
             {
-                string targetDirectory = Path.Combine(Directory.GetCurrentDirectory(), "UploadedImages");
-                SaveImageToDirectory(selectedImagePath, targetDirectory);
+                var uploadParams = new ImageUploadParams()
+                {
+                    File = new FileDescription(selectedImagePath)
+                };
+
+                var uploadResult = await cloudinary.UploadAsync(uploadParams);
+
+                if (uploadResult.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    imageUrl = uploadResult.SecureUrl.ToString();
+                }
+                else
+                {
+                    MessageBox.Show("Image upload failed. Please try again.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
 
                 string insertQuery = "INSERT INTO orders (id_customer, budget, image, specification, is_done, title) VALUES (@id_customer, @budget, @image, @specification, @is_done, @title)";
 
@@ -89,7 +109,7 @@ namespace Interface
                 {
                     new NpgsqlParameter("@id_customer", userId), // Corrected to use customer ID
                     new NpgsqlParameter("@budget", budget),
-                    new NpgsqlParameter("@image", selectedImageBytes), // Image byte array
+                    new NpgsqlParameter("@image", imageUrl), // Image byte array
                     new NpgsqlParameter("@specification", specification),
                     new NpgsqlParameter("@is_done", false),
                     new NpgsqlParameter("@title", title)
