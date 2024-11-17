@@ -55,9 +55,22 @@ namespace Interface.ViewModels
             FetchOrders();
         }
 
+        private string fetchCustomerId()
+        {
+            string query = $"SELECT * from customers where id_user = '{UserSession.Current.UserId}';";
+            
+            var rows = dbHelper.executeGetQuery(query, "id_customer");
+
+            string customerId = dbHelper.convertObject<Guid>(rows[0]["id_customer"]).ToString();
+
+            return customerId;
+        }
+
         private void FetchOrders()
         {
-            string query = "SELECT * FROM orders";
+            string customerId = fetchCustomerId();
+
+            string query = $"SELECT * FROM orders WHERE id_customer = '{customerId}';";
 
             var rows = dbHelper.executeGetQuery(query, "id_order");
 
