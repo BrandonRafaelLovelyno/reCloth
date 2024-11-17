@@ -91,8 +91,11 @@
                                     </Grid.ColumnDefinitions>
 
                                     <!-- Picture -->
-                                    <Ellipse Width="85" Height="85" Fill="Aqua" Grid.Column="0" />
-
+                                    <Ellipse Width="85" Height="85" Grid.Column="0" >
+                                        <Ellipse.Fill>
+                                            <ImageBrush ImageSource="{Binding Image}" Stretch="UniformToFill"/>
+                                        </Ellipse.Fill>
+                                    </Ellipse>
                                     <!-- Contract Info -->
                                     <StackPanel Grid.Column="1" Margin="14 0 14 0" VerticalAlignment="Center">
                                         <TextBlock Text="{Binding Title}" FontSize="25" FontWeight="Medium" Foreground="#A5B68D" />
