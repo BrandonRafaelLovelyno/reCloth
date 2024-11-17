@@ -21,8 +21,10 @@ namespace Interface
     /// </summary>
     public partial class ProposalPage : Page
     {
-        public ProposalPage()
+        public string Id { get; private set; }
+        public ProposalPage(string id)
         {
+            Id = id;
             InitializeComponent();
             this.DataContext = new ProposalPageViewModel();
         }

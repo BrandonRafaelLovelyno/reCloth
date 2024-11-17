@@ -74,9 +74,10 @@
                 </StackPanel>
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="0 40 0 0">
                     <TextBlock FontFamily="{StaticResource ResourceKey=LexendFont}" Text="Role" Width="222" FontWeight="Bold" FontSize="20"/>
-                    <ComboBox Width="250" Height="25" Margin="10 0 0 0" >
-                        <ComboBoxItem Content="Customer"/>
-                        <ComboBoxItem Content="Worker"/>      
+                    <ComboBox Width="250" Height="25" Margin="10 0 0 0" Name="cbRole" >
+                        <ComboBoxItem Content="Customer" Name="Customer"/>
+                        <ComboBoxItem Content="Tailor" Name="Tailor"/>  
+                        <ComboBoxItem Content="Designer" Name="Designer"/>    
                     </ComboBox>
                 </StackPanel>
             </StackPanel >

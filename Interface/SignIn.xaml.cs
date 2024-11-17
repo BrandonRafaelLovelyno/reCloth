@@ -78,7 +78,7 @@ namespace Interface
             {
                 role = "Designer";
             }
-
+            
             return role;
         }
 
