@@ -1,4 +1,5 @@
 ﻿using Interface.Helpers;
+using Interface.ViewModels;
 using Npgsql;
 using System;
 using System.Collections.Generic;
@@ -26,17 +27,7 @@ namespace Interface
         public Marketplace()
         {
             InitializeComponent();
-        }
-
-        private void Route_to_OrderPage(object sender, MouseButtonEventArgs e)
-        {
-            var appWindow = Application.Current.MainWindow as AppWindow;
-            Console.WriteLine("Try to navigate to OrderPage");
-            if (appWindow != null)
-            {
-                appWindow.MainFrame.NavigationService.Navigate(new OrderPage("80e47bb4-9ea3-11ef-8ca2-1e901716c947"));
-                Console.WriteLine("Navigating to OrderPage");
-            }
+            DataContext = new MarketplaceViewModel();
         }
     }
 }

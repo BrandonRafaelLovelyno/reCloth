@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -15,6 +16,7 @@ namespace Interface.ViewModels
 {
     public class MarketplaceViewModel : INotifyPropertyChanged
     {
+        public ICommand NavigateToOrderCommand { get; }
         public ObservableCollection<Order> Orders { get; set; } // Original list of orders
         public ObservableCollection<Order> FilteredOrders { get; set; } // Filtered list of orders
 
@@ -39,7 +41,8 @@ namespace Interface.ViewModels
             Orders = new ObservableCollection<Order>();
             FilteredOrders = new ObservableCollection<Order>();
 
-            SearchCommand = new RelayCommand(FilterOrders);
+            SearchCommand = new RelayCommand<object>(_ => FilterOrders());
+            NavigateToOrderCommand = new RelayCommand<string>(NavigateToOrder);
 
             dbHelper = new DatabaseHelper();
 
@@ -86,31 +89,19 @@ namespace Interface.ViewModels
             }
         }
 
+        private void NavigateToOrder(string orderId)
+        {
+            var appWindow = Application.Current.MainWindow as AppWindow;
+            if (appWindow != null)
+            {
+                appWindow.MainFrame.NavigationService.Navigate(new OrderPage(orderId));
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged (string propertyName)
+        protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-    }
-
-    public class RelayCommand : ICommand
-    {
-        private readonly Action _execute;
-        private readonly Func<bool> _canExecute;
-
-        public RelayCommand(Action execute, Func<bool> canExecute = null)
-        {
-            _execute = execute;
-            _canExecute = canExecute;
-        }
-
-        public bool CanExecute(object parameter) => _canExecute == null || _canExecute();
-        public void Execute(object parameter) => _execute();
-
-        public event EventHandler CanExecuteChanged
-        {
-            add => CommandManager.RequerySuggested += value;
-            remove => CommandManager.RequerySuggested -= value;
         }
     }
 }
