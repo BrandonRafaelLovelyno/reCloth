@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
+using Interface.Models;
+using Interface.Helpers;
 
 namespace Interface.ViewModels
 {

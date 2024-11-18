@@ -1,4 +1,6 @@
-﻿using Npgsql;
+﻿using Interface.Helpers;
+using Interface.Models;
+using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

@@ -18,6 +18,8 @@ using System.IO;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Microsoft.Extensions.Configuration;
+using Interface.Models;
+using Interface.Helpers;
 
 namespace Interface
 {

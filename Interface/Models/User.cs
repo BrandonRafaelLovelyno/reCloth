@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Interface.Helpers;
 
-namespace Interface
+namespace Interface.Models
 {
     class User
     {
@@ -26,7 +27,7 @@ namespace Interface
         private void fetchUser()
         {
             string query = $"SELECT * from users WHERE id_user = '{IdUser}';";
-            var rows = dbHelper.executeGetQuery(query, "name","address","phone_number","email","password");
+            var rows = dbHelper.executeGetQuery(query, "name", "address", "phone_number", "email", "password");
 
             Name = dbHelper.convertObject<string>(rows[0]["name"]);
             Address = dbHelper.convertObject<string>(rows[0]["address"]);

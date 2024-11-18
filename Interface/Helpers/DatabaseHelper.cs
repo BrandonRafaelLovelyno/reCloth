@@ -10,7 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.Json;
 using System.Data;
 
-namespace Interface
+namespace Interface.Helpers
 {
     internal class DatabaseHelper
     {
@@ -27,12 +27,12 @@ namespace Interface
 
             // Access the connection string in the "AppSettings" section with key "aivenDB"
             string? temp = config.GetSection("AppSettings")["aivenDB"];
-            if(temp == null)
+            if (temp == null)
             {
                 throw new Exception("Database URI not found");
             }
 
-            this.connectionString = temp;
+            connectionString = temp;
             Conn = new NpgsqlConnection(connectionString);
         }
 
@@ -76,14 +76,14 @@ namespace Interface
                 {
                     command.Parameters.AddRange(parameters);
                 }
-                command.ExecuteNonQuery(); 
+                command.ExecuteNonQuery();
             }
             Conn.Close();
         }
 
         public void executePostQueryImage(string query, byte[] imageBytes, params NpgsqlParameter[] parameters)
         {
-            Conn.Open() ;
+            Conn.Open();
             using (var command = new NpgsqlCommand(query, Conn))
             {
                 if (parameters != null)
@@ -98,7 +98,7 @@ namespace Interface
             Conn.Close();
         }
 
-     
+
 
         public List<Dictionary<string, object>> executeGetQuery(string query, params string[] keys)
         {
@@ -117,7 +117,7 @@ namespace Interface
                     {
                         row[key] = reader[key];
                     }
-                    results.Add(row); 
+                    results.Add(row);
                 }
             }
             Conn.Close();

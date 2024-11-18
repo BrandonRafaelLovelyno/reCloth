@@ -1,4 +1,5 @@
-﻿using Interface.ViewModels;
+﻿using Interface.Models;
+using Interface.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

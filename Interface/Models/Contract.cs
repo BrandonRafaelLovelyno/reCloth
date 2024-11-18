@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Interface.Helpers;
 
-namespace Interface
+namespace Interface.Models
 {
     class Contract
     {
@@ -44,7 +45,7 @@ namespace Interface
         {
             string query = $"SELECT * from contracts WHERE id_contract = '{Id}';";
 
-            var rows = dbHelper.executeGetQuery(query,"id_order","id_worker","result","is_accepted","budget","specification");
+            var rows = dbHelper.executeGetQuery(query, "id_order", "id_worker", "result", "is_accepted", "budget", "specification");
 
             IdWorker = dbHelper.convertObject<Guid>(rows[0]["id_worker"]).ToString();
             IdOrder = dbHelper.convertObject<Guid>(rows[0]["id_order"]).ToString();

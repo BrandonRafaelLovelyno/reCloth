@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <Resource Include="assets\Pictures\Sign_Up.png" />
-    <Resource Include="Font Awesome 6 Free-Solid-900.otf">
+    <Resource Include="assets\Fonts\Font Awesome 6 Free-Solid-900.otf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <None Remove="assets\Fonts\Lexend-Black.ttf" />

@@ -1,4 +1,5 @@
-﻿using Npgsql;
+﻿using Interface.Helpers;
+using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace Interface
+namespace Interface.Models
 {
     public class Order
     {

@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Extensions.Configuration;
 using System.Globalization;
+using Interface.Helpers;
 
 namespace Interface
 {

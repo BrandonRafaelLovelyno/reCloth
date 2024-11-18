@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Interface.Helpers;
+using Interface.Models;
 
 namespace Interface.ViewModels
 {
