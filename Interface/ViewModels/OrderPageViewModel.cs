@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using Interface.Helpers;
 using Interface.Models;
@@ -143,7 +144,16 @@ namespace Interface.ViewModels
             Console.WriteLine("Deleting order");
             string query = $"DELETE from orders WHERE id_order = '{orderId}'; ";
 
-            dbHelper.executePostQuery(query);
+            try
+            {
+                MessageBox.Show($" Order succefully deleted.", "Success", MessageBoxButton.OK, MessageBoxImage.Information );
+                dbHelper.executePostQuery(query);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occured: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error );
+            }
+            
         }
 
         // INotifyPropertyChanged Implementation
