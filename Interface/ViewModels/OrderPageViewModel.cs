@@ -148,13 +148,20 @@ namespace Interface.ViewModels
 
             try
             {
-                dbHelper.executePostQuery(query);
-                MessageBox.Show($" Order succefully deleted.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                
-                var appWindow = Application.Current.MainWindow as AppWindow;
-                if (appWindow != null)
+                MessageBoxResult result = MessageBox.Show("Are you sure you want to delete this order?", "Delete Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                if (result == MessageBoxResult.Yes)
                 {
-                    appWindow.MainFrame.NavigationService.Navigate(new DashboardCustomer());
+                    // Proceed with deletion if the user confirms
+                    dbHelper.executePostQuery(query);
+                    MessageBox.Show($"Order successfully deleted.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    // Navigate back to DashboardCustomer
+                    var appWindow = Application.Current.MainWindow as AppWindow;
+                    if (appWindow != null)
+                    {
+                        appWindow.MainFrame.NavigationService.Navigate(new DashboardCustomer());
+                    }
                 }
             }
             catch (Exception ex)
