@@ -120,6 +120,11 @@ namespace Interface
                 dbHelper.executePostQuery(insertQuery, parameters); // Added to execute the query
                                                                     // 
                 MessageBox.Show("Order successfully submitted!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                var appWindow = Application.Current.MainWindow as AppWindow;
+                if (appWindow != null)
+                {
+                    appWindow.MainFrame.NavigationService.Navigate(new DashboardCustomer());
+                }
             }
             catch (Exception ex)
             {

@@ -8,6 +8,8 @@ using System.Windows;
 using System.Windows.Input;
 using Interface.Helpers;
 using Interface.Models;
+using System.Windows.Navigation;
+using System.Windows.Controls;
 
 namespace Interface.ViewModels
 {
@@ -146,12 +148,18 @@ namespace Interface.ViewModels
 
             try
             {
-                MessageBox.Show($" Order succefully deleted.", "Success", MessageBoxButton.OK, MessageBoxImage.Information );
                 dbHelper.executePostQuery(query);
+                MessageBox.Show($" Order succefully deleted.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                
+                var appWindow = Application.Current.MainWindow as AppWindow;
+                if (appWindow != null)
+                {
+                    appWindow.MainFrame.NavigationService.Navigate(new DashboardCustomer());
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occured: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error );
+                MessageBox.Show($"An error occured: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             
         }
