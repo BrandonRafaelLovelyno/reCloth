@@ -42,8 +42,6 @@ namespace Interface
         {
             string userType = UserSession.Current.Role;   
 
-
-
             if (userType == "Customer")
             {
                 MainFrame.NavigationService.Navigate(new DashboardCustomer());
@@ -56,7 +54,14 @@ namespace Interface
 
         private void Form_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.NavigationService.Navigate(new FormCustomer());
+            string userType = UserSession.Current.Role;
+
+            if (userType == "Customer")
+            {
+                MainFrame.NavigationService.Navigate(new FormCustomer());
+            } else { 
+                MessageBox.Show("You cannot access this because you are a Worker", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
