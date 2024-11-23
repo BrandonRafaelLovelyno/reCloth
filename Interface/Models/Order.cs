@@ -25,6 +25,7 @@ namespace Interface.Models
         public string? Title { get; private set; }
         public string? Specification { get; private set; }
         public string? Image { get; private set; }
+        public string? Status { get; set; }
         private double? budget;
         public double? Budget
         {
@@ -58,6 +59,23 @@ namespace Interface.Models
             IdCustomer = dbHelper.convertObject<Guid>(rows[0]["id_customer"]).ToString();
         }
 
+        public string? findProposedContract(string role)
+        {
+            string query = $@"
+            SELECT * 
+            FROM contracts
+            JOIN orders ON orders.id_order = '{Id}'
+            JOIN workers ON workers.id_worker = contracts.id_worker
+            WHERE contracts.is_accepted = false AND workers.role = '{role}';
+            ";
+
+            var rows = dbHelper.executeGetQuery(query, "id_contract");
+
+            if (rows.Count() == 0) return null;
+
+            return dbHelper.convertObject<Guid>(rows[0]["id_contract"]).ToString();
+        }
+
         public string? findAcceptedContract(string role)
         {
             string query = $@"
@@ -66,6 +84,25 @@ namespace Interface.Models
             JOIN orders ON orders.id_order = '{Id}'
             JOIN workers ON workers.id_worker = contracts.id_worker
             WHERE contracts.is_accepted = true AND workers.role = '{role}';
+            ";
+
+            var rows = dbHelper.executeGetQuery(query, "id_contract");
+
+            if (rows.Count() == 0) return null;
+
+            return dbHelper.convertObject<Guid>(rows[0]["id_contract"]).ToString();
+        }
+
+        public string? findFinishedContract(string role)
+        {
+            string query = $@"
+            SELECT * 
+            FROM contracts
+            JOIN orders ON orders.id_order = '{Id}'
+            JOIN workers ON workers.id_worker = contracts.id_worker
+            WHERE contracts.is_accepted = true 
+            AND workers.role = '{role}'
+            AND contracts.result IS NOT NULL;
             ";
 
             var rows = dbHelper.executeGetQuery(query, "id_contract");

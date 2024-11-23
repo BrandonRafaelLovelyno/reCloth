@@ -116,7 +116,7 @@
 
                                     <!-- Order Status and Show Button -->
                                     <StackPanel Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical">
-                                        <Border Width="122" Background="#6554C0" Padding="10 0 10 0" Margin="0 0 0 5" CornerRadius="12" HorizontalAlignment="Center">
+                                        <Border Width="200" Background="#6554C0" Padding="10 0 10 0" Margin="0 0 0 5" CornerRadius="12" HorizontalAlignment="Center">
                                             <TextBlock Text="{Binding Status}" FontSize="20" FontWeight="Regular" Foreground="White" HorizontalAlignment="Center"/>
                                         </Border>
                                         <Button Width="122" Background="#87ABB4" Padding="10 5 10 5" Margin="0 0 0 5" BorderThickness="0" HorizontalAlignment="Center" Command="{Binding DataContext.NavigateToOrderCommand, RelativeSource={RelativeSource AncestorType=Page}}" CommandParameter="{Binding Id}">

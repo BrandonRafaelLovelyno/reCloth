@@ -58,10 +58,37 @@ namespace Interface.ViewModels
             foreach (var row in rows)
             {
                 string orderId = dbHelper.convertObject<Guid>(row["id_order"]).ToString();
-
-                Orders.Add(new Order(orderId));
+                Order order = new Order(orderId);
+                order.Status = GetOrderStatus(order);
+                Orders.Add(order);
             }
             FilterOrders();
+        }
+
+        public string GetOrderStatus(Order order)
+        {
+            var statusChecks = new (string Role, string StatusIfProposed, string StatusIfAccepted)[]
+            {
+                ("Designer", "Proposed by Designer", "On Progress by Designer"),
+                ("Taylor", "Proposed by Tailor", "On Progress by Tailor")
+            };
+
+            foreach (var check in statusChecks)
+            {
+                string proposedContract = order.findProposedContract(check.Role);
+                if (proposedContract == null)
+                    return $"Needs {check.Role}";
+
+                string acceptedContract = order.findAcceptedContract(check.Role);
+                if (acceptedContract == null)
+                    return check.StatusIfProposed;
+
+                string finishedContract = order.findFinishedContract(check.Role);
+                if (finishedContract == null)
+                    return check.StatusIfAccepted;
+            }
+
+            return "Finished";
         }
 
         private void FilterOrders()
