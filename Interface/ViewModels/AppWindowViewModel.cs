@@ -17,7 +17,7 @@ namespace Interface.ViewModels
             set
             {
                 isCustomer = value;
-                
+                OnPropertyChanged(nameof(IsCustomer));
             }
         }
 
