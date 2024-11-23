@@ -23,7 +23,7 @@ namespace Interface.Models
 
         private void fetchProposal()
         {
-            string query = $"SELECT * FROM proposals  WHERE id_proposal = {Id}";
+            string query = $"SELECT * FROM contracts  WHERE id_contract = {Id}";
         }
     }
 }

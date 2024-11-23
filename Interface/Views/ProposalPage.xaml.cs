@@ -22,12 +22,12 @@ namespace Interface
     /// </summary>
     public partial class ProposalPage : Page
     {
-        public string Id { get; private set; }
-        public ProposalPage(string id)
+        public string OrderId { get; private set; }
+        public ProposalPage(string orderId)
         {
-            Id = id;
+            OrderId = orderId;
             InitializeComponent();
-            this.DataContext = new ProposalPageViewModel();
+            this.DataContext = new ProposalPageViewModel(orderId);
         }
 
         private void ShowProposalDetail(object sender, RoutedEventArgs e)
