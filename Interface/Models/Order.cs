@@ -70,6 +70,8 @@ namespace Interface.Models
 
             var rows = dbHelper.executeGetQuery(query, "id_contract");
 
+            if (rows.Count() == 0) return null;
+
             return dbHelper.convertObject<Guid>(rows[0]["id_contract"]).ToString();
         }
 
