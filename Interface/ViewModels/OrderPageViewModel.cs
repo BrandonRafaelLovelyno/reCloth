@@ -94,6 +94,17 @@ namespace Interface.ViewModels
             }
         }
 
+        private bool isContractAccepted;
+        public bool IsContractAccepted
+        {
+            get => isContractAccepted;
+            set
+            {
+                isContractAccepted = value;
+                OnPropertyChanged(nameof(IsContractAccepted));
+            }
+        }
+
         private bool isWorker;
         public bool IsWorker
         {
@@ -115,6 +126,7 @@ namespace Interface.ViewModels
 
             IsOrderOwner = _customerUser.Id == _order.IdCustomer;
             IsWorker = UserSession.Current.Role == "Designer" || UserSession.Current.Role == "Tailor";
+            IsContractAccepted = false;
 
             DeleteOrderCommand = new RelayCommand<object>(_ => Delete_Order(orderId));
         }

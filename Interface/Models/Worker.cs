@@ -28,10 +28,19 @@ namespace Interface.Models
             Role = dbHelper.convertObject<string>(rows[0]["role"]);
         }
 
-        public void fetchOrder()
+        public List<Contract> fetchContracts()
         {
-            string query = $"SELECT * from orders WHERE id_user = '{IdUser}'";
+            List<Contract> contracts = new List<Contract>();
+            string query = $"SELECT * from contracts WHERE id_worker = '{Id}';";
 
+            var rows = dbHelper.executeGetQuery(query, "id_contract", "id_order");
+
+            foreach (var row in rows)
+            {
+                contracts.Add(new Contract(dbHelper.convertObject<Guid>(row["id_contract"]).ToString()));
+            }
+
+            return contracts;
         }
     }
 }

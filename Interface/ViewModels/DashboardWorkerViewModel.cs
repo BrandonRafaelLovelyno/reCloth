@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,8 @@ namespace Interface.ViewModels
     {
         private Worker _worker;
         private DatabaseHelper dbHelper = new DatabaseHelper();
+
+        public ObservableCollection<Order> Orders { get; set; }
 
         public Worker Worker
         {
@@ -39,6 +42,9 @@ namespace Interface.ViewModels
         {
             WorkerName = $"Hello, {UserSession.Current.Name}!";
             Worker = new Worker(userId);
+            Orders = new ObservableCollection<Order>();
+
+            Orders.Add(new Order("80e47bb4-9ea3-11ef-8ca2-1e901716c947"));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

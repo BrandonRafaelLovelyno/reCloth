@@ -79,7 +79,7 @@
 
             <!-- List of Contracts -->
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="10">
-                <ItemsControl x:Name="ContractList">
+                <ItemsControl x:Name="ContractList" ItemsSource="{Binding Orders}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border Background="White" CornerRadius="25" Padding="10" Margin="2 2 2 2">
