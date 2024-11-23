@@ -41,14 +41,24 @@ namespace Interface
         {
             string name = tbName.Text;
             string email = tbEmail.Text;
-            string password = tbPassword.Text;
-            string phoneNumber = tbPhoneNumber.Text;
-            string address = tbAddress.Text;
+            if (string.IsNullOrWhiteSpace(email) || !email.Contains("@"))
+                throw new Exception("Enter a valid email address.");
 
+            string password = tbPassword.Password;
+            string phoneNumber = tbPhoneNumber.Text;
+            if (string.IsNullOrWhiteSpace(phoneNumber) || !phoneNumber.All(char.IsDigit))
+                throw new Exception("Phone number must only contain numbers.");
+
+            string address = tbAddress.Text;
+           
+            if (cbRole.SelectedItem == null ||  string.IsNullOrWhiteSpace(cbRole.SelectedItem.ToString())) 
+            {
+                throw new Exception("Roll is not selected!");
+            }
             string? role = cbRole.SelectionBoxItem.ToString();
 
-            if (role == null) throw new Exception("Role is not selected!");
-
+            if (password.Length < 8) throw new Exception("Password at least contain 8 characters");
+                          
             return (name, email, password, phoneNumber, address, role);
         }
 
@@ -95,6 +105,31 @@ namespace Interface
             }
         }
 
+        private void PhoneNumber_Preview(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            // Allow only numeric input for the phone number field
+            e.Handled = !IsTextNumeric(e.Text);
+        }
+        private void Pasting_Number(object sender, DataObjectPastingEventArgs e)
+        {
+            if (e.DataObject.GetDataPresent(DataFormats.Text))
+            {
+                string pastedText = (string)e.DataObject.GetData(DataFormats.Text);
+                if (!IsTextNumeric(pastedText))
+                {
+                    e.CancelCommand();
+                }
+            }
+            else
+            {
+                e.CancelCommand();
+            }
+        }
+        private static bool IsTextNumeric(string text)
+        {
+            return int.TryParse(text, out _);
+        }
+
         private void setSession(string idUser, string name, string role)
         {
             UserSession.Current.UserId = idUser;
@@ -111,7 +146,6 @@ namespace Interface
                 checkUserExist(tbValues.Email, tbValues.Name);
 
                 (string idUser, string name) = createUser(tbValues);
-
 
                 string? role = cbRole.SelectionBoxItem.ToString();
 

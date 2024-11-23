@@ -56,8 +56,34 @@ namespace Interface
         }
 
         
+        private void Budget_Preview (object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            // Allow only numeric input for the phone number field
+            e.Handled = !IsTextNumeric(e.Text);
+        }
 
+        private static bool IsTextNumeric(string text)
+        {
+            return int.TryParse(text, out _);
+        }
         private void Upload_Image(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "Image files (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png"
+            };
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                selectedImagePath = openFileDialog.FileName;
+                ImagePreview.Source = new BitmapImage(new Uri(selectedImagePath));
+
+                Upload_Border.Visibility = Visibility.Collapsed;
+                Upload_Button.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void Change_Image(object sender, MouseButtonEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
