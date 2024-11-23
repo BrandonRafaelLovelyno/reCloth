@@ -17,7 +17,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Image Source="assets/Pictures/Sign_Up.png" Grid.Column="0" HorizontalAlignment="Right" Height="auto" Width="auto" Margin="90,0,0,0" Grid.ColumnSpan="2"/>
+        <Image Source="\assets\Pictures\Sign_Up.png" Grid.Column="0" HorizontalAlignment="Right" Height="auto" Width="auto" Margin="90,0,0,0" Grid.ColumnSpan="2"/>
 
         <TextBlock FontFamily="{StaticResource LexendFont}" Text="Create new account" Foreground="Black" FontWeight="Bold" FontSize="50" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="310,67,0,0" Width="auto" Grid.ColumnSpan="2"  />
         <TextBlock FontFamily="{StaticResource LexendFont}" Text="." Foreground="#bd6d68" FontSize="50" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="-40,67,297,0"/>
@@ -49,7 +49,7 @@
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="0 40 0 0">
                     <TextBlock FontFamily="{StaticResource ResourceKey=LexendFont}" Text="Password" Width="222" FontWeight="Bold" FontSize="20"/>
                     <Border BorderThickness="0.5" BorderBrush="Black" CornerRadius="10" Padding="15" Margin="38 5 10 0" HorizontalAlignment="Stretch" Height="60" Width="250">
-                        <TextBox x:Name="tbPassword" FontFamily="{StaticResource LexendFont}" FontSize="14" Foreground="Black" Background="#fdf4eb" BorderThickness="0" Margin="0,5,0,-6"/>
+                        <PasswordBox Name="tbPassword" FontFamily="{StaticResource LexendFont}" FontSize="14" Foreground="Black" Background="#fdf4eb" BorderThickness="0" Margin="0,5,0,-6"/>
                     </Border>
                 </StackPanel>
 
@@ -63,7 +63,7 @@
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="0 100 0 0">
                     <TextBlock FontFamily="{StaticResource ResourceKey=LexendFont}" Text="Phone Number" Width="222" FontWeight="Bold" FontSize="20"/>
                     <Border BorderThickness="0.5" BorderBrush="Black" CornerRadius="10" Padding="10" Margin="38 5 10 0" HorizontalAlignment="Stretch" Height="60" Width="250">
-                        <TextBox x:Name="tbPhoneNumber" FontFamily="{StaticResource LexendFont}" FontSize="14" Foreground="Black" Background="#fdf4eb" BorderThickness="0"  Margin="0,10,0,-6"/>
+                        <TextBox x:Name="tbPhoneNumber" FontFamily="{StaticResource LexendFont}" FontSize="14" Foreground="Black" Background="#fdf4eb" BorderThickness="0"  Margin="0,10,0,-6" HorizontalAlignment="Left" Width="230" PreviewTextInput="PhoneNumber_Preview" DataObject.Pasting="Pasting_Number" MaxLength="14"/>
                     </Border>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="0 40 0 0">
