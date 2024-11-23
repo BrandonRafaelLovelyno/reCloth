@@ -70,10 +70,15 @@
                 <StackPanel Margin="0 0 22 0" Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1">
                     <TextBlock Text="Filtered by:" FontSize="17.36" FontWeight="Normal" VerticalAlignment="Center" Foreground="White" Margin="0 0 5 0 " />
 
-                    <ComboBox Width="200" Height="25">
-                        <ComboBoxItem Content="Posted" />
-                        <ComboBoxItem Content="Proposed" />
-                        <ComboBoxItem Content="Ongoing" />
+                    <ComboBox Width="200" Height="25" 
+                        SelectedValue="{Binding SelectedOrderStatus, UpdateSourceTrigger=PropertyChanged}" 
+                        SelectedValuePath="Content">
+                        <ComboBoxItem Content="Needs Designer" />
+                        <ComboBoxItem Content="Proposed by Designer" />
+                        <ComboBoxItem Content="On Progress by Designer" />
+                        <ComboBoxItem Content="Needs Tailor" />
+                        <ComboBoxItem Content="Proposed by Tailor" />
+                        <ComboBoxItem Content="On Progress by Tailor" />
                         <ComboBoxItem Content="Finished" />
                     </ComboBox>
 
@@ -90,7 +95,7 @@
 
             <!-- List of Orders -->
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="10">
-                <ItemsControl x:Name="OrderList" ItemsSource="{Binding Orders}">
+                <ItemsControl x:Name="OrderList" ItemsSource="{Binding FilteredOrders}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border Background="White" CornerRadius="25" Padding="10" Margin="2 2 2 2">

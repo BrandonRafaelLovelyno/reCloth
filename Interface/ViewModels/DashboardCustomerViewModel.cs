@@ -15,8 +15,10 @@ namespace Interface.ViewModels
     internal class DashboardCustomerViewModel : INotifyPropertyChanged
     {
         public ObservableCollection<Order> Orders { get; set; }
+        public ObservableCollection<Order> FilteredOrders { get; set; }
         private readonly DatabaseHelper dbHelper;
 
+        public ICommand SearchCommand { get; }
         public ICommand NavigateToOrderCommand { get; }
         public ICommand RouteToFormCommand { get; }
 
@@ -42,11 +44,39 @@ namespace Interface.ViewModels
             }
         }
 
+        private string _searchText;
+        public string SearchText
+        {
+            get => _searchText;
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged(nameof(SearchText));
+                FilterOrders();
+            }
+        }
+
+        private string _selectedOrderStatus;
+        public string SelectedOrderStatus
+        {
+            get => _selectedOrderStatus;
+            set
+            {
+                _selectedOrderStatus = value;
+                OnPropertyChanged(nameof(SelectedOrderStatus));
+                FilterOrders();
+            }
+        }
+
         public DashboardCustomerViewModel()
         {
             CustomerName = $"Hello, {UserSession.Current.Name}!";
             dbHelper = new DatabaseHelper();
             Orders = new ObservableCollection<Order>();
+
+            FilteredOrders = new ObservableCollection<Order>();
+
+            SearchCommand = new RelayCommand<object>(_ => FilterOrders());
 
             // Initialize commands
             NavigateToOrderCommand = new RelayCommand<string>(NavigateToOrder);
@@ -82,6 +112,7 @@ namespace Interface.ViewModels
                 Orders.Add(order);
             }
             TotalOrders = Orders.Count;
+            FilterOrders();
         }
 
         public string GetOrderStatus(Order order)
@@ -108,6 +139,28 @@ namespace Interface.ViewModels
             }
 
             return "Finished";
+        }
+
+        private void FilterOrders()
+        {
+            // Clear the existing items in FilteredOrders
+            FilteredOrders.Clear();
+
+            IEnumerable<Order> filtered = Orders;
+
+            // Apply status filter if applicable
+            if (!string.IsNullOrWhiteSpace(SelectedOrderStatus))
+            {
+                filtered = filtered.Where(o => o.Status == SelectedOrderStatus);
+            }
+
+            // Add the filtered items to FilteredOrders to notify the UI
+            foreach (var order in filtered)
+            {
+                FilteredOrders.Add(order);
+            }
+
+            Console.WriteLine(SelectedOrderStatus);
         }
 
 
