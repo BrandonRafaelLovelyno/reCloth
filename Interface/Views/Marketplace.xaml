@@ -78,7 +78,7 @@
                                     <!-- Order Info -->
                                     <StackPanel Grid.Column="1" Margin="14 0 14 0" VerticalAlignment="Center">
                                         <TextBlock Text="{Binding Title}" FontSize="25" FontWeight="Medium" Foreground="#A5B68D" />
-                                        <TextBlock Text="{Binding Budget}" FontSize="17.36" FontWeight="Regular" Foreground="#87ABB4" />
+                                        <TextBlock Text="{Binding FormattedBudget}" FontSize="17.36" FontWeight="Regular" Foreground="#87ABB4" />
                                     </StackPanel>
 
                                     <!-- Order Status and Show Button -->

@@ -2,6 +2,7 @@
 using Npgsql;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,15 +10,32 @@ using System.Windows.Controls;
 
 namespace Interface.Models
 {
-    public class Order
+    public class Order : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         private DatabaseHelper dbHelper = new DatabaseHelper();
 
         public string Id { get; private set; }
         public string? Title { get; private set; }
         public string? Specification { get; private set; }
         public string? Image { get; private set; }
-        public double? Budget { get; private set; }
+        private double? budget;
+        public double? Budget
+        {
+            get => budget;
+            set
+            {
+                budget = value;
+                OnPropertyChanged(nameof(Budget));
+                OnPropertyChanged(nameof(FormattedBudget)); 
+            }
+        }
         public string? IdCustomer {  get; private set; }
 
         public Order(string id)
@@ -55,5 +73,6 @@ namespace Interface.Models
             return dbHelper.convertObject<Guid>(rows[0]["id_contract"]).ToString();
         }
 
+        public string FormattedBudget => Budget.HasValue ? $"Rp {Budget.Value:N0}" : "Rp 0";
     }
 }
