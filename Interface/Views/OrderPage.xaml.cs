@@ -32,7 +32,7 @@ namespace Interface
             _orderId = orderId;
         }
 
-        private void Route_to_Form(object sender, MouseButtonEventArgs e)
+        private void Route_to_Contract(object sender, MouseButtonEventArgs e)
         {
             // MessageBox.Show("Feature is Under Construction", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             var appWindow = Application.Current.MainWindow as AppWindow;
@@ -41,6 +41,15 @@ namespace Interface
                 appWindow.MainFrame.NavigationService.Navigate(new ProposalPage(_orderId));
             }
         }
-      
+
+        private void Route_to_Form_Worker(object sender, MouseButtonEventArgs e)
+        {
+            // MessageBox.Show("Feature is Under Construction", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            var appWindow = Application.Current.MainWindow as AppWindow;
+            if (appWindow != null)
+            {
+                appWindow.MainFrame.NavigationService.Navigate(new FormWorker(_orderId));
+            }
+        }
     }
 }

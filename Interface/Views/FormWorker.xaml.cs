@@ -26,7 +26,7 @@ namespace Interface
     public partial class FormWorker : Page
     {
         private DatabaseHelper dbHelper = new DatabaseHelper();
-        public FormWorker()
+        public FormWorker(string orderId)
         {
             InitializeComponent();
         }      
