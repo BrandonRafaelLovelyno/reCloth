@@ -22,10 +22,7 @@
         </Grid.RowDefinitions>
         <!-- Header -->
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="50" HorizontalAlignment="Left">
-            <TextBlock FontWeight="Bold" FontSize="43.2">
-        Hello, Customer!
-            </TextBlock>
-           
+            <TextBlock Text="{Binding CustomerName}" FontWeight="Bold" FontSize="43.2"/>
         </StackPanel>
 
         <Grid Grid.Row="2" Margin="50" Background="#BD6D68">

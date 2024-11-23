@@ -4,29 +4,37 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Interface.Helpers;
 using Interface.Models;
 
 namespace Interface.ViewModels
 {
     class ProposalPageViewModel
     {
+        public DatabaseHelper dbHelper = new DatabaseHelper();
+        public string OrderId {  get; private set; }
         public ObservableCollection<Proposal> Proposals { get; set; }
 
-        public ProposalPageViewModel()
+        public ProposalPageViewModel(string orderId)
         {
-            // Initialize with dummy data for 5 proposals
-            Proposals = new ObservableCollection<Proposal>
-            {
-                new Proposal("1"),
-                new Proposal("2"),
-                new Proposal("3"),
-                new Proposal("4"),
-                new Proposal("5"),
-                new Proposal("6"),
-                new Proposal("7"),
-                new Proposal("8"),
-                new Proposal("9")
-            };
+            OrderId = orderId;
+            Proposals = fetchContracts(orderId);
+        }
+
+        private ObservableCollection<Proposal> fetchContracts(string orderId)
+        { 
+            ObservableCollection<Proposal> retVal = new ObservableCollection<Proposal>();
+
+            string query = $"SELECT * FROM contracts WHERE id_order = '{orderId}';";
+
+            var rows = dbHelper.executeGetQuery(query,"id_contract");
+
+            foreach (var row in rows) {
+                string idContract = dbHelper.convertObject<Guid>(row["id_contract"]).ToString();
+                retVal.Add(new Proposal(idContract));
+            }
+
+            return retVal;
         }
     }
 }

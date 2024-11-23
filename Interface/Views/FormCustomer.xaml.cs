@@ -20,6 +20,7 @@ using CloudinaryDotNet.Actions;
 using Microsoft.Extensions.Configuration;
 using Interface.Models;
 using Interface.Helpers;
+using Interface.ViewModels;
 
 namespace Interface
 {
@@ -33,9 +34,12 @@ namespace Interface
         private string imageUrl;
         private Cloudinary cloudinary;
         private string customerId;
+        private FormCustomerViewModel _viewModel;
         public FormCustomer()
         {
             InitializeComponent();
+            _viewModel = new FormCustomerViewModel();
+            DataContext = _viewModel;
             var config = GetConfiguration();
             Account account = new Account(
                 config["Cloudinary:CloudName"],

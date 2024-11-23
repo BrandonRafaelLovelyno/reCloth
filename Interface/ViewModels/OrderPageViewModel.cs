@@ -82,6 +82,28 @@ namespace Interface.ViewModels
                 OnPropertyChanged(nameof(TailorUser));
             }
         }
+
+        private bool isOrderOwner;
+        public bool IsOrderOwner
+        {
+            get => isOrderOwner;
+            set
+            {
+                isOrderOwner = value;
+                OnPropertyChanged(nameof(IsOrderOwner));
+            }
+        }
+
+        private bool isWorker;
+        public bool IsWorker
+        {
+            get => isWorker;
+            set
+            {
+                isWorker = value;
+                OnPropertyChanged(nameof(IsWorker));
+            }
+        }
         public ICommand DeleteOrderCommand { get; }
 
         public OrderPageViewModel(string orderId)
@@ -90,6 +112,9 @@ namespace Interface.ViewModels
             FetchWorkerUser("Designer");
             FetchWorkerUser("Tailor");
             FetchCustomerUser();
+
+            IsOrderOwner = false; // TODO: Check if the current user is the owner of the order
+            IsWorker = UserSession.Current.Role == "Designer" || UserSession.Current.Role == "Tailor";
 
             DeleteOrderCommand = new RelayCommand<object>(_ => Delete_Order(orderId));
         }
