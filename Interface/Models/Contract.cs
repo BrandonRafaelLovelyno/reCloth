@@ -13,7 +13,7 @@ namespace Interface.Models
         private string Id { get; }
         public string? IdWorker { get; private set; }
         public string? IdOrder { get; private set; }
-        public bool? IsAccepted { get; private set; }
+        public string? Status { get; private set; }
         public double? Budget { get; private set; }
         public string? Specification { get; private set; }
         public string? Result { get; private set; }
@@ -45,12 +45,12 @@ namespace Interface.Models
         {
             string query = $"SELECT * from contracts WHERE id_contract = '{Id}';";
 
-            var rows = dbHelper.executeGetQuery(query, "id_order", "id_worker", "result", "is_accepted", "budget", "specification");
+            var rows = dbHelper.executeGetQuery(query, "id_order", "id_worker", "result", "status", "budget", "specification");
 
             IdWorker = dbHelper.convertObject<Guid>(rows[0]["id_worker"]).ToString();
             IdOrder = dbHelper.convertObject<Guid>(rows[0]["id_order"]).ToString();
             Result = dbHelper.convertObject<string>(rows[0]["result"]);
-            IsAccepted = dbHelper.convertObject<bool>(rows[0]["is_accepted"]);
+            Status = dbHelper.convertObject<string>(rows[0]["status"]);
             Budget = dbHelper.convertObject<double>(rows[0]["budget"]);
             Specification = dbHelper.convertObject<string>(rows[0]["specification"]);
         }

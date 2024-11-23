@@ -33,14 +33,14 @@ namespace Interface
 
         public void rejectProposal(object sender, RoutedEventArgs e)
         {
-            string query = $"DELETE FROM contracts WHERE id_contract = '{ContractId}';";
+            string query = $"UPDATE contracts SET status = 'Rejected' WHERE id_contract = '{ContractId}';";
             dbHelper.executePostQuery(query);
             MessageBox.Show("Contract rejected"); 
         }
 
         public void acceptProposal(object sender, RoutedEventArgs e)
         {
-            string query = $"UPDATE contracts SET is_accepted = true WHERE id_contract = '{ContractId}';";
+            string query = $"UPDATE contracts SET status = 'Accepted' WHERE id_contract = '{ContractId}';";
             dbHelper.executePostQuery(query);
             MessageBox.Show("Contract accepted");
         }

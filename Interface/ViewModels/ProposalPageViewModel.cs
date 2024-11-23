@@ -26,7 +26,7 @@ namespace Interface.ViewModels
         { 
             ObservableCollection<Proposal> retVal = new ObservableCollection<Proposal>();
 
-            string query = $"SELECT * FROM contracts WHERE id_order = '{orderId}';";
+            string query = $"SELECT * FROM contracts WHERE id_order = '{orderId}' AND status = 'Proposed';";
 
             var rows = dbHelper.executeGetQuery(query,"id_contract");
 

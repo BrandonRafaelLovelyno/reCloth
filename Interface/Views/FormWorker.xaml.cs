@@ -44,11 +44,11 @@ namespace Interface
 
             try
             {
-                string insertQuery = "INSERT INTO proposals ( is_accepted. specification, budget) VALUES (@is_accepted,@specification,@budget)";
+                string insertQuery = "INSERT INTO proposals ( status, specification, budget) VALUES (@status,@specification,@budget)";
 
                 var parameters = new NpgsqlParameter[]
                 {
-                    new NpgsqlParameter("@is_accepted0", false),
+                    new NpgsqlParameter("@status", "Proposed"),
                     new NpgsqlParameter("@specification", specification),
                     new NpgsqlParameter("@budget", budget )
                 };

@@ -66,7 +66,7 @@ namespace Interface.Models
             FROM contracts
             JOIN orders ON orders.id_order = '{Id}'
             JOIN workers ON workers.id_worker = contracts.id_worker
-            WHERE contracts.is_accepted = false AND workers.role = '{role}';
+            WHERE contracts.status = 'Proposed' AND workers.role = '{role}';
             ";
 
             var rows = dbHelper.executeGetQuery(query, "id_contract");
@@ -83,7 +83,7 @@ namespace Interface.Models
             FROM contracts
             JOIN orders ON orders.id_order = '{Id}'
             JOIN workers ON workers.id_worker = contracts.id_worker
-            WHERE contracts.is_accepted = true AND workers.role = '{role}';
+            WHERE contracts.status = 'Accepted' AND workers.role = '{role}';
             ";
 
             var rows = dbHelper.executeGetQuery(query, "id_contract");
@@ -100,7 +100,7 @@ namespace Interface.Models
             FROM contracts
             JOIN orders ON orders.id_order = '{Id}'
             JOIN workers ON workers.id_worker = contracts.id_worker
-            WHERE contracts.is_accepted = true 
+            WHERE contracts.status = 'Finished'
             AND workers.role = '{role}'
             AND contracts.result IS NOT NULL;
             ";

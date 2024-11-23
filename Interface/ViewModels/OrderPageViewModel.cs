@@ -140,13 +140,13 @@ namespace Interface.ViewModels
             if(UserSession.Current.Role == "Tailor")
             {
                 if (currentWorker.Id != TailorContract.IdWorker) return false;
-                if(TailorContract.IsAccepted != true) return false;
+                if(TailorContract.Status != "Accepted") return false;
                 return true;
             }
             else
             {
                 if (currentWorker.Id != DesignerContract.IdWorker) return false;
-                if(DesignerContract.IsAccepted != true) return false;
+                if(DesignerContract.Status!= "Accepted") return false;
                 return true;
             } 
         }
