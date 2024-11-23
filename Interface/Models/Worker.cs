@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,40 @@ namespace Interface.Models
 
             Id = dbHelper.convertObject<Guid>(rows[0]["id_worker"]).ToString();
             Role = dbHelper.convertObject<string>(rows[0]["role"]);
+        }
+
+        public ObservableCollection<Order> fetchWorkerOrders()
+        {
+            var orders = new ObservableCollection<Order>();
+
+            string query = $"SELECT * from orders JOIN contracts ON contracts.id_order = orders.id_order WHERE contracts.id_worker = '{Id}' AND (contracts.status = 'Accepted' OR contracts.status = 'Done')";
+
+            var rows = dbHelper.executeGetQuery(query,"id_order");
+
+            foreach (var row in rows)
+            {
+                string orderId = dbHelper.convertObject<Guid>(row["id_order"]).ToString();
+                orders.Add(new Order(orderId));
+            }
+
+            return orders;
+        }
+
+        public ObservableCollection<Contract> fetchWorkerContracts()
+        {
+            var contracts = new ObservableCollection<Contract>();
+
+            string query = $"SELECT * from contracts where id_worker = '{Id}';";
+
+            var rows = dbHelper.executeGetQuery(query, "id_contract");
+
+            foreach (var row in rows)
+            {
+                string contractId = dbHelper.convertObject<Guid>("id_contract").ToString();
+                contracts.Add(new Contract(contractId));
+            }
+
+            return contracts;
         }
 
         public List<Contract> fetchContracts()
