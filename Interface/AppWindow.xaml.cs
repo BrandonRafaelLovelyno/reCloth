@@ -12,7 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml.Serialization;
+using Interface.Helpers;
 using Interface.Models;
+using Interface.ViewModels;
 
 namespace Interface
 {
@@ -21,9 +23,14 @@ namespace Interface
     /// </summary>
     public partial class AppWindow : Window
     {
+        private AppWindowViewModel _viewModel;
+
         public AppWindow()
         {
             InitializeComponent();
+
+            _viewModel = new AppWindowViewModel();
+            DataContext = _viewModel;
 
             Application.Current.MainWindow = this;
 

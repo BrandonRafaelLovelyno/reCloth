@@ -4,14 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Interface"
+        xmlns:helpers="clr-namespace:Interface.Helpers"
         mc:Ignorable="d"
         Title="reCloth" Height="450" Width="800">
+    <Window.Resources>
+        <helpers:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    </Window.Resources>
     <Grid>
         <DockPanel>
             <Grid Background="#BD6D68">
                 <StackPanel DockPanel.Dock="Left" Orientation="Vertical" VerticalAlignment="Center">
                     <Label Cursor="Hand" MouseLeftButtonDown="Marketplace_Click" Foreground="#FDF4EB" Content="&#xf290;" FontFamily="./assets/Fonts/#Font Awesome 6 Free Solid 6 Free Solid" FontSize="40" Margin="15"/>
-                    <Label Cursor="Hand" MouseLeftButtonDown="Form_Click" Foreground="#FDF4EB" Content="&#xf093;" FontFamily="./assets/Fonts/#Font Awesome 6 Free Solid 6 Free Solid" FontSize="40" Margin="15"/>
+                    <Label Cursor="Hand" MouseLeftButtonDown="Form_Click" Foreground="#FDF4EB" Content="&#xf093;" FontFamily="./assets/Fonts/#Font Awesome 6 Free Solid 6 Free Solid" FontSize="40" Margin="15" Visibility="{Binding IsCustomer, Converter={StaticResource BoolToVisibilityConverter}}"/>
                     <Label Cursor="Hand" MouseLeftButtonDown="Dashboard_Click" Foreground="#FDF4EB" Content="&#xf007;" FontFamily="./assets/Fonts/#Font Awesome 6 Free Solid 6 Free Solid" FontSize="40" Margin="15"/>
                 </StackPanel>
             </Grid>
