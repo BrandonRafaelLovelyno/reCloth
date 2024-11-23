@@ -20,7 +20,7 @@ namespace Interface.Models
 
         public void fetchWorker()
         {
-            string query = $"SELECT * from workers WHERE id_user = '{IdUser}'";
+            string query = $"SELECT * from workers WHERE id_user = '{IdUser}';";
 
             var rows = dbHelper.executeGetQuery(query, "id_worker", "role");
 

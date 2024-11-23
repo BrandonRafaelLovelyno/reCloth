@@ -19,6 +19,7 @@ namespace Interface.ViewModels
         {
             OrderId = orderId;
             Proposals = fetchContracts(orderId);
+
         }
 
         private ObservableCollection<Proposal> fetchContracts(string orderId)
