@@ -50,36 +50,36 @@ namespace Interface.ViewModels
             }
         }
 
-        private User _customerUser;
-        public User CustomerUser
+        private Customer _customerUser;
+        public Customer Customer
         {
             get { return _customerUser; }
             set
             {
                 _customerUser = value;
-                OnPropertyChanged(nameof(CustomerUser));
+                OnPropertyChanged(nameof(Customer));
             }
         }
 
-        private User _designerUser;
-        public User DesignerUser
+        private Worker _designer;
+        public Worker Designer
         {
-            get { return _designerUser; }
+            get { return _designer; }
             set
             {
-                _designerUser = value;
-                OnPropertyChanged(nameof(DesignerUser));
+                _designer = value;
+                OnPropertyChanged(nameof(Designer));
             }
         }
 
-        private User _tailorUser;
-        public User TailorUser
+        private Worker _tailor;
+        public Worker Tailor
         {
-            get { return _tailorUser; }
+            get { return _tailor; }
             set
             {
-                _tailorUser = value;
-                OnPropertyChanged(nameof(TailorUser));
+                _tailor = value;
+                OnPropertyChanged(nameof(Tailor));
             }
         }
 
@@ -113,7 +113,7 @@ namespace Interface.ViewModels
             FetchWorkerUser("Tailor");
             FetchCustomerUser();
 
-            IsOrderOwner = false; // TODO: Check if the current user is the owner of the order
+            IsOrderOwner = _customerUser.Id == _order.IdCustomer;
             IsWorker = UserSession.Current.Role == "Designer" || UserSession.Current.Role == "Tailor";
 
             DeleteOrderCommand = new RelayCommand<object>(_ => Delete_Order(orderId));
@@ -129,9 +129,7 @@ namespace Interface.ViewModels
 
             string userId = dbHelper.convertObject<Guid>(rows[0]["id_user"]).ToString();
 
-            User customer = new User(userId);
-
-            CustomerUser = customer;
+            Customer = new Customer(userId);
         }
 
         private void FetchWorkerUser(string role)
@@ -141,12 +139,12 @@ namespace Interface.ViewModels
             if (role == "Designer" && DesignerContract != null)
             {
                 string userId = DesignerContract.fetchUserId();
-                DesignerUser = new User(userId);
+                Designer = new Worker(userId);
             }
             else if (role == "Tailor" && TailorContract != null)
             {
                 string userId = TailorContract.fetchUserId();
-                TailorUser = new User(userId);
+                Tailor = new Worker(userId);
             }
         }
 

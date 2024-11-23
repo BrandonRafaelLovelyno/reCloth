@@ -18,6 +18,7 @@ namespace Interface.Models
         public string? Specification { get; private set; }
         public string? Image { get; private set; }
         public double? Budget { get; private set; }
+        public string? IdCustomer {  get; private set; }
 
         public Order(string id)
         {
@@ -30,12 +31,13 @@ namespace Interface.Models
         {
             string query = $"SELECT * from orders WHERE id_order = '{Id}' LIMIT 1;";
 
-            var rows = dbHelper.executeGetQuery(query, "title", "specification", "image", "budget");
+            var rows = dbHelper.executeGetQuery(query, "title", "specification", "image", "budget","id_customer");
 
             Title = dbHelper.convertObject<string>(rows[0]["title"]);
             Specification = dbHelper.convertObject<string>(rows[0]["specification"]);
             Image = dbHelper.convertObject<string>(rows[0]["image"]);
             Budget = dbHelper.convertObject<double>(rows[0]["budget"]);
+            IdCustomer = dbHelper.convertObject<Guid>(rows[0]["id_customer"]).ToString();
         }
 
         public string? findAcceptedContract(string role)
