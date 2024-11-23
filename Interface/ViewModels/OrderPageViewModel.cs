@@ -124,11 +124,39 @@ namespace Interface.ViewModels
             FetchWorkerUser("Tailor");
             FetchCustomerUser();
 
-            IsOrderOwner = _customerUser.Id == _order.IdCustomer;
+            IsOrderOwner = checkIsOrderOwner();
             IsWorker = UserSession.Current.Role == "Designer" || UserSession.Current.Role == "Tailor";
-            IsContractAccepted = false;
+            IsContractAccepted = checkIsContractAccepted();
 
             DeleteOrderCommand = new RelayCommand<object>(_ => Delete_Order(orderId));
+        }
+
+        private bool checkIsContractAccepted()
+        {
+           if (UserSession.Current.Role == "Customer" || UserSession.Current.UserId == null) return false;
+
+            Worker currentWorker = new Worker(UserSession.Current.UserId);
+
+            if(UserSession.Current.Role == "Tailor")
+            {
+                if (currentWorker.Id != TailorContract.IdWorker) return false;
+                if(TailorContract.IsAccepted != true) return false;
+                return true;
+            }
+            else
+            {
+                if (currentWorker.Id != DesignerContract.IdWorker) return false;
+                if(DesignerContract.IsAccepted != true) return false;
+                return true;
+            } 
+        }
+        private bool checkIsOrderOwner()
+        {
+            if (UserSession.Current.Role != "Customer" || UserSession.Current.UserId == null) return false;
+
+            Customer currentCustomer = new Customer(UserSession.Current.UserId);
+
+            return currentCustomer.Id == _order.IdCustomer;
         }
 
         private void FetchCustomerUser()
