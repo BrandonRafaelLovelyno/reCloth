@@ -26,19 +26,19 @@
                 <StackPanel Margin="10" Orientation="Vertical">
                     <StackPanel Orientation="Vertical" Margin="0 0 0 10">
                         <TextBlock Text="Name" FontWeight="Bold" FontSize="15" Margin="0 0 0 3"/>
-                        <TextBlock Text="{Binding ProposalDetail.Name}" FontSize="12" FontWeight="SemiBold" />
+                        <TextBlock Text="{Binding ProposalDetail.Worker.Name}" FontSize="12" FontWeight="SemiBold" />
                     </StackPanel>
                     <StackPanel Orientation="Vertical" Margin="0 0 0 10">
                         <TextBlock Text="Information" FontWeight="Bold" FontSize="15" Margin="0 0 0 3"/>
-                        <TextBlock Text="{Binding ProposalDetail.OrderInformation}" FontSize="12" FontWeight="SemiBold" />
+                        <TextBlock Text="{Binding ProposalDetail.Specification}" FontSize="12" FontWeight="SemiBold" />
                     </StackPanel>
                     <StackPanel Orientation="Vertical" Margin="0 0 0 10">
                         <TextBlock Text="Role" FontWeight="Bold" FontSize="15" Margin="0 0 0 3"/>
-                        <TextBlock Text="{Binding ProposalDetail.Role}" FontSize="12" FontWeight="SemiBold" />
+                        <TextBlock Text="{Binding ProposalDetail.Worker.Role}" FontSize="12" FontWeight="SemiBold" />
                     </StackPanel>
                     <StackPanel Orientation="Vertical" Margin="0 0 0 10">
                         <TextBlock Text="Budget" FontWeight="Bold" FontSize="15" Margin="0 0 0 3"/>
-                        <TextBlock Text="{Binding ProposalDetail.OrderBudget}" FontSize="12" FontWeight="SemiBold"  />
+                        <TextBlock Text="{Binding ProposalDetail.Budget}" FontSize="12" FontWeight="SemiBold"  />
                     </StackPanel>
                 </StackPanel>
             </Border>
@@ -53,13 +53,13 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Left Button -->
-                <Border Grid.Column="0" Width="122" Background="#36B37E" Padding="10 5 10 5" CornerRadius="12">
+                <Border Grid.Column="0" Width="122" Background="#36B37E" Padding="10 5 10 5" CornerRadius="12" MouseLeftButtonDown="acceptProposal">
                     <TextBlock Text="Accept" FontSize="20" FontWeight="Regular" Foreground="White" HorizontalAlignment="Center"/>
                 </Border>
 
                 <!-- Right Button -->
-                <Border Grid.Column="2" Width="122" Background="#FF5630" Padding="10 5 10 5" CornerRadius="12">
-                    <TextBlock Text="Delete" FontSize="20" FontWeight="Regular" Foreground="White" HorizontalAlignment="Center"/>
+                <Border Grid.Column="2" Width="122" Background="#FF5630" Padding="10 5 10 5" CornerRadius="12" MouseLeftButtonDown="rejectProposal">
+                    <TextBlock Text="Reject" FontSize="20" FontWeight="Regular" Foreground="White" HorizontalAlignment="Center"/>
                 </Border>
             </Grid>
         </StackPanel>
