@@ -127,7 +127,7 @@
                     </Border>
 
                     <!-- Left Button -->
-                    <Border Grid.Column="0" Width="200" Background="#87ABB4" Padding="10 5 10 5" CornerRadius="12" Visibility="{Binding IsWorker, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <Border Grid.Column="0" Width="200" Background="#87ABB4" Padding="10 5 10 5" CornerRadius="12" Visibility="{Binding IsCanApplyWork, Converter={StaticResource BoolToVisibilityConverter}}">
                         <TextBlock Text="Apply Work" MouseLeftButtonDown="Route_to_Form_Worker" FontSize="20" FontWeight="Regular" Foreground="White" HorizontalAlignment="Center"/>
                     </Border>
 

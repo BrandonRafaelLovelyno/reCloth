@@ -105,14 +105,14 @@ namespace Interface.ViewModels
             }
         }
 
-        private bool isWorker;
-        public bool IsWorker
+        private bool isCanApplyWork;
+        public bool IsCanApplyWork
         {
-            get => isWorker;
+            get => isCanApplyWork;
             set
             {
-                isWorker = value;
-                OnPropertyChanged(nameof(IsWorker));
+                isCanApplyWork = value;
+                OnPropertyChanged(nameof(isCanApplyWork));
             }
         }
         public ICommand DeleteOrderCommand { get; }
@@ -125,10 +125,39 @@ namespace Interface.ViewModels
             FetchCustomerUser();
 
             IsOrderOwner = checkIsOrderOwner();
-            IsWorker = UserSession.Current.Role == "Designer" || UserSession.Current.Role == "Tailor";
+            isCanApplyWork = checkIsCanApplyWork(orderId);
             IsContractAccepted = checkIsContractAccepted();
 
             DeleteOrderCommand = new RelayCommand<object>(_ => Delete_Order(orderId));
+        }
+
+        public bool checkIsCanApplyWork(string orderId)
+        {
+            if(UserSession.Current.Role == "Customer")
+            {
+                return false;
+            }
+
+            string query = $"SELECT * FROM contracts" +
+                $" JOIN orders ON orders.id_order = contracts.id_order" +
+                $" JOIN workers ON workers.id_worker = contracts.id_worker" +
+                $" JOIN users ON users.id_user = workers.id_user" +
+                $" WHERE orders.id_order = '{orderId}' AND users.id_user = '{UserSession.Current.UserId}'" +
+                $";";
+
+            var rows = dbHelper.executeGetQuery(query, "status");
+
+            foreach (var row in rows)
+            {
+                string contractStatus = dbHelper.convertObject<string>(row["status"]);
+                if(contractStatus != "Rejected")
+                {
+                    return false ;
+                }
+            }
+
+            return true;
+
         }
 
         private bool checkIsContractAccepted()
