@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using Microsoft.Extensions.Configuration;
 using System.Globalization;
 using Interface.Helpers;
+using Interface.Models;
 
 namespace Interface
 {
@@ -26,9 +27,15 @@ namespace Interface
     public partial class FormWorker : Page
     {
         private DatabaseHelper dbHelper = new DatabaseHelper();
+        private string workerId;
+        private string _orderId;
+       
         public FormWorker(string orderId)
         {
             InitializeComponent();
+            Worker worker = new Worker(UserSession.Current.UserId);
+            workerId = worker.Id;
+            _orderId = orderId;
         }      
         private void Propose_Order(object sender, EventArgs e)
         {
@@ -44,10 +51,14 @@ namespace Interface
 
             try
             {
-                string insertQuery = "INSERT INTO proposals ( status, specification, budget) VALUES (@status,@specification,@budget)";
+                string insertQuery = "INSERT INTO contract ( id_order, id_worker, result, status, specification, budget) VALUES ( @id_order, @id_worker, @result ,@status,@specification,@budget)";
 
+                Guid userId = Guid.Parse(workerId);
                 var parameters = new NpgsqlParameter[]
                 {
+                    new NpgsqlParameter("@id_order", _orderId),
+                    new NpgsqlParameter("@id_worker", userId),
+                    new NpgsqlParameter("@result", false),
                     new NpgsqlParameter("@status", "Proposed"),
                     new NpgsqlParameter("@specification", specification),
                     new NpgsqlParameter("@budget", budget )
