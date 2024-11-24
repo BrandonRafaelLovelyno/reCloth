@@ -106,7 +106,6 @@ namespace Interface.Views
 
             try
             {
-                // Step 1: Upload the selected image to Cloudinary
                 var uploadParams = new CloudinaryDotNet.Actions.ImageUploadParams()
                 {
                     File = new FileDescription(selectedImagePath)
@@ -124,23 +123,21 @@ namespace Interface.Views
                     return;
                 }
 
-                // Step 2: Update the order with the new image URL in the database
-                string updateQuery = "UPDATE orders SET image = @image WHERE id_order = @orderId";
+                string updateQuery = "UPDATE orders SET image = @image, status = @status WHERE id_order = @orderId";
 
                 Guid orderId = Guid.Parse(_orderId);
 
                 var parameters = new Npgsql.NpgsqlParameter[]
                 {
             new Npgsql.NpgsqlParameter("@image", imageUrl),
-            new Npgsql.NpgsqlParameter("@orderId", orderId)
+            new Npgsql.NpgsqlParameter("@orderId", orderId),
+            new Npgsql.NpgsqlParameter("@status","Done")
                 };
 
                 dbHelper.executePostQuery(updateQuery, parameters);
 
-                // Step 3: Provide feedback to the user
                 MessageBox.Show("Order successfully updated!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                // Step 4: Navigate back to the OrderPage
                 var appWindow = Application.Current.MainWindow as AppWindow;
                 if (appWindow != null)
                 {
