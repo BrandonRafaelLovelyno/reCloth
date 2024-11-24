@@ -1,5 +1,6 @@
 ﻿using CloudinaryDotNet;
 using Interface.Helpers;
+using Interface.ViewModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Win32;
 using System;
@@ -29,6 +30,9 @@ namespace Interface.Views
         private string selectedImagePath;
         private string imageUrl;
         private Cloudinary cloudinary;
+        private OrderPageViewModel _viewModel;
+        public string Id { get; private set; }
+        public string _orderId { get; private set; }
         public UpdatePage()
         {
             InitializeComponent();
@@ -88,13 +92,66 @@ namespace Interface.Views
             var appWindow = Application.Current.MainWindow as AppWindow;
             if (appWindow != null)
             {
-               
+                appWindow.MainFrame.NavigationService.Navigate(new OrderPage(_orderId));
             }
         }
 
-        private void submitUpdate(object sender, RoutedEventArgs e)
+        private async void submitUpdate(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrEmpty(selectedImagePath))
+            {
+                MessageBox.Show("Please upload an image before submitting.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
+            try
+            {
+                // Step 1: Upload the selected image to Cloudinary
+                var uploadParams = new CloudinaryDotNet.Actions.ImageUploadParams()
+                {
+                    File = new FileDescription(selectedImagePath)
+                };
+
+                var uploadResult = await cloudinary.UploadAsync(uploadParams);
+
+                if (uploadResult.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    imageUrl = uploadResult.SecureUrl.ToString();
+                }
+                else
+                {
+                    MessageBox.Show("Image upload failed. Please try again.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                // Step 2: Update the order with the new image URL in the database
+                string updateQuery = "UPDATE orders SET image = @image WHERE id_order = @orderId";
+
+                Guid orderId = Guid.Parse(_orderId);
+
+                var parameters = new Npgsql.NpgsqlParameter[]
+                {
+            new Npgsql.NpgsqlParameter("@image", imageUrl),
+            new Npgsql.NpgsqlParameter("@orderId", orderId)
+                };
+
+                dbHelper.executePostQuery(updateQuery, parameters);
+
+                // Step 3: Provide feedback to the user
+                MessageBox.Show("Order successfully updated!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                // Step 4: Navigate back to the OrderPage
+                var appWindow = Application.Current.MainWindow as AppWindow;
+                if (appWindow != null)
+                {
+                    appWindow.MainFrame.NavigationService.Navigate(new OrderPage(_orderId));
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
+
     }
 }
