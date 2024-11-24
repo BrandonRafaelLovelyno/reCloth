@@ -35,7 +35,7 @@
             <Border Grid.Column="0" Background="#BD6D68" CornerRadius="25" Padding="20" Margin="0,0,289,0">
                 <StackPanel HorizontalAlignment="Center">
                     <TextBlock Text="Total Contract" FontSize="36" FontWeight="Medium" Foreground="White" HorizontalAlignment="Center"/>
-                    <TextBlock FontSize="51.84" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Center" Text="{Binding }" />
+                    <TextBlock FontSize="51.84" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Center" Text="{Binding ContractCount}" />
                 </StackPanel>
             </Border>
 
@@ -65,19 +65,27 @@
 
                 <!-- Filter Dropdown -->
                 <StackPanel Margin="0 0 22 0" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <TextBlock Text="Filtered by:" FontSize="17.36" FontWeight="Normal" VerticalAlignment="Center" Foreground="White" Margin="0 0 5 0 " />
+                    <TextBlock Text="Filter Designer Status:" FontSize="17.36" FontWeight="Normal" VerticalAlignment="Center" Foreground="White" Margin="0 0 5 0 "/>
+                    <ComboBox Width="200" Height="25" SelectedValue="{Binding SelectedDesignerStatus, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Content">
+                        <ComboBoxItem Content="Needs Designer" />
+                        <ComboBoxItem Content="Proposed by Designer" />
+                        <ComboBoxItem Content="On Progress by Designer" />
+                        <ComboBoxItem Content="Finished by Designer" />
+                    </ComboBox>
 
-                    <ComboBox Width="200" Height="25">
-                        <ComboBoxItem Content="Submitted" />
-                        <ComboBoxItem Content="Ongoing" />
-                        <ComboBoxItem Content="Finished" />
+                    <TextBlock Text="Filter Tailor Status:" FontSize="17.36" FontWeight="Normal" VerticalAlignment="Center" Foreground="White" Margin="15 0 5 0 "/>
+                    <ComboBox Width="200" Height="25" SelectedValue="{Binding SelectedTailorStatus, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Content">
+                        <ComboBoxItem Content="Needs Tailor" />
+                        <ComboBoxItem Content="Proposed by Tailor" />
+                        <ComboBoxItem Content="On Progress by Tailor" />
+                        <ComboBoxItem Content="Finished by Tailor" />
                     </ComboBox>
                 </StackPanel>
             </Grid>
 
             <!-- List of Contracts -->
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="10">
-                <ItemsControl x:Name="ContractList" ItemsSource="{Binding Orders}">
+                <ItemsControl x:Name="ContractList" ItemsSource="{Binding FilteredOrders}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border Background="White" CornerRadius="25" Padding="10" Margin="2 2 2 2">
@@ -102,12 +110,23 @@
 
                                     <!-- Contract Status and Show Button -->
                                     <StackPanel Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical">
-                                        <Border Width="122" Background="#6554C0" Padding="10 0 10 0" Margin="0 0 0 5" CornerRadius="12" HorizontalAlignment="Center">
-                                            <TextBlock Text="{Binding Status}" FontSize="20" FontWeight="Regular" Foreground="White" HorizontalAlignment="Center"/>
+                                        <!-- Designer Status -->
+                                        <Border Width="220" Background="#6554C0" Padding="10 0 10 0" Margin="0 0 0 5" CornerRadius="12" HorizontalAlignment="Center">
+                                            <TextBlock Text="{Binding DesignerStatus}" FontSize="20" FontWeight="Regular" Foreground="White" HorizontalAlignment="Center"/>
                                         </Border>
-                                        <Border Cursor="Hand" Width="122" Background="#87ABB4" Padding="10 5 10 5" Margin="0 0 0 5" CornerRadius="12" HorizontalAlignment="Center">
-                                            <TextBlock Text="Show" FontSize="20" FontWeight="Regular" Foreground="White" HorizontalAlignment="Center"/>
+
+                                        <!-- Tailor Status -->
+                                        <Border Width="220" Background="#4CAF50" Padding="10 0 10 0" Margin="0 0 0 5" CornerRadius="12" HorizontalAlignment="Center">
+                                            <TextBlock Text="{Binding TailorStatus}" FontSize="20" FontWeight="Regular" Foreground="White" HorizontalAlignment="Center"/>
                                         </Border>
+                                        <!-- Show Button -->
+                                        <Button Width="122" Background="#87ABB4" Padding="10 5 10 5" Margin="0 0 0 5" BorderThickness="0" HorizontalAlignment="Center"
+            Command="{Binding DataContext.NavigateToOrderCommand, RelativeSource={RelativeSource AncestorType=Page}}" 
+            CommandParameter="{Binding Id}">
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <TextBlock Text="Show" FontSize="20" FontWeight="Regular" Foreground="White" HorizontalAlignment="Center"/>
+                                            </StackPanel>
+                                        </Button>
                                     </StackPanel>
                                 </Grid>
                             </Border>
