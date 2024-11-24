@@ -30,7 +30,8 @@ namespace Interface.Views
         private string selectedImagePath;
         private string imageUrl;
         private Cloudinary cloudinary;
-        private OrderPageViewModel _viewModel;
+        private UpdateContractViewModel _contractViewModel;
+ 
         public string Id { get; private set; }
         public string _orderId { get; private set; }
         public UpdatePage(string orderId)
@@ -44,6 +45,9 @@ namespace Interface.Views
                 config["Cloudinary:ApiSecret"]
                 );
             cloudinary = new Cloudinary(account);
+            _contractViewModel = new UpdateContractViewModel(orderId);
+            DataContext = _contractViewModel;
+
         }
         private IConfigurationRoot GetConfiguration()
         {
@@ -125,18 +129,16 @@ namespace Interface.Views
                 }
 
                 
-                string updateQuery = "UPDATE contracts SET result = @image WHERE id_order = @orderId" ;
-                string updateQuery = "UPDATE orders SET image = @image, status = @status WHERE id_order = @orderId";
+               
+                string updateQuery = "UPDATE contracts SET image = @image, status = @status WHERE id_order = @orderId";
 
                 Guid orderId = Guid.Parse(_orderId);
 
                 var parameters = new Npgsql.NpgsqlParameter[]
                 {
                 new Npgsql.NpgsqlParameter("@image", imageUrl),
-                new Npgsql.NpgsqlParameter("@orderId", orderId)
-            new Npgsql.NpgsqlParameter("@image", imageUrl),
-            new Npgsql.NpgsqlParameter("@orderId", orderId),
-            new Npgsql.NpgsqlParameter("@status","Done")
+                new Npgsql.NpgsqlParameter("@orderId", orderId),
+                new Npgsql.NpgsqlParameter("@status","Done")
                 };
 
                 dbHelper.executePostQuery(updateQuery, parameters);
