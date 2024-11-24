@@ -14,136 +14,137 @@
     <Page.Resources>
         <helpers:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
     </Page.Resources>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="4*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-        <StackPanel Orientation="Vertical" Grid.Column="1">
-        <TextBlock Text="Order" FontWeight="Bold" FontSize="25" Margin="0 50 0 0" />
-        <Border Background="White" 
+            <StackPanel Orientation="Vertical" Grid.Column="1">
+                <TextBlock Text="Order" FontWeight="Bold" FontSize="25" Margin="0 50 0 0" />
+                <Border Background="White" 
                 BorderBrush="#9E9E9E" 
                 BorderThickness="1" 
                 CornerRadius="5" 
                 Margin="0 40 0 0">
-                <StackPanel Margin="10" Orientation="Vertical">
-                    <StackPanel Orientation="Vertical" Margin="0 0 0 10">
-                        <TextBlock Text="Title" FontWeight="Bold" FontSize="15" Margin="0 0 0 3"/>
-                        <TextBlock Text="{Binding Order.Title}" FontSize="12" FontWeight="SemiBold" />
-                    </StackPanel>
-                    <StackPanel Orientation="Vertical" Margin="0 0 0 10">
-                        <TextBlock Text="Spesification" FontWeight="Bold" FontSize="15" Margin="0 0 0 3"/>
-                        <TextBlock Text="{Binding Order.Specification}" FontSize="12" FontWeight="SemiBold" />
-                    </StackPanel>
-                    <StackPanel Orientation="Vertical" Margin="0 0 0 10">
-                        <TextBlock Text="Image" FontWeight="Bold" FontSize="15" Margin="0 0 0 3"/>
-                        <Image Grid.Column="0" Source="{Binding Order.Image}" Margin="0 20 0 0" Width="100" Height="100" HorizontalAlignment="Left" Stretch="UniformToFill" />
-                    </StackPanel>
-                    <StackPanel Orientation="Vertical" Margin="0 0 0 10">
-                        <TextBlock Text="Budget" FontWeight="Bold" FontSize="15" Margin="0 0 0 3"/>
-                        <TextBlock Text="{Binding Order.Budget}" FontSize="12" FontWeight="SemiBold"  />
-                    </StackPanel>
-                </StackPanel>
-            </Border>
-            
-        <Border Background="White" 
-                BorderBrush="#9E9E9E" 
-                BorderThickness="1" 
-                CornerRadius="5" 
-                Margin="0 40 0 0">
-                <StackPanel Margin="10" Orientation="Vertical">
-                    <StackPanel Orientation="Vertical" Margin="0 0 0 10">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <Label  Content="&#xf007;" FontFamily="../assets/Fonts/#Font Awesome 6 Free Solid 6 Free Solid" FontSize="15"/>
-                            <TextBlock Text="Customer" FontWeight="Bold" FontSize="15" Margin="5 0 0 0"/>
+                    <StackPanel Margin="10" Orientation="Vertical">
+                        <StackPanel Orientation="Vertical" Margin="0 0 0 10">
+                            <TextBlock Text="Title" FontWeight="Bold" FontSize="15" Margin="0 0 0 3"/>
+                            <TextBlock Text="{Binding Order.Title}" FontSize="12" FontWeight="SemiBold" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="0 0 0 10">
+                            <TextBlock Text="Spesification" FontWeight="Bold" FontSize="15" Margin="0 0 0 3"/>
+                            <TextBlock Text="{Binding Order.Specification}" FontSize="12" FontWeight="SemiBold" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="0 0 0 10">
+                            <TextBlock Text="Image" FontWeight="Bold" FontSize="15" Margin="0 0 0 3"/>
+                            <Image Grid.Column="0" Source="{Binding Order.Image}" Margin="0 20 0 0" Width="100" Height="100" HorizontalAlignment="Left" Stretch="UniformToFill" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="0 0 0 10">
+                            <TextBlock Text="Budget" FontWeight="Bold" FontSize="15" Margin="0 0 0 3"/>
+                            <TextBlock Text="{Binding Order.Budget}" FontSize="12" FontWeight="SemiBold"  />
                         </StackPanel>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0 0 0 3">
-                        <TextBlock Text="Name :" FontWeight="SemiBold" FontSize="15"/>
-                        <TextBlock Text="{Binding Customer.Name}" FontSize="12" Margin="3 0 0 0"  FontWeight="SemiBold"/>
+                </Border>
+
+                <Border Background="White" 
+                BorderBrush="#9E9E9E" 
+                BorderThickness="1" 
+                CornerRadius="5" 
+                Margin="0 40 0 0">
+                    <StackPanel Margin="10" Orientation="Vertical">
+                        <StackPanel Orientation="Vertical" Margin="0 0 0 10">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <Label  Content="&#xf007;" FontFamily="../assets/Fonts/#Font Awesome 6 Free Solid 6 Free Solid" FontSize="15"/>
+                                <TextBlock Text="Customer" FontWeight="Bold" FontSize="15" Margin="5 0 0 0"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0 0 0 3">
+                            <TextBlock Text="Name :" FontWeight="SemiBold" FontSize="15"/>
+                            <TextBlock Text="{Binding Customer.Name}" FontSize="12" Margin="3 0 0 0"  FontWeight="SemiBold"/>
+                        </StackPanel>
                     </StackPanel>
-                </StackPanel>
-            </Border>
-            <Border Background="White" 
+                </Border>
+                <Border Background="White" 
               BorderBrush="#9E9E9E" 
               BorderThickness="1" 
               CornerRadius="5" 
               Margin="0 40 0 0">
-                <StackPanel Margin="10" Orientation="Vertical">
-                    <StackPanel Orientation="Vertical" Margin="0 0 0 10">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <Label  Content="&#xf5ad;" FontFamily="../assets/Fonts/#Font Awesome 6 Free Solid 6 Free Solid" FontSize="15"/>
-                            <TextBlock Text="Designer" FontWeight="Bold" FontSize="15" Margin="5 0 0 0"/>
+                    <StackPanel Margin="10" Orientation="Vertical">
+                        <StackPanel Orientation="Vertical" Margin="0 0 0 10">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <Label  Content="&#xf5ad;" FontFamily="../assets/Fonts/#Font Awesome 6 Free Solid 6 Free Solid" FontSize="15"/>
+                                <TextBlock Text="Designer" FontWeight="Bold" FontSize="15" Margin="5 0 0 0"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0 0 0 3">
+                            <TextBlock Text="Name :" FontSize="12" FontWeight="SemiBold"/>
+                            <TextBlock Text="{Binding Designer.Name}" FontSize="12" Margin="3 0 0 0" FontWeight="SemiBold" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="0 0 0 10">
+                            <TextBlock Text="Result" FontWeight="SemiBold" FontSize="15" Margin="0 0 0 3"/>
+                            <Image Grid.Column="0" Source="{Binding DesignerContract.Result}" Margin="0 20 0 0" Width="100" Height="100" HorizontalAlignment="Left" Stretch="UniformToFill" />
                         </StackPanel>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0 0 0 3">
-                        <TextBlock Text="Name :" FontSize="12" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding Designer.Name}" FontSize="12" Margin="3 0 0 0" FontWeight="SemiBold" />
-                    </StackPanel>
-                    <StackPanel Orientation="Vertical" Margin="0 0 0 10">
-                        <TextBlock Text="Result" FontWeight="SemiBold" FontSize="15" Margin="0 0 0 3"/>
-                        <Image Grid.Column="0" Source="{Binding DesignerContract.Result}" Margin="0 20 0 0" Width="100" Height="100" HorizontalAlignment="Left" Stretch="UniformToFill" />
-                    </StackPanel>
-                </StackPanel>
-            </Border>
-            <Border Background="White" 
+                </Border>
+                <Border Background="White" 
              BorderBrush="#9E9E9E" 
              BorderThickness="1" 
              CornerRadius="5" 
              Margin="0 40 0 0">
-                <StackPanel Margin="10" Orientation="Vertical">
-                    <StackPanel Orientation="Vertical" Margin="0 0 0 10">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <Label  Content="&#xf0c4;" FontFamily="../assets/Fonts/#Font Awesome 6 Free Solid 6 Free Solid" FontSize="15"/>
-                            <TextBlock Text="Tailor" FontWeight="Bold" FontSize="15" Margin="5 0 0 0"/>
+                    <StackPanel Margin="10" Orientation="Vertical">
+                        <StackPanel Orientation="Vertical" Margin="0 0 0 10">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <Label  Content="&#xf0c4;" FontFamily="../assets/Fonts/#Font Awesome 6 Free Solid 6 Free Solid" FontSize="15"/>
+                                <TextBlock Text="Tailor" FontWeight="Bold" FontSize="15" Margin="5 0 0 0"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0 0 0 3">
+                            <TextBlock Text="Name :" FontSize="12" FontWeight="SemiBold"/>
+                            <TextBlock Text="{Binding Tailor.Name}" FontSize="12" Margin="3 0 0 0" FontWeight="SemiBold" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="0 0 0 10">
+                            <TextBlock Text="Result" FontWeight="SemiBold" FontSize="15" Margin="0 0 0 3"/>
+                            <Image Grid.Column="0" Source="{Binding TailorContract.Result}" Margin="0 20 0 0" Width="100" Height="100" HorizontalAlignment="Left" Stretch="UniformToFill" />
                         </StackPanel>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0 0 0 3">
-                        <TextBlock Text="Name :" FontSize="12" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding Tailor.Name}" FontSize="12" Margin="3 0 0 0" FontWeight="SemiBold" />
-                    </StackPanel>
-                    <StackPanel Orientation="Vertical" Margin="0 0 0 10">
-                        <TextBlock Text="Result" FontWeight="SemiBold" FontSize="15" Margin="0 0 0 3"/>
-                        <Image Grid.Column="0" Source="{Binding TailorContract.Result}" Margin="0 20 0 0" Width="100" Height="100" HorizontalAlignment="Left" Stretch="UniformToFill" />
-                    </StackPanel>
-                </StackPanel>
-            </Border>
-            <Grid HorizontalAlignment="Stretch" Margin="0 50 0 0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <!-- Width for left button -->
-                    <ColumnDefinition Width="*"/>
-                    <!-- Takes up all available space between the buttons -->
-                    <ColumnDefinition Width="Auto"/>
-                    <!-- Width for right button -->
-                </Grid.ColumnDefinitions>
-
-                <!-- Left Button -->
-                <Border Grid.Column="0" Width="200" Background="#87ABB4" Padding="10 5 10 5" CornerRadius="12" Visibility="{Binding IsOrderOwner, Converter={StaticResource BoolToVisibilityConverter}}">
-                    <TextBlock Text="Show Proposal" MouseLeftButtonDown="Route_to_Contract" FontSize="20" FontWeight="Regular" Foreground="White" HorizontalAlignment="Center"/>
                 </Border>
+                <Grid HorizontalAlignment="Stretch" Margin="0 50 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <!-- Width for left button -->
+                        <ColumnDefinition Width="*"/>
+                        <!-- Takes up all available space between the buttons -->
+                        <ColumnDefinition Width="Auto"/>
+                        <!-- Width for right button -->
+                    </Grid.ColumnDefinitions>
 
-                <!-- Left Button -->
-                <Border Grid.Column="0" Width="200" Background="#87ABB4" Padding="10 5 10 5" CornerRadius="12" Visibility="{Binding IsWorker, Converter={StaticResource BoolToVisibilityConverter}}">
-                    <TextBlock Text="Apply Work" MouseLeftButtonDown="Route_to_Form_Worker" FontSize="20" FontWeight="Regular" Foreground="White" HorizontalAlignment="Center"/>
-                </Border>
+                    <!-- Left Button -->
+                    <Border Grid.Column="0" Width="200" Background="#87ABB4" Padding="10 5 10 5" CornerRadius="12" Visibility="{Binding IsOrderOwner, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <TextBlock Text="Show Proposal" MouseLeftButtonDown="Route_to_Contract" FontSize="20" FontWeight="Regular" Foreground="White" HorizontalAlignment="Center"/>
+                    </Border>
 
-                <!-- Left Button -->
-                <Border Grid.Column="0" Width="200" Background="#87ABB4" Padding="10 5 10 5" CornerRadius="12" Visibility="{Binding IsContractAccepted, Converter={StaticResource BoolToVisibilityConverter}}">
-                    <TextBlock Text="Update Work" MouseLeftButtonDown="Route_to_Update_Page" FontSize="20" FontWeight="Regular" Foreground="White" HorizontalAlignment="Center"/>
-                </Border>
+                    <!-- Left Button -->
+                    <Border Grid.Column="0" Width="200" Background="#87ABB4" Padding="10 5 10 5" CornerRadius="12" Visibility="{Binding IsWorker, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <TextBlock Text="Apply Work" MouseLeftButtonDown="Route_to_Form_Worker" FontSize="20" FontWeight="Regular" Foreground="White" HorizontalAlignment="Center"/>
+                    </Border>
 
-                <!-- Right Button -->
-                <Border Grid.Column="2" Width="122" Background="#FF5630" Padding="10 5 10 5" CornerRadius="12" Cursor="Hand" Visibility="{Binding IsOrderOwner, Converter={StaticResource BoolToVisibilityConverter}}">
-                    <Border.InputBindings>
-                        <MouseBinding Gesture="LeftClick" Command="{Binding DeleteOrderCommand}" CommandParameter="{Binding Order.Id}" />
-                    </Border.InputBindings>
-                    <TextBlock Text="Delete" FontSize="20" FontWeight="Regular" Foreground="White" HorizontalAlignment="Center" />
-                </Border>
-            </Grid>
-        </StackPanel>
-    </Grid>
+                    <!-- Left Button -->
+                    <Border Grid.Column="0" Width="200" Background="#87ABB4" Padding="10 5 10 5" CornerRadius="12" Visibility="{Binding IsContractAccepted, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <TextBlock Text="Update Work" MouseLeftButtonDown="Route_to_Update_Page" FontSize="20" FontWeight="Regular" Foreground="White" HorizontalAlignment="Center"/>
+                    </Border>
 
+                    <!-- Right Button -->
+                    <Border Grid.Column="2" Width="122" Background="#FF5630" Padding="10 5 10 5" CornerRadius="12" Cursor="Hand" Visibility="{Binding IsOrderOwner, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <Border.InputBindings>
+                            <MouseBinding Gesture="LeftClick" Command="{Binding DeleteOrderCommand}" CommandParameter="{Binding Order.Id}" />
+                        </Border.InputBindings>
+                        <TextBlock Text="Delete" FontSize="20" FontWeight="Regular" Foreground="White" HorizontalAlignment="Center" />
+                    </Border>
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
 </Page>
