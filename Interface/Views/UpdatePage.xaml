@@ -17,7 +17,7 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Orientation="Vertical" Grid.Column="1">
-            <TextBlock Text="Proposal" FontWeight="Bold" FontSize="25" Margin="0 50 0 0" />
+            <TextBlock Text="Contract" FontWeight="Bold" FontSize="25" Margin="0 50 0 0" />
             <Border Background="White" 
          BorderBrush="#9E9E9E" 
          BorderThickness="1" 
