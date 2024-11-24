@@ -43,15 +43,21 @@
 
                 <!-- Search Filter -->
                 <StackPanel Margin="0 0 22 0" Orientation="Horizontal" HorizontalAlignment="Right"  Grid.Column="1">
-                    <TextBlock Text="Search Title:" FontSize="17.36" FontWeight="Normal" VerticalAlignment="Center" Foreground="White" Margin="0 0 5 0 " /> 
-                    
-                    <TextBox x:Name="SearchText" Width="400" Height="40" 
-                        Margin="0, 0, 10, 0" 
-                        Padding="10 3"
-                        Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
-                        FontWeight="Regular"
-                        FontSize="17.36"
-                        VerticalContentAlignment="Center"/>
+                    <TextBlock Text="Filter Designer Status:" FontSize="17.36" FontWeight="Normal" VerticalAlignment="Center" Foreground="White" Margin="0 0 5 0 "/>
+                    <ComboBox Width="200" Height="25" SelectedValue="{Binding SelectedDesignerStatus, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Content">
+                        <ComboBoxItem Content="Needs Designer" />
+                        <ComboBoxItem Content="Proposed by Designer" />
+                        <ComboBoxItem Content="On Progress by Designer" />
+                        <ComboBoxItem Content="Finished by Designer" />
+                    </ComboBox>
+
+                    <TextBlock Text="Filter Tailor Status:" FontSize="17.36" FontWeight="Normal" VerticalAlignment="Center" Foreground="White" Margin="15 0 5 0 "/>
+                    <ComboBox Width="200" Height="25" SelectedValue="{Binding SelectedTailorStatus, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Content">
+                        <ComboBoxItem Content="Needs Tailor" />
+                        <ComboBoxItem Content="Proposed by Tailor" />
+                        <ComboBoxItem Content="On Progress by Tailor" />
+                        <ComboBoxItem Content="Finished by Tailor" />
+                    </ComboBox>
                 </StackPanel>
             </Grid>
 

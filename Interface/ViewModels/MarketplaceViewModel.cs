@@ -23,14 +23,26 @@ namespace Interface.ViewModels
 
         private Contract? TailorContract { get; set; }
 
-        private string _searchText;
-        public string SearchText
+        private string _selectedDesignerStatus;
+        public string SelectedDesignerStatus
         {
-            get => _searchText;
+            get => _selectedDesignerStatus;
             set
             {
-                _searchText = value;
-                OnPropertyChanged(nameof(SearchText));
+                _selectedDesignerStatus = value;
+                OnPropertyChanged(nameof(SelectedDesignerStatus));
+                FilterOrders();
+            }
+        }
+
+        private string _selectedTailorStatus;
+        public string SelectedTailorStatus
+        {
+            get => _selectedTailorStatus;
+            set
+            {
+                _selectedTailorStatus = value;
+                OnPropertyChanged(nameof(SelectedTailorStatus));
                 FilterOrders();
             }
         }
@@ -123,26 +135,29 @@ namespace Interface.ViewModels
 
         private void FilterOrders()
         {
-            Console.WriteLine(SearchText);
             FilteredOrders.Clear();
 
-            if (string.IsNullOrWhiteSpace(SearchText))
+            var filtered = Orders;
+
+            // Apply designer status filter if applicable
+            if (!string.IsNullOrWhiteSpace(SelectedDesignerStatus))
             {
-                Console.WriteLine(Orders[0]);
-                foreach (var order in Orders)
-                {
-                    FilteredOrders.Add(order);
-                }
+                filtered = new ObservableCollection<Order>(
+                    filtered.Where(o => o.DesignerStatus == SelectedDesignerStatus)
+                );
             }
-            else
+
+            // Apply tailor status filter if applicable
+            if (!string.IsNullOrWhiteSpace(SelectedTailorStatus))
             {
-                var filtered = Orders
-                    .Where(o => o.Title.Contains(SearchText, StringComparison.OrdinalIgnoreCase));
-                
-                foreach (var order in filtered)
-                {
-                    FilteredOrders.Add(order);
-                }
+                filtered = new ObservableCollection<Order>(
+                    filtered.Where(o => o.TailorStatus == SelectedTailorStatus)
+                );
+            }
+
+            foreach (var order in filtered)
+            {
+                FilteredOrders.Add(order);
             }
         }
 
