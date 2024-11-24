@@ -131,8 +131,8 @@ namespace Interface.Views
 
                 var parameters = new Npgsql.NpgsqlParameter[]
                 {
-            new Npgsql.NpgsqlParameter("@image", imageUrl),
-            new Npgsql.NpgsqlParameter("@orderId", orderId)
+                new Npgsql.NpgsqlParameter("@image", imageUrl),
+                new Npgsql.NpgsqlParameter("@orderId", orderId)
                 };
 
                 dbHelper.executePostQuery(updateQuery, parameters);

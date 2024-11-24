@@ -39,7 +39,7 @@
                         <TextBlock Text="Upload Result" FontWeight="Bold" FontSize="15" Margin="0 0 0 3"/>
                         <Border Name ="Upload_Border" BorderThickness="2" BorderBrush="#BD6D68" CornerRadius="10" Padding="5" Height="25" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 0 0 0" Background="#BD6D68" Grid.Row="2" Cursor="Hand"  Visibility="Visible" MouseLeftButtonDown="Upload_Image"/>
                         <TextBlock Name = "Upload_Button" Text="Upload Image" FontSize="15" FontWeight="SemiBold" Foreground="White" Grid.Row="2" Margin="11 -22 0 0" Cursor="Hand" Visibility="Visible" MouseLeftButtonDown="Upload_Image"/>
-                        <Border Name ="Change_Border" BorderThickness="2" BorderBrush="#BD6D68" CornerRadius="10" Padding="5" Height="25" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 -25 0 0" Background="#BD6D68" Grid.Row="2" Cursor="Hand"  Visibility="Hidden"/>
+                        <Border Name ="Change_Border" BorderThickness="2" BorderBrush="#BD6D68" CornerRadius="10" Padding="5" Height="25" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 0 0 0" Background="#BD6D68" Grid.Row="2" Cursor="Hand"  Visibility="Hidden"/>
                         <TextBlock Name = "Change_Button" Text="Change Image" FontSize="15" FontWeight="SemiBold" Foreground="White" Grid.Row="2" Margin="11 -22 0 0" Cursor="Hand" Visibility="Hidden"/>
                         <Image x:Name="ImagePreview" Width="200" Height="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 20 0 0" Stretch="Uniform" Visibility="Visible" Grid.Row="2" />
                     </StackPanel>
