@@ -137,18 +137,22 @@ namespace Interface.ViewModels
 
             Worker currentWorker = new Worker(UserSession.Current.UserId);
 
-            if(UserSession.Current.Role == "Tailor")
+            if(UserSession.Current.Role == "Tailor" && TailorContract != null)
             {
-                if (currentWorker.Id != TailorContract.IdWorker) return false;
-                if(TailorContract.Status != "Accepted") return false;
-                return true;
+                if(currentWorker.Id == TailorContract.IdWorker && TailorContract.Status == "Accepted")
+                {
+                    return true;
+
+                }
             }
-            else
+            else if(UserSession.Current.Role == "Designer" && DesignerContract != null)
             {
-                if (currentWorker.Id != DesignerContract.IdWorker) return false;
-                if(DesignerContract.Status!= "Accepted") return false;
-                return true;
-            } 
+                if (currentWorker.Id == DesignerContract.IdWorker && DesignerContract.Status == "Accepted")
+                {
+                    return true;
+                }
+            }
+            return false;
         }
         private bool checkIsOrderOwner()
         {

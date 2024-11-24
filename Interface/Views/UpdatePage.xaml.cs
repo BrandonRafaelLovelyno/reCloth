@@ -126,6 +126,7 @@ namespace Interface.Views
 
                 
                 string updateQuery = "UPDATE contracts SET result = @image WHERE id_order = @orderId" ;
+                string updateQuery = "UPDATE orders SET image = @image, status = @status WHERE id_order = @orderId";
 
                 Guid orderId = Guid.Parse(_orderId);
 
@@ -133,6 +134,9 @@ namespace Interface.Views
                 {
                 new Npgsql.NpgsqlParameter("@image", imageUrl),
                 new Npgsql.NpgsqlParameter("@orderId", orderId)
+            new Npgsql.NpgsqlParameter("@image", imageUrl),
+            new Npgsql.NpgsqlParameter("@orderId", orderId),
+            new Npgsql.NpgsqlParameter("@status","Done")
                 };
 
                 dbHelper.executePostQuery(updateQuery, parameters);
