@@ -121,7 +121,7 @@
                                         </Border>
 
                                         <!-- Tailor Status -->
-                                        <Border Width="220" Padding="10 0 10 0" Margin="0 0 0 5" CornerRadius="12" HorizontalAlignment="Center" Background="{Binding DesignerStatus, Converter={StaticResource StatusToColorConverter}}">
+                                        <Border Width="220" Padding="10 0 10 0" Margin="0 0 0 5" CornerRadius="12" HorizontalAlignment="Center" Background="{Binding TailorStatus, Converter={StaticResource StatusToColorConverter}}">
                                             <TextBlock Text="{Binding TailorStatus}" FontSize="20" FontWeight="Regular" Foreground="White" HorizontalAlignment="Center"/>
                                         </Border>
                                         <!-- Show Button -->
