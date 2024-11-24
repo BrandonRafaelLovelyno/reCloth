@@ -34,10 +34,12 @@ namespace Interface.Views
  
         public string Id { get; private set; }
         public string _orderId { get; private set; }
-        public UpdatePage(string orderId)
+        public string _contractId { get; private set; }
+        public UpdatePage(string orderId, string contractId)
         {
             InitializeComponent();
             _orderId = orderId;
+            _contractId = contractId;
             var config = GetConfiguration();
             Account account = new Account(
                 config["Cloudinary:CloudName"],
