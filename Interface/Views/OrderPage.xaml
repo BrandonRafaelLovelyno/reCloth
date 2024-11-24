@@ -131,7 +131,7 @@
 
                 <!-- Left Button -->
                 <Border Grid.Column="0" Width="200" Background="#87ABB4" Padding="10 5 10 5" CornerRadius="12" Visibility="{Binding IsContractAccepted, Converter={StaticResource BoolToVisibilityConverter}}">
-                    <TextBlock Text="Update Work" MouseLeftButtonDown="Route_to_Form_Worker" FontSize="20" FontWeight="Regular" Foreground="White" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Update Work" MouseLeftButtonDown="Route_to_Update_Page" FontSize="20" FontWeight="Regular" Foreground="White" HorizontalAlignment="Center"/>
                 </Border>
 
                 <!-- Right Button -->

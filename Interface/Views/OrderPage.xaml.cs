@@ -1,5 +1,6 @@
 ﻿using CloudinaryDotNet.Actions;
 using Interface.ViewModels;
+using Interface.Views;
 using Npgsql;
 using System;
 using System.Collections.Generic;
@@ -49,6 +50,16 @@ namespace Interface
             if (appWindow != null)
             {
                 appWindow.MainFrame.NavigationService.Navigate(new FormWorker(_orderId));
+            }
+        }
+
+        private void Route_to_Update_Page(object sender, MouseButtonEventArgs e)
+        {
+            // MessageBox.Show("Feature is Under Construction", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            var appWindow = Application.Current.MainWindow as AppWindow;
+            if (appWindow != null)
+            {
+                appWindow.MainFrame.NavigationService.Navigate(new UpdatePage(_orderId));
             }
         }
     }
