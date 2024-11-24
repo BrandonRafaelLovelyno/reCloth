@@ -15,6 +15,8 @@ namespace Interface.ViewModels
         private Worker _worker;
         private DatabaseHelper dbHelper = new DatabaseHelper();
 
+        public int ContractCount;
+
         public ObservableCollection<Order> Orders { get; set; }
 
         public Worker Worker
@@ -43,6 +45,7 @@ namespace Interface.ViewModels
             WorkerName = $"Hello, {UserSession.Current.Name}!";
             Worker = new Worker(userId);
             Orders = Worker.fetchWorkerOrders();
+            ContractCount = Orders.Count;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
