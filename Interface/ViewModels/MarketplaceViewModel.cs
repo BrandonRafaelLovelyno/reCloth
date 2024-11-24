@@ -19,6 +19,9 @@ namespace Interface.ViewModels
         public ICommand NavigateToOrderCommand { get; }
         public ObservableCollection<Order> Orders { get; set; } // Original list of orders
         public ObservableCollection<Order> FilteredOrders { get; set; } // Filtered list of orders
+        private Contract? DesignerContract {  get; set; }
+
+        private Contract? TailorContract { get; set; }
 
         private string _searchText;
         public string SearchText
@@ -68,30 +71,54 @@ namespace Interface.ViewModels
 
         public string GetDesignerStatus(Order order)
         {
-            if (order.findProposedContract("Designer") == null)
-                return "Needs Designer";
+            bool isAccepted = order.findAcceptedContract("Designer") != null;
+            bool isFinished = order.findFinishedContract("Designer") != null;
+            bool isProposed = order.findProposedContract("Designer") != null;
 
-            if (order.findAcceptedContract("Designer") == null)
-                return "Proposed by Designer";
+            bool isNeed = !isAccepted && !isFinished && !isProposed;
 
-            if (order.findFinishedContract("Designer") == null)
-                return "On Progress by Designer";
+            string status = ""; 
 
-            return "Finished by Designer";
+
+            if (isNeed)
+                status = "Needs Designer";
+
+            if (isProposed)
+                status = "Proposed by Designer";
+
+            if (isAccepted)
+                status = "On Progress by Designer";
+
+            if (isFinished)
+                status = "On Progress by Designer";
+
+            return status;
         }
 
         public string GetTailorStatus(Order order)
         {
-            if (order.findProposedContract("Tailor") == null)
-                return "Needs Tailor";
+            bool isAccepted = order.findAcceptedContract("Tailor") != null;
+            bool isFinished = order.findFinishedContract("Tailor") != null;
+            bool isProposed = order.findProposedContract("Tailor") != null;
 
-            if (order.findAcceptedContract("Tailor") == null)
-                return "Proposed by Tailor";
+            bool isNeed = !isAccepted && !isFinished && !isProposed;
 
-            if (order.findFinishedContract("Tailor") == null)
-                return "On Progress by Tailor";
+            string status = "";
 
-            return "Finished by Tailor";
+
+            if (isNeed)
+                status = "Needs Tailor";
+
+            if (isProposed)
+                status = "Proposed by Tailor";
+
+            if (isAccepted)
+                status = "On Progress by Tailor";
+
+            if (isFinished)
+                status = "On Progress by Tailor";
+
+            return status;
         }
 
         private void FilterOrders()

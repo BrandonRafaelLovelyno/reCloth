@@ -45,8 +45,6 @@ namespace Interface.Models
             Id = id;
             fetchOrder();
         }
-
-
         public void fetchOrder()
         {
             string query = $"SELECT * from orders WHERE id_order = '{Id}' LIMIT 1;";
