@@ -4,9 +4,13 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Interface"
+      xmlns:helpers="clr-namespace:Interface.Helpers"
       mc:Ignorable="d" 
       d:DesignHeight="1022" d:DesignWidth="1258"
       Title="DashboardCustomer">
+    <Page.Resources>
+        <helpers:StatusToColorConverter x:Key="StatusToColorConverter"/>
+    </Page.Resources>
 
     <Grid Background="#FDF4EB">
         <!-- Define Rows and Columns -->
@@ -124,12 +128,12 @@
                                     <!-- Order Status and Show Button -->
                                     <StackPanel Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical">
                                         <!-- Designer Status -->
-                                        <Border Width="220" Background="#6554C0" Padding="10 0 10 0" Margin="0 0 0 5" CornerRadius="12" HorizontalAlignment="Center">
+                                        <Border Width="220" Padding="10 0 10 0" Margin="0 0 0 5" CornerRadius="12" HorizontalAlignment="Center" Background="{Binding DesignerStatus, Converter={StaticResource StatusToColorConverter}}">
                                             <TextBlock Text="{Binding DesignerStatus}" FontSize="20" FontWeight="Regular" Foreground="White" HorizontalAlignment="Center"/>
                                         </Border>
 
                                         <!-- Tailor Status -->
-                                        <Border Width="220" Background="#4CAF50" Padding="10 0 10 0" Margin="0 0 0 5" CornerRadius="12" HorizontalAlignment="Center">
+                                        <Border Width="220" Padding="10 0 10 0" Margin="0 0 0 5" CornerRadius="12" HorizontalAlignment="Center" Background="{Binding TailorStatus, Converter={StaticResource StatusToColorConverter}}">
                                             <TextBlock Text="{Binding TailorStatus}" FontSize="20" FontWeight="Regular" Foreground="White" HorizontalAlignment="Center"/>
                                         </Border>
 
