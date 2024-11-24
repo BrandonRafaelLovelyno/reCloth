@@ -28,7 +28,7 @@
         <Grid Grid.Row="2" Margin="50" Background="#BD6D68">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
 
             <!-- Component -->
@@ -38,13 +38,15 @@
 
             <TextBlock Text="Specification" FontSize="36px" FontWeight="SemiBold" FontFamily="{StaticResource LexendFont}" Foreground="White" Margin="10 0 0 0" VerticalAlignment="Center"/>
             <Border BorderThickness="2" BorderBrush="White" CornerRadius="10" Padding="15" Height="100" Width="1100" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 150 0 0" Background="White"/>
-            <TextBox Name="tbSpecificationCustomer" Width="1060" Height="80" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20 150 0 0" BorderThickness="0"/>
+            <TextBox Name="tbSpecificationCustomer" Width="1060" Height="80" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20 160 0 0" BorderThickness="0" Foreground="Black" FontSize="16"/>
 
-            <Image x:Name="ImagePreview" Width="200" Height="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20 50 100 0" Stretch="Uniform" Visibility="Visible" Grid.Row="2" MouseUp="Change_Image" Cursor="Hand"/>
+            <Image x:Name="ImagePreview" Width="200" Height="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20 50 100 0" Stretch="Uniform" Visibility="Visible" Grid.Row="2" />
             <TextBlock Text="Image" FontSize="36px" FontWeight="SemiBold" FontFamily="{StaticResource LexendFont}" Foreground="White" Margin="10 0 0 0" Grid.Row="2"/>
             <Border Name ="Upload_Border" BorderThickness="2" BorderBrush="Black" CornerRadius="10" Padding="15" Height="35" Width="210" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 50 0 0" Background="White" Grid.Row="2" Cursor="Hand" MouseLeftButtonDown="Upload_Image" Visibility="Visible"/>
             <TextBlock Name = "Upload_Button" Text="Upload Image" FontSize="25px" FontWeight="SemiBold" FontFamily="{StaticResource LexendFont}" Foreground="Black" Grid.Row="2" Margin="20 50 0 0" Cursor="Hand" MouseLeftButtonDown="Upload_Image" Visibility="Visible"/>
-
+            <Border Name ="Change_Border" BorderThickness="2" BorderBrush="Black" CornerRadius="10" Padding="15" Height="35" Width="210" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 0 0" Background="White" Grid.Row="2" Cursor="Hand" MouseLeftButtonDown="Change_Image" Visibility="Hidden"/>
+            <TextBlock Name = "Change_Button" Text="Change Image" FontSize="25px" FontWeight="SemiBold" FontFamily="{StaticResource LexendFont}" Foreground="Black" Grid.Row="2" Margin="20 0 0 0" Cursor="Hand" MouseLeftButtonDown="Change_Image" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            
             <TextBlock Text="Budget" FontSize="36px" FontWeight="SemiBold" FontFamily="{StaticResource LexendFont}" Foreground="White" Margin="10 140 0 0" Grid.Row="2" VerticalAlignment="Center"/>
             <Border BorderThickness="2" BorderBrush="White" CornerRadius="10" Padding="15" Height="35" Width="1100" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 220 0 0" Background="White" Grid.Row="2"/>
             <TextBox Name="tbBudgetCustomer" Width="1060" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20 220 0 0" Grid.Row="2" BorderThickness="0" PreviewTextInput="Budget_Preview"/>
