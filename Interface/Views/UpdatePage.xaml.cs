@@ -33,9 +33,10 @@ namespace Interface.Views
         private OrderPageViewModel _viewModel;
         public string Id { get; private set; }
         public string _orderId { get; private set; }
-        public UpdatePage()
+        public UpdatePage(string orderId)
         {
             InitializeComponent();
+            _orderId = orderId;
             var config = GetConfiguration();
             Account account = new Account(
                 config["Cloudinary:CloudName"],
