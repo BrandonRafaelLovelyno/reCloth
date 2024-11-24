@@ -178,7 +178,7 @@ namespace Interface.ViewModels
 
         private void FetchWorkerUser(string role)
         {
-            FetchAcceptedContract(role);
+            findAcceptedOrDoneContract(role);
 
             if (role == "Designer" && DesignerContract != null)
             {
@@ -192,9 +192,9 @@ namespace Interface.ViewModels
             }
         }
 
-        private void FetchAcceptedContract(string role)
+        private void findAcceptedOrDoneContract(string role)
         {
-            string? contractId = Order.findAcceptedContract(role);
+            string? contractId = Order.findAcceptedOrDoneContract(role);
 
             if (contractId != null)
             {

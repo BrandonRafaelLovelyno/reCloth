@@ -63,9 +63,9 @@ namespace Interface.Models
             string query = $@"
             SELECT * 
             FROM contracts
-            JOIN orders ON orders.id_order = '{Id}'
+            JOIN orders ON orders.id_order = contracts.id_order
             JOIN workers ON workers.id_worker = contracts.id_worker
-            WHERE contracts.status = 'Proposed' AND workers.role = '{role}';
+            WHERE contracts.status = 'Proposed' AND workers.role = '{role}' AND orders.id_order = '{Id}';
             ";
 
             var rows = dbHelper.executeGetQuery(query, "id_contract");
@@ -92,15 +92,32 @@ namespace Interface.Models
             return dbHelper.convertObject<Guid>(rows[0]["id_contract"]).ToString();
         }
 
+        public string? findAcceptedOrDoneContract(string role)
+        {
+            string query = $@"
+            SELECT * 
+            FROM contracts
+            JOIN orders ON orders.id_order = contracts.id_order
+            JOIN workers ON workers.id_worker = contracts.id_worker
+            WHERE (contracts.status = 'Accepted' OR contracts.status = 'Done') AND workers.role = '{role}' AND orders.id_order = '{Id}';
+            ";
+
+            var rows = dbHelper.executeGetQuery(query, "id_contract");
+
+            if (rows.Count() == 0) return null;
+
+            return dbHelper.convertObject<Guid>(rows[0]["id_contract"]).ToString();
+        }
+
         public string? findFinishedContract(string role)
         {
             string query = $@"
             SELECT * 
             FROM contracts
-            JOIN orders ON orders.id_order = '{Id}'
+            JOIN orders ON orders.id_order = contracts.id_order
             JOIN workers ON workers.id_worker = contracts.id_worker
-            WHERE contracts.status = 'Finished'
-            AND workers.role = '{role}'
+            WHERE contracts.status = 'Done'
+            AND workers.role = '{role}' AND orders.id_order = '{Id}'
             AND contracts.result IS NOT NULL;
             ";
 

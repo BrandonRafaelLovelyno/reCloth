@@ -9,6 +9,7 @@
       d:DesignHeight="1198" d:DesignWidth="1438"
       Title="OrderPage"
       Background="#FDF4EB"
+      ScrollViewer.VerticalScrollBarVisibility="Visible"
       >
     <Page.Resources>
         <helpers:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
@@ -60,7 +61,7 @@
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0 0 0 3">
-                        <TextBlock Text="Name :" FontWeight="SemiBold" FontSize="12"/>
+                        <TextBlock Text="Name :" FontWeight="SemiBold" FontSize="15"/>
                         <TextBlock Text="{Binding Customer.Name}" FontSize="12" Margin="3 0 0 0"  FontWeight="SemiBold"/>
                     </StackPanel>
                 </StackPanel>
@@ -81,9 +82,9 @@
                         <TextBlock Text="Name :" FontSize="12" FontWeight="SemiBold"/>
                         <TextBlock Text="{Binding Designer.Name}" FontSize="12" Margin="3 0 0 0" FontWeight="SemiBold" />
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0 0 0 3">
-                        <TextBlock Text="Result :" FontSize="12" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding DesignerContract.Result}" FontSize="12" Margin="3 0 0 0" FontWeight="SemiBold" />
+                    <StackPanel Orientation="Vertical" Margin="0 0 0 10">
+                        <TextBlock Text="Result" FontWeight="SemiBold" FontSize="15" Margin="0 0 0 3"/>
+                        <Image Grid.Column="0" Source="{Binding DesignerContract.Result}" Margin="0 20 0 0" Width="100" Height="100" HorizontalAlignment="Left" Stretch="UniformToFill" />
                     </StackPanel>
                 </StackPanel>
             </Border>
@@ -103,9 +104,9 @@
                         <TextBlock Text="Name :" FontSize="12" FontWeight="SemiBold"/>
                         <TextBlock Text="{Binding Tailor.Name}" FontSize="12" Margin="3 0 0 0" FontWeight="SemiBold" />
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0 0 0 3">
-                        <TextBlock Text="Result :" FontSize="12" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding TailorContract.Result}" FontSize="12" Margin="3 0 0 0" FontWeight="SemiBold" />
+                    <StackPanel Orientation="Vertical" Margin="0 0 0 10">
+                        <TextBlock Text="Result" FontWeight="SemiBold" FontSize="15" Margin="0 0 0 3"/>
+                        <Image Grid.Column="0" Source="{Binding TailorContract.Result}" Margin="0 20 0 0" Width="100" Height="100" HorizontalAlignment="Left" Stretch="UniformToFill" />
                     </StackPanel>
                 </StackPanel>
             </Border>

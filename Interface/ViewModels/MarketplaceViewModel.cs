@@ -19,10 +19,6 @@ namespace Interface.ViewModels
         public ICommand NavigateToOrderCommand { get; }
         public ObservableCollection<Order> Orders { get; set; } // Original list of orders
         public ObservableCollection<Order> FilteredOrders { get; set; } // Filtered list of orders
-        private Contract? DesignerContract {  get; set; }
-
-        private Contract? TailorContract { get; set; }
-
         private string _selectedDesignerStatus;
         public string SelectedDesignerStatus
         {
