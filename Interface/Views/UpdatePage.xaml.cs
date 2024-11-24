@@ -1,10 +1,12 @@
 ﻿using CloudinaryDotNet;
 using Interface.Helpers;
+using Interface.Models;
 using Interface.ViewModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -18,6 +20,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Contract = Interface.Models.Contract;
 
 namespace Interface.Views
 {
@@ -31,7 +34,7 @@ namespace Interface.Views
         private string imageUrl;
         private Cloudinary cloudinary;
         private UpdateContractViewModel _contractViewModel;
- 
+
         public string Id { get; private set; }
         public string _orderId { get; private set; }
         public string _contractId { get; private set; }
@@ -40,6 +43,7 @@ namespace Interface.Views
             InitializeComponent();
             _orderId = orderId;
             _contractId = contractId;
+
             var config = GetConfiguration();
             Account account = new Account(
                 config["Cloudinary:CloudName"],
@@ -47,7 +51,7 @@ namespace Interface.Views
                 config["Cloudinary:ApiSecret"]
                 );
             cloudinary = new Cloudinary(account);
-            _contractViewModel = new UpdateContractViewModel(orderId);
+            _contractViewModel = new UpdateContractViewModel(new Contract(contractId));
             DataContext = _contractViewModel;
 
         }
@@ -132,7 +136,7 @@ namespace Interface.Views
 
                 
                
-                string updateQuery = "UPDATE contracts SET image = @image, status = @status WHERE id_order = @orderId";
+                string updateQuery = "UPDATE contracts SET image = @image, status = @status WHERE id_order = @orderId;";
 
                 Guid orderId = Guid.Parse(_orderId);
 

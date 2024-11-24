@@ -18,7 +18,7 @@ namespace Interface.ViewModels
         private string _role = UserSession.Current.Role;
         private Worker _worker;
         private DatabaseHelper dbHelper = new DatabaseHelper();
-
+        public Contract Contract { get; private set; }
         public ICommand SearchCommand { get; }
 
         public string _specificationTailor;
@@ -54,33 +54,18 @@ namespace Interface.ViewModels
             }
         }
 
-        public UpdateContractViewModel(string orderId)
+        public UpdateContractViewModel(Contract contract)
         {
             // Assuming worker is fetched based on the user ID
             _worker = new Worker(UserSession.Current.UserId);
             WorkerRole = _worker.Role;
 
             // Populate the data based on the role
-            LoadContractData(orderId);
+            Contract = contract;
 
             // SearchCommand setup (just for example)
             SearchCommand = new RelayCommand<string>(Search);
         }
-        private void LoadContractData(string orderId)
-        {
-            // Fetch the contract information from the database based on the role and order ID
-            string query = $"SELECT specification, budget FROM orders WHERE id_order = '{orderId}'";
-
-            var rows = dbHelper.executeGetQuery(query, "specification", "budget");
-
-            if (rows.Count > 0)
-            {
-                SpecificationTailor = rows[0]["specification"].ToString();
-                Budget = dbHelper.convertObject<double>(rows[0]["budget"]);
-            }
-        }
-
-
         private void Search(object obj)
         {
             // Implement search logic based on some criteria (for demonstration purposes)
