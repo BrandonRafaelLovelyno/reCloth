@@ -25,7 +25,8 @@ namespace Interface.Models
         public string? Title { get; private set; }
         public string? Specification { get; private set; }
         public string? Image { get; private set; }
-        public string? Status { get; set; }
+        public string? DesignerStatus { get; set; }
+        public string? TailorStatus { get; set; }
         private double? budget;
         public double? Budget
         {

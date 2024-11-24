@@ -108,37 +108,40 @@ namespace Interface.ViewModels
             {
                 string orderId = dbHelper.convertObject<Guid>(row["id_order"]).ToString();
                 Order order = new Order(orderId);
-                order.Status = GetOrderStatus(order);
+                order.DesignerStatus = GetDesignerStatus(order);
+                order.TailorStatus = GetTailorStatus(order);
                 Orders.Add(order);
             }
             TotalOrders = Orders.Count;
             FilterOrders();
         }
 
-        public string GetOrderStatus(Order order)
+        public string GetDesignerStatus(Order order)
         {
-            var statusChecks = new (string Role, string StatusIfProposed, string StatusIfAccepted)[]
-            {
-                ("Designer", "Proposed by Designer", "On Progress by Designer"),
-                ("Taylor", "Proposed by Tailor", "On Progress by Tailor")
-            };
+            if (order.findProposedContract("Designer") == null)
+                return "Needs Designer";
 
-            foreach (var check in statusChecks)
-            {
-                string proposedContract = order.findProposedContract(check.Role);
-                if (proposedContract == null)
-                    return $"Needs {check.Role}";
+            if (order.findAcceptedContract("Designer") == null)
+                return "Proposed by Designer";
 
-                string acceptedContract = order.findAcceptedContract(check.Role);
-                if (acceptedContract == null)
-                    return check.StatusIfProposed;
+            if (order.findFinishedContract("Designer") == null)
+                return "On Progress by Designer";
 
-                string finishedContract = order.findFinishedContract(check.Role);
-                if (finishedContract == null)
-                    return check.StatusIfAccepted;
-            }
+            return "Finished by Designer";
+        }
 
-            return "Finished";
+        public string GetTailorStatus(Order order)
+        {
+            if (order.findProposedContract("Tailor") == null)
+                return "Needs Tailor";
+
+            if (order.findAcceptedContract("Tailor") == null)
+                return "Proposed by Tailor";
+
+            if (order.findFinishedContract("Tailor") == null)
+                return "On Progress by Tailor";
+
+            return "Finished by Tailor";
         }
 
         private void FilterOrders()
@@ -151,7 +154,8 @@ namespace Interface.ViewModels
             // Apply status filter if applicable
             if (!string.IsNullOrWhiteSpace(SelectedOrderStatus))
             {
-                filtered = filtered.Where(o => o.Status == SelectedOrderStatus);
+                filtered = filtered.Where(o => o.TailorStatus == SelectedOrderStatus);
+                filtered = filtered.Where(o => o.DesignerStatus == SelectedOrderStatus);
             }
 
             // Add the filtered items to FilteredOrders to notify the UI
