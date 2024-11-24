@@ -44,26 +44,26 @@ namespace Interface.ViewModels
             }
         }
 
-        private string _searchText;
-        public string SearchText
+        private string _selectedDesignerStatus;
+        public string SelectedDesignerStatus
         {
-            get => _searchText;
+            get => _selectedDesignerStatus;
             set
             {
-                _searchText = value;
-                OnPropertyChanged(nameof(SearchText));
+                _selectedDesignerStatus = value;
+                OnPropertyChanged(nameof(SelectedDesignerStatus));
                 FilterOrders();
             }
         }
 
-        private string _selectedOrderStatus;
-        public string SelectedOrderStatus
+        private string _selectedTailorStatus;
+        public string SelectedTailorStatus
         {
-            get => _selectedOrderStatus;
+            get => _selectedTailorStatus;
             set
             {
-                _selectedOrderStatus = value;
-                OnPropertyChanged(nameof(SelectedOrderStatus));
+                _selectedTailorStatus = value;
+                OnPropertyChanged(nameof(SelectedTailorStatus));
                 FilterOrders();
             }
         }
@@ -170,29 +170,37 @@ namespace Interface.ViewModels
 
         private void FilterOrders()
         {
-            // Clear the existing items in FilteredOrders
             FilteredOrders.Clear();
 
-            IEnumerable<Order> filtered = Orders;
+            var filtered = Orders;
 
-            // Apply status filter if applicable
-            if (!string.IsNullOrWhiteSpace(SelectedOrderStatus))
+            // Apply designer status filter if applicable
+            if (!string.IsNullOrWhiteSpace(SelectedDesignerStatus))
             {
-                filtered = filtered.Where(o => o.TailorStatus == SelectedOrderStatus);
-                filtered = filtered.Where(o => o.DesignerStatus == SelectedOrderStatus);
+                filtered = new ObservableCollection<Order>(
+                    filtered.Where(o => o.DesignerStatus == SelectedDesignerStatus)
+                );
             }
 
-            // Add the filtered items to FilteredOrders to notify the UI
+            // Apply tailor status filter if applicable
+            if (!string.IsNullOrWhiteSpace(SelectedTailorStatus))
+            {
+                filtered = new ObservableCollection<Order>(
+                    filtered.Where(o => o.TailorStatus == SelectedTailorStatus)
+                );
+            }
+
             foreach (var order in filtered)
             {
                 FilteredOrders.Add(order);
             }
 
-            Console.WriteLine(SelectedOrderStatus);
+            Console.WriteLine(SelectedDesignerStatus);
+            Console.WriteLine(SelectedTailorStatus);
         }
 
 
-        private void NavigateToOrder(string orderId)
+            private void NavigateToOrder(string orderId)
         {
             var appWindow = Application.Current.MainWindow as AppWindow;
             if (appWindow != null)
