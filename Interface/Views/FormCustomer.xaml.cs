@@ -22,6 +22,8 @@ using Interface.Models;
 using Interface.Helpers;
 using Interface.ViewModels;
 
+
+
 namespace Interface
 {
     /// <summary>
@@ -84,6 +86,10 @@ namespace Interface
 
                 Upload_Border.Visibility = Visibility.Collapsed;
                 Upload_Button.Visibility = Visibility.Collapsed;
+
+
+                Change_Border.Visibility = Visibility.Visible;
+                Change_Button.Visibility = Visibility.Visible;
             }
         }
 
@@ -98,6 +104,7 @@ namespace Interface
             {
                 selectedImagePath = openFileDialog.FileName;
                 ImagePreview.Source = new BitmapImage(new Uri(selectedImagePath));
+
             }
         }
 
