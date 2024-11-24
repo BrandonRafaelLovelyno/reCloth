@@ -81,9 +81,9 @@ namespace Interface.Models
             string query = $@"
             SELECT * 
             FROM contracts
-            JOIN orders ON orders.id_order = '{Id}'
+            JOIN orders ON orders.id_order = contracts.id_order
             JOIN workers ON workers.id_worker = contracts.id_worker
-            WHERE contracts.status = 'Accepted' AND workers.role = '{role}';
+            WHERE contracts.status = 'Accepted' AND workers.role = '{role}' AND orders.id_order = '{Id}';
             ";
 
             var rows = dbHelper.executeGetQuery(query, "id_contract");

@@ -27,7 +27,7 @@ namespace Interface.Models
         public string fetchUserId()
         {
             string query = $@"
-                SELECT u.* 
+                SELECT u.*
                 FROM contracts c
                 JOIN workers w ON c.id_worker = w.id_worker
                 JOIN users u ON w.id_user = u.id_user
