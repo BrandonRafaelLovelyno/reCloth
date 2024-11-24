@@ -19,24 +19,38 @@ using System.Globalization;
 using Interface.Helpers;
 using Interface.Models;
 using Interface.Views;
+using System.ComponentModel;
 
 namespace Interface
 {
     /// <summary>
     /// Interaction logic for FormWorker.xaml
     /// </summary>
-    public partial class FormWorker : Page
+    public partial class FormWorker : Page, INotifyPropertyChanged
     {
         private DatabaseHelper dbHelper = new DatabaseHelper();
         private string workerId;
         private string _orderId;
-       
+        private string workerName;
+        public string WorkerName
+        {
+            get => workerName;
+            set
+            {
+                workerName = value;
+                OnPropertyChanged(nameof(workerName));
+            }
+        }
+
         public FormWorker(string orderId)
         {
             InitializeComponent();
+            DataContext = this;
+            WorkerName = $"Hello, {UserSession.Current.Name}!";
             Worker worker = new Worker(UserSession.Current.UserId);
             workerId = worker.Id;
             _orderId = orderId;
+            Console.WriteLine(WorkerName);
         }      
         private void Propose_Order(object sender, EventArgs e)
         {
@@ -82,6 +96,13 @@ namespace Interface
             { 
                 MessageBox.Show($"An error occured: {ex.Message}", "Error", MessageBoxButton.OK,MessageBoxImage.Error);            
             }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
