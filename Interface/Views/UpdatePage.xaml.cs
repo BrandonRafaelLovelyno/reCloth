@@ -136,7 +136,7 @@ namespace Interface.Views
 
                 
                
-                string updateQuery = "UPDATE contracts SET image = @image, status = @status WHERE id_order = @orderId;";
+                string updateQuery = "UPDATE contracts SET result = @image, status = @status WHERE id_order = @orderId;";
 
                 Guid orderId = Guid.Parse(_orderId);
 
