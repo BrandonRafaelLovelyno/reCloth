@@ -90,7 +90,7 @@ namespace Interface.ViewModels
                 status = "On Progress by Designer";
 
             if (isFinished)
-                status = "On Progress by Designer";
+                status = "Finished";
 
             return status;
         }
@@ -116,7 +116,7 @@ namespace Interface.ViewModels
                 status = "On Progress by Tailor";
 
             if (isFinished)
-                status = "On Progress by Tailor";
+                status = "Finished";
 
             return status;
         }
