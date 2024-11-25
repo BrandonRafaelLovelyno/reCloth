@@ -34,7 +34,16 @@ namespace Interface
 
             Application.Current.MainWindow = this;
 
-            MainFrame.NavigationService.Navigate(new Marketplace());
+            string userType = UserSession.Current.Role;
+
+            if (userType == "Customer")
+            {
+                MainFrame.NavigationService.Navigate(new DashboardCustomer());
+            }
+            else if (userType == "Tailor" || userType == "Designer")
+            {
+                MainFrame.NavigationService.Navigate(new DashboardWorker());
+            }
 
             // Set the window to fullscreen
             this.WindowState = WindowState.Maximized;

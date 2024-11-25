@@ -35,14 +35,24 @@ namespace Interface
         {
             string query = $"UPDATE contracts SET status = 'Rejected' WHERE id_contract = '{ContractId}';";
             dbHelper.executePostQuery(query);
-            MessageBox.Show("Contract rejected"); 
+            MessageBox.Show("Contract Rejected!", "Rejected", MessageBoxButton.OK, MessageBoxImage.Information);
+            var appWindow = Application.Current.MainWindow as AppWindow;
+            if (appWindow != null)
+            {
+                appWindow.MainFrame.NavigationService.Navigate(new DashboardCustomer());
+            }
         }
 
         public void acceptProposal(object sender, RoutedEventArgs e)
         {
             string query = $"UPDATE contracts SET status = 'Accepted' WHERE id_contract = '{ContractId}';";
             dbHelper.executePostQuery(query);
-            MessageBox.Show("Contract accepted");
+            MessageBox.Show("Contract Accepted!", "Accepted", MessageBoxButton.OK, MessageBoxImage.Information);
+            var appWindow = Application.Current.MainWindow as AppWindow;
+            if (appWindow != null)
+            {
+                appWindow.MainFrame.NavigationService.Navigate(new DashboardCustomer());
+            }
         }
     }
 }

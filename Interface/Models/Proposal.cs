@@ -1,19 +1,36 @@
 ﻿using Interface.Helpers;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Interface.Models
 {
-    internal class Proposal
+    internal class Proposal : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
         private DatabaseHelper dbHelper = new DatabaseHelper();
         public string Id { get; private set; }
         public string? IdOrder { get; private set; }
         public string? Specification { get; set; }
-        public string? Budget { get; set; }
+        private double? budget;
+        public double? Budget
+        {
+            get => budget;
+            set
+            {
+                budget = value;
+                OnPropertyChanged(nameof(Budget));
+                OnPropertyChanged(nameof(FormattedBudget));
+            }
+        }
         public Worker? Worker { get; set; }
         public string? Result{ get; set; }
         public string? Status{ get; set; }
@@ -32,7 +49,7 @@ namespace Interface.Models
 
             IdOrder = dbHelper.convertObject<Guid>(rows[0]["id_order"]).ToString();
             Specification = dbHelper.convertObject<string>(rows[0]["specification"]).ToString();
-            Budget = dbHelper.convertObject<Double>(rows[0]["budget"]).ToString();
+            Budget = dbHelper.convertObject<Double>(rows[0]["budget"]);
             Result = dbHelper.convertObject<string>(rows[0]["result"]).ToString();
             Status = dbHelper.convertObject<string>(rows[0]["status"]);
 
@@ -44,5 +61,7 @@ namespace Interface.Models
             string userId = dbHelper.convertObject<Guid>(rows[0]["id_user"]).ToString();
             Worker = new Worker(userId);
         }
+
+        public string FormattedBudget => Budget.HasValue ? $"Rp {Budget.Value:N0}" : "Rp 0";
     }
 }
