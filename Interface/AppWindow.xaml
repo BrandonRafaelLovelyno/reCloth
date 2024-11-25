@@ -17,6 +17,7 @@
                     <Label Cursor="Hand" MouseLeftButtonDown="Marketplace_Click" Foreground="#FDF4EB" Content="&#xf290;" FontFamily="./assets/Fonts/#Font Awesome 6 Free Solid 6 Free Solid" FontSize="40" Margin="15"/>
                     <Label Cursor="Hand" MouseLeftButtonDown="Form_Click" Foreground="#FDF4EB" Content="&#xf093;" FontFamily="./assets/Fonts/#Font Awesome 6 Free Solid 6 Free Solid" FontSize="40" Margin="15" Visibility="{Binding IsCustomer, Converter={StaticResource BoolToVisibilityConverter}}"/>
                     <Label Cursor="Hand" MouseLeftButtonDown="Dashboard_Click" Foreground="#FDF4EB" Content="&#xf007;" FontFamily="./assets/Fonts/#Font Awesome 6 Free Solid 6 Free Solid" FontSize="40" Margin="15"/>
+                    <Label Cursor="Hand" MouseLeftButtonDown="Logout_Click" Foreground="#FDF4EB" Content="&#xf2f5;" FontFamily="./assets/Fonts/#Font Awesome 6 Free Solid 6 Free Solid" FontSize="40" Margin="15"/>
                 </StackPanel>
             </Grid>
             <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>

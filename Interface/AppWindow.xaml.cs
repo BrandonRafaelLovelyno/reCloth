@@ -70,5 +70,23 @@ namespace Interface
                 MessageBox.Show("You cannot access this because you are a Worker", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to logout?", "Logout Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                UserSession.Current.UserId = null;
+                UserSession.Current.Role = null;
+                UserSession.Current.Name = null;
+                MainWindow mainWindow = new MainWindow();
+
+                Window.GetWindow(this)?.Close();
+
+                mainWindow.Show();
+
+                MessageBox.Show("You are logged out!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
     }
 }
