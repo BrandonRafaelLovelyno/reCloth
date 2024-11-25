@@ -18,4 +18,5 @@ Anggota 3: Deren Tanaphan - 22/503261/TK/54976
 
 ## ERD
 
-![image](https://github.com/user-attachments/assets/5f173cc6-7feb-4abc-a7f6-8b0d068e2fe7)
+![ERD drawio](https://github.com/user-attachments/assets/1c9dc5e8-8685-40ab-8829-5246e6f15700)
+
